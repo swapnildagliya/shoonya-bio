@@ -1,0 +1,5 @@
+_build/
+spec.md
+audit-*.md
+quality-audit-*.md
+mockups/

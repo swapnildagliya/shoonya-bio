@@ -1,0 +1,457 @@
+/* =====================================================================
+   MOBILE-HUB CSS — link-in-bio deploy-safe bundle
+   ---------------------------------------------------------------------
+   Self-contained snapshot of the mobile-hub layer from the canonical
+   design system (`Claude Designs/Swapnil-Social-Set/colors_and_type.css`),
+   2026-05-24. Bundled here so the linktree pages stay deployable
+   on their own (sending just /links-in-bio to a host doesn't break).
+
+   Source of truth for ANY changes: edit `colors_and_type.css` first,
+   then re-bundle this file. Do not maintain divergent rules here.
+
+   Pages import this with:
+     <link rel="stylesheet" href="styles/mobile-hub.css">
+   ===================================================================== */
+
+:root {
+  /* Foundations */
+  --void-black: #000000;
+  --void-white: #FFFFFF;
+  --mist:       #D6D6D6;
+  --charcoal:   #4A4A4A;
+
+  /* v1.0 brand vibrants */
+  --vibrant-purple:  #B564F7;   /* Shoonya Dance Centre (anchor)        */
+  --vibrant-yellow:  #FBC70F;   /* ABC a Bollywood Company              */
+  --vibrant-saffron: #E85D1F;   /* @swapnil.indiandance / @swapkebolly  */
+  --vibrant-pink:    #EEAACF;   /* social / GIDF opening-party tint     */
+
+  --brand-shoonya:   var(--vibrant-purple);
+  --brand-abc:       var(--vibrant-yellow);
+  --brand-gidf:      var(--vibrant-saffron);
+  --brand-swapnil:   var(--vibrant-saffron);
+  --brand-cook:      var(--void-white);
+
+  /* Semantic FG/BG (defaults — themers override `--vibrant` per brand) */
+  --bg:        var(--void-white);
+  --fg:        var(--void-black);
+  --fg-1:      var(--void-black);
+  --fg-2:      var(--charcoal);
+  --fg-3:      #8A8A8A;
+  --rule:      var(--mist);
+  --vibrant:   var(--vibrant-purple);
+
+  /* Type stack */
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  --tracking-caption: 0.12em;
+  --tracking-eyebrow: 0.18em;
+
+  /* 8-point spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+
+  /* Lines / radii / motion */
+  --hairline:    0.5px;
+  --line:        1px;
+  --radius-0:    0px;
+  --radius-pill: 999px;
+
+  --ease:           cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-fast:  120ms;
+  --duration-base:  240ms;
+  --duration-slow:  480ms;
+
+  /* Mobile-hub additions (warm paper + soft surfaces) */
+  --paper-warm:       #F5F4F1;
+  --paper-warm-cool:  #FAFAF7;
+  --hairline-ink:     rgba(26, 25, 23, 0.12);
+  --radius-soft:      4px;
+  --shadow-card-soft: 0 8px 24px -10px rgba(26, 25, 23, 0.28);
+  --shadow-dock:      0 12px 32px -16px rgba(26, 25, 23, 0.55);
+}
+
+[data-brand="shoonya"] { --vibrant: var(--vibrant-purple); }
+[data-brand="abc"]     { --vibrant: var(--vibrant-yellow); }
+[data-brand="gidf"]    { --vibrant: var(--vibrant-saffron); }
+[data-brand="swapnil"] { --vibrant: var(--vibrant-saffron); }
+[data-brand="cook"]    { --vibrant: var(--void-white); }
+
+
+/* =====================================================================
+   MOBILE-HUB COMPONENTS
+   ===================================================================== */
+
+/* --- LINK ROW -------------------------------------------------------- */
+.link-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 26px;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2) 0;
+  position: relative;
+  color: inherit;
+  border: 0;
+  text-decoration: none;
+  transition: transform var(--duration-base) var(--ease);
+}
+.link-row:hover { opacity: 1; }
+.link-row:focus-visible { outline: 2px solid var(--vibrant); outline-offset: 6px; }
+.link-row__thumb {
+  width: 60px; height: 60px;
+  background: rgba(26,25,23,.06);
+  overflow: hidden;
+  border-radius: var(--radius-soft);
+  flex: 0 0 60px;
+  transition: opacity var(--duration-base) var(--ease);
+}
+.link-row__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.link-row:hover .link-row__thumb { opacity: 0.88; }
+.link-row__body { min-width: 0; }
+.link-row__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+.link-row__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  color: var(--fg-1);
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.link-row__meta {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--fg-2);
+  margin-top: 3px;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.link-row__chev {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--vibrant);
+  color: var(--fg-1);
+  font-weight: 600;
+  border-radius: 50%;
+  font-size: 13px;
+  flex: 0 0 26px;
+  transition: transform var(--duration-base) var(--ease);
+}
+.link-row:hover .link-row__chev,
+.link-row:hover .link-row__title { transform: translateX(3px); }
+
+.link-row--thumb-right { grid-template-columns: 1fr 64px; }
+.link-row--thumb-right .link-row__thumb { width: 64px; height: 64px; flex-basis: 64px; }
+.link-row--thumb-right .link-row__chev { display: none; }
+.link-row--thumb-right .link-row__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+.link-row--thumb-right .link-row__meta-arrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--vibrant);
+  opacity: 0.8;
+  flex: 0 0 auto;
+  transition: transform var(--duration-base) var(--ease);
+}
+.link-row--thumb-right:hover .link-row__meta-arrow { transform: translateX(3px); opacity: 1; }
+
+.link-row--static { cursor: default; }
+.link-row--static .link-row__chev { display: none; }
+
+
+/* --- STATUS BADGE ---------------------------------------------------- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--vibrant);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  padding: 2px 7px;
+  border-radius: var(--radius-soft);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.status-badge--dm-only {
+  background: transparent;
+  color: var(--fg-2);
+  border: var(--line) solid var(--hairline-ink);
+}
+.status-badge .dm-suffix {
+  font-weight: 500;
+  opacity: 0.72;
+  letter-spacing: var(--tracking-eyebrow);
+  padding-left: 5px;
+  border-left: var(--line) solid rgba(26, 25, 23, 0.32);
+}
+/* DARK vibrants (purple/saffron) need WHITE text on solid badges.
+   --dm-only excluded so its dark text stays visible on warm paper.   */
+[data-brand="shoonya"] .status-badge:not(.status-badge--dm-only),
+[data-brand="gidf"]    .status-badge:not(.status-badge--dm-only),
+[data-brand="swapnil"] .status-badge:not(.status-badge--dm-only) { color: var(--void-white); }
+[data-brand="shoonya"] .status-badge:not(.status-badge--dm-only) .dm-suffix,
+[data-brand="gidf"]    .status-badge:not(.status-badge--dm-only) .dm-suffix,
+[data-brand="swapnil"] .status-badge:not(.status-badge--dm-only) .dm-suffix { border-left-color: rgba(255,255,255,0.45); }
+
+[data-brand="shoonya"] .link-row__chev,
+[data-brand="gidf"]    .link-row__chev,
+[data-brand="swapnil"] .link-row__chev { color: var(--void-white); }
+
+
+/* --- SOCIAL DOCK ----------------------------------------------------- */
+.social-dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  z-index: 10;
+  box-shadow: var(--shadow-dock);
+  max-width: 432px;
+}
+.social-dock a {
+  width: 44px; height: 44px;            /* keep ≥44px tap target; visual softened by smaller svg + tighter padding */
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--duration-base) var(--ease),
+              color var(--duration-base) var(--ease);
+}
+.social-dock a:hover { opacity: 1; }
+.social-dock svg { width: 17px; height: 17px; }
+.social-dock--glass {
+  background: rgba(250, 250, 247, 0.88);
+  border: var(--line) solid var(--hairline-ink);
+  backdrop-filter: saturate(160%) blur(20px);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+}
+.social-dock--glass a { color: var(--fg-1); }
+.social-dock--glass a:hover { background: var(--vibrant); color: var(--fg-1); }
+.social-dock--dark {
+  background: var(--void-black);
+  color: var(--void-white);
+  left: var(--space-3);
+  right: var(--space-3);
+  transform: none;
+  justify-content: space-around;
+}
+.social-dock--dark a { color: var(--void-white); }
+.social-dock--dark a:hover { background: rgba(255, 255, 255, 0.08); }
+.social-dock a.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px; height: 2px;
+  background: var(--vibrant);
+  border-radius: 2px;
+}
+/* Soft fade above the dock so rows behind it don't appear cut off. */
+.social-dock-fade {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 96px;
+  pointer-events: none;
+  z-index: 9;
+  background: linear-gradient(to top,
+    var(--bg) 0%,
+    color-mix(in srgb, var(--bg) 90%, transparent) 40%,
+    transparent 100%);
+}
+/* Pages using this dock must reserve at least 200px of bottom padding. */
+
+
+/* --- FEATURED EVENT CARD --------------------------------------------- */
+/* Anchor IS the grid container (no display:contents hack) so the
+   interactive box has a real bounding rect for accessibility tools.   */
+.featured-event-card {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 20px;
+  padding: 28px 0 32px;
+  align-items: flex-start;
+  position: relative;
+  color: inherit;
+  border: 0;
+  text-decoration: none;
+}
+.featured-event-card:hover { opacity: 1; }
+.featured-event-card:focus-visible { outline: 2px solid var(--vibrant); outline-offset: 6px; }
+.featured-event-card__thumb {
+  width: 120px; height: 120px;
+  background: rgba(26,25,23,.06);
+  overflow: hidden;
+  border-radius: var(--radius-soft);
+  box-shadow: var(--shadow-card-soft);
+  transition: transform var(--duration-base) var(--ease);
+}
+.featured-event-card__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.featured-event-card:hover .featured-event-card__thumb { transform: scale(0.97); }
+.featured-event-card__pinlbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--vibrant);
+  margin-bottom: 14px;
+}
+.featured-event-card__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 7.4vw, 34px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+  margin: 0;
+}
+.featured-event-card__subtitle {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--fg-2);
+  margin-top: 8px;
+}
+.featured-event-card__meta {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--fg-2);
+  margin-top: 10px;
+  letter-spacing: 0.01em;
+}
+.featured-event-card__cta {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--vibrant);
+}
+.featured-event-card__cta::after { content: '→'; font-size: 14px; letter-spacing: 0; }
+
+
+/* --- EVENT GROUP (collapsible) -------------------------------------- */
+.event-group__details > summary { list-style: none; cursor: pointer; }
+.event-group__details > summary::-webkit-details-marker { display: none; }
+.event-group__details > summary:focus-visible { outline: 2px solid var(--vibrant); outline-offset: 4px; }
+
+.event-group-header {
+  padding: var(--space-2) 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.event-group-header__label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.event-group-header__date {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg-2);
+}
+.event-group-header__count {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+  font-weight: 500;
+}
+.event-group-header__chevron {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--fg-2);
+  width: 18px;
+  text-align: center;
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease);
+  margin-left: 4px;
+  align-self: center;
+}
+details[open] .event-group-header__chevron { transform: rotate(90deg); }
+
+.event-group__children { display: block; }
+
+.link-row--grouped {
+  padding-left: var(--space-2);
+  position: relative;
+}
+.link-row--grouped::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--vibrant);
+  opacity: 0.32;
+}
+
+
+/* --- DESKTOP CENTRING ------------------------------------------------ */
+@media (min-width: 600px) {
+  .social-dock--dark {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 480px;
+    max-width: 480px;
+    transform: none;
+  }
+}
