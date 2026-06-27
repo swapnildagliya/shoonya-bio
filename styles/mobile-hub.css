@@ -144,9 +144,16 @@
   color: var(--fg-2);
   margin-top: 3px;
   letter-spacing: 0.01em;
+}
+/* Sub-line wraps to max 2 lines — never chops a word mid-character.
+   Authoring rule: keep it short (studio + format); never repeat the
+   date or teacher already shown in the eyebrow (see workshops.json). */
+.link-row__meta > span:not(.link-row__meta-arrow) {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 0;
 }
 .link-row__chev {
   width: 26px; height: 26px;
@@ -168,8 +175,11 @@
 .link-row--thumb-right .link-row__meta {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
   gap: var(--space-1);
+}
+.link-row--thumb-right .link-row__meta > span:not(.link-row__meta-arrow) {
+  flex: 1 1 auto;
 }
 .link-row--thumb-right .link-row__meta-arrow {
   font-family: var(--font-body);

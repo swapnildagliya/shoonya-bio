@@ -684,8 +684,7 @@ const EVENTS = [
     id:'classical-contemporary-intensive', audience:'shoonya',
     title:'Classical & Contemporary Summer Intensive', eyebrow:'3 – 5 Aug · with Tono Ferriol · from €40',
     date:'2026-08-03', endDate:'2026-08-05',
-    dateLabel:'3 – 5 August 2026 · ballet & contemporary',
-    location:'with Tono Ferriol · Shoonya, Gent',
+    dateLabel:'Ballet & contemporary · Studio Aakash',
     image:'images/tono-ferriol.jpg',
     url:'https://workshops.shoonyadance.com/classical-contemporary-summer-intensive/',
     cta:'Reserve a spot',
@@ -694,28 +693,25 @@ const EVENTS = [
     id:'flamenco-summer-intensive', audience:'shoonya',
     title:'Flamenco Summer Intensive', eyebrow:'26 – 29 Aug · with La Liz · from €33',
     date:'2026-08-26', endDate:'2026-08-29',
-    dateLabel:'26 – 29 August 2026 · 4 workshops',
-    location:'with La Liz · Shoonya, Gent',
+    dateLabel:'4 workshops · Studio Ananta',
     image:'images/shoonya-flamenco-001.jpg',
     url:'https://workshops.shoonyadance.com/flamenco-summer-intensive/',
     cta:'Reserve a spot',
   },
   {
     id:'kizomba-beginner-bootcamp', audience:'shoonya',
-    title:'Kizomba Beginner Bootcamp', eyebrow:'3 Saturdays from 17 Oct · mornings · beginners · from €55',
+    title:'Kizomba Beginner Bootcamp', eyebrow:'From 17 Oct · beginners · from €55',
     date:'2026-10-17', endDate:'2027-01-23',
-    dateLabel:'Sat 17 Oct · 7 Nov · 23 Jan · 11:00 – 14:00',
-    location:'with Sonja KikiZomba · Shoonya, Gent',
+    dateLabel:'3 Saturday mornings · with Sonja KikiZomba',
     image:'images/sonja-kikizomba.jpg',
     url:'https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/',
     cta:'Reserve a spot',
   },
   {
     id:'kizomba-universe', audience:'shoonya',
-    title:'Exploring the Kizomba Universe', eyebrow:'3 Saturdays from 17 Oct · afternoons · from €55',
+    title:'Exploring the Kizomba Universe', eyebrow:'From 17 Oct · afternoons · from €55',
     date:'2026-10-17', endDate:'2027-01-23',
-    dateLabel:'Sat 17 Oct · 7 Nov · 23 Jan · 15:00 – 18:00',
-    location:'with Sonja KikiZomba · Shoonya, Gent',
+    dateLabel:'3 Saturday afternoons · with Sonja KikiZomba',
     image:'images/kizomba-social.jpg',
     url:'https://workshops.shoonyadance.com/exploring-the-kizomba-universe/',
     cta:'Reserve a spot',
@@ -996,7 +992,7 @@ const EVENTS = [
             <div class="link-row__body">
               <div class="link-row__eyebrow">${badgeHTML}${liveDot}${escapeHTML(e.eyebrow)}</div>
               <div class="link-row__title">${escapeHTML(e.title)}</div>
-              <div class="link-row__meta"><span>${escapeHTML(e.dateLabel)} · ${escapeHTML(e.location || '')}</span><span class="link-row__meta-arrow" aria-hidden="true">${arrowText}</span></div>
+              <div class="link-row__meta"><span>${escapeHTML([e.dateLabel, e.location].filter(Boolean).join(' · '))}</span><span class="link-row__meta-arrow" aria-hidden="true">${arrowText}</span></div>
             </div>
             ${thumbHTML}
           </a>`;
