@@ -345,6 +345,12 @@ const GROUPS = {
     dateLabel: 'Sat 22 + Sun 23 Aug',
     eyebrow: '11 workshops · 6 teachers · Azaleapark, Gent',
   },
+  'social-nights': {
+    label: 'Kizomba Social Nights',
+    dateLabel: 'Oct – Feb',
+    eyebrow: '3 Fridays · with Sonja KikiZomba',
+    unit: 'night',
+  },
 };
 
 const EVENTS = [
@@ -643,6 +649,39 @@ const EVENTS = [
     image:'images/styles/bollywood-1.jpg',
     cta:'Buy a ticket',
   },
+  // ─── Kizomba Social Nights · monthly Friday series with Sonja KikiZomba ───
+  // Group-clustered via GROUPS['social-nights'] (dates span Oct–Feb). Oct + Dec
+  // from Sonja's confirmed submissions; Feb is a confirmed-date placeholder only.
+  {
+    id:'social-oct', audience:'shoonya', group:'social-nights',
+    title:'Kizomba Social Night', eyebrow:'Fri 2 Oct · 20:00 · from €7',
+    date:'2026-10-02',
+    dateLabel:'Semba workshop + DJ Lokito & Sosso',
+    location:'',
+    image:'images/kizomba-social.jpg',
+    url:'https://www.shoonyadance.com/calendar/kizomba-social-night-october-2026',
+    cta:'Buy a ticket',
+  },
+  {
+    id:'social-dec', audience:'shoonya', group:'social-nights',
+    title:'Kizomba Social Night', eyebrow:'Fri 4 Dec · 20:00 · from €7',
+    date:'2026-12-04',
+    dateLabel:'Kizomba workshop + DJ Boevi & Sosso',
+    location:'',
+    image:'images/kizomba-social.jpg',
+    url:'https://www.shoonyadance.com/calendar/kizomba-social-night-december-2026',
+    cta:'Buy a ticket',
+  },
+  {
+    id:'social-feb', audience:'shoonya', group:'social-nights',
+    title:'Kizomba Social Night', eyebrow:'Fri 5 Feb 2027 · save the date',
+    date:'2027-02-05',
+    dateLabel:'Programme to be announced',
+    location:'',
+    image:'images/kizomba-social.jpg',
+    url:'https://www.shoonyadance.com/calendar/kizomba-social-night-february-2027',
+    cta:'Save the date',
+  },
   /* WORKSHOPS-AUTO:START */
   // 12 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
   {
@@ -852,11 +891,17 @@ const EVENTS = [
   const ariaLabelFor = (e) => e.url ? e.title : tr().dmAria(e.title);
 
   const today = todayLocal();
-  const visible = EVENTS
+  const visiblePre = EVENTS
     .map(e => ({...e, _start: parseISO(e.date), _end: parseISO(e.endDate || e.date)}))
     .filter(e => e._end >= today)
-    .filter(e => !e.audience || e.audience === AUDIENCE || e.audience === 'both')
-    .sort((a,b) => a._start - b._start);
+    .filter(e => !e.audience || e.audience === AUDIENCE || e.audience === 'both');
+  // Cluster a group's members by the group's earliest visible date, so a group
+  // whose dates are spread across the calendar (e.g. monthly social nights) still
+  // renders as ONE contiguous block. Tight-window festivals are unaffected.
+  const groupMin = {};
+  visiblePre.forEach(e => { if (e.group && (!(e.group in groupMin) || e._start < groupMin[e.group])) groupMin[e.group] = e._start; });
+  const sortKey = e => (e.group && groupMin[e.group] != null) ? groupMin[e.group] : e._start;
+  const visible = visiblePre.sort((a,b) => (sortKey(a) - sortKey(b)) || (a._start - b._start));
 
   const pinned = visible.find(e => e.pinned || (e.pinnedFor && e.pinnedFor.includes(AUDIENCE))) || visible[0];
   const rest = visible.filter(e => e !== pinned);
@@ -991,7 +1036,7 @@ const EVENTS = [
                 <summary class="event-group-header">
                   <span class="event-group-header__label">${escapeHTML(g.label)}</span>
                   <span class="event-group-header__date">${escapeHTML(g.dateLabel)}</span>
-                  <span class="event-group-header__count">${childCount} workshop${childCount === 1 ? '' : 's'}</span>
+                  <span class="event-group-header__count">${childCount} ${g.unit || 'workshop'}${childCount === 1 ? '' : 's'}</span>
                   <span class="event-group-header__chevron" aria-hidden="true">›</span>
                 </summary>
                 <div class="event-group__children">`);
