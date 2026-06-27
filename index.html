@@ -147,13 +147,6 @@
   .share-btn:hover{color:var(--vibrant);border-color:var(--vibrant)}
   .share-btn:focus-visible{outline:2px solid var(--vibrant);outline-offset:2px}
 
-  /* ===== NEWSLETTER — link-out to shoonyadance.com/newsletter ===== */
-  .newsletter{margin-top:30px;padding:22px 20px;border:1px solid var(--hairline);background:var(--card);display:flex;flex-direction:column;gap:11px;animation:fade-up 700ms 220ms var(--ease) both}
-  .newsletter__title{font-family:var(--pf);font-weight:500;font-size:21px;line-height:1.12;letter-spacing:-.01em;color:var(--ink)}
-  .newsletter__body{font-family:var(--inter);font-size:13.5px;line-height:1.5;color:var(--charcoal)}
-  .newsletter__cta{align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin-top:4px;padding:0 24px;border:1.5px solid var(--vibrant);color:var(--vibrant);background:transparent;font-family:var(--inter);font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;transition:background var(--t-base) var(--ease),color var(--t-base) var(--ease)}
-  .newsletter__cta:hover{background:var(--vibrant);color:#fff}
-  .newsletter__cta:focus-visible{outline:2px solid var(--vibrant);outline-offset:2px}
 
   /* ===== SHARE MODAL + TOAST ===== */
   .share-modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(26,25,23,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fade-in 200ms var(--ease) both}
@@ -218,11 +211,6 @@
   <div class="rule" aria-hidden="true"></div>
   <ul class="events stagger" id="event-list" aria-label="Upcoming events"></ul>
 
-  <section class="newsletter" aria-label="Newsletter">
-    <div class="newsletter__title" id="nl-title">Stay in the loop</div>
-    <div class="newsletter__body" id="nl-body">Classes, workshops and festivals — the Shoonya monthly newsletter.</div>
-    <a class="newsletter__cta" id="nl-cta" href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Subscribe</a>
-  </section>
 
   <p class="footnote" id="footnote"></p>
 </main>
@@ -796,9 +784,6 @@ const EVENTS = [
       pinned: 'Pinned', pinnedWeek: 'Pinned · this week', livePinned: 'Live · pinned',
       seeDetails: 'See details',
       empty: 'New events coming soon.',
-      nlTitle: 'Stay in the loop',
-      nlBody: 'Classes, workshops and festivals — the Shoonya monthly newsletter.',
-      nlCta: 'Subscribe',
       shareTitle: 'Share', copyLink: 'Copy link', downloadQr: 'Download QR', shareVia: 'Share via…',
       dmAria: (t) => `${t} — message us on Instagram for details`,
       badge: { FREE:'FREE', RSVP:'RSVP', TICKET:'TICKET', DM:'DM', INFO:'INFO' },
@@ -811,9 +796,6 @@ const EVENTS = [
       pinned: 'Vastgezet', pinnedWeek: 'Vastgezet · deze week', livePinned: 'Live · vastgezet',
       seeDetails: 'Details',
       empty: 'Binnenkort nieuwe events.',
-      nlTitle: 'Blijf op de hoogte',
-      nlBody: 'Lessen, workshops en festivals — de maandelijkse Shoonya-nieuwsbrief.',
-      nlCta: 'Schrijf je in',
       shareTitle: 'Delen', copyLink: 'Kopieer link', downloadQr: 'Download QR', shareVia: 'Delen via…',
       dmAria: (t) => `${t} — stuur ons een DM op Instagram voor info`,
       badge: { FREE:'GRATIS', RSVP:'RESERVEREN', TICKET:'TICKET', DM:'DM', INFO:'INFO' },
@@ -1047,9 +1029,6 @@ const EVENTS = [
     document.documentElement.lang = LANG;
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
     set('eyebrow-label', tr().eyebrow);
-    set('nl-title', tr().nlTitle);
-    set('nl-body', tr().nlBody);
-    set('nl-cta', tr().nlCta);
     set('share-title', tr().shareTitle);
     set('share-copy', tr().copyLink);
     set('share-download', tr().downloadQr);
