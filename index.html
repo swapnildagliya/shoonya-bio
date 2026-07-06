@@ -409,7 +409,7 @@ const EVENTS = [
     cta:'Reserve a spot',
   },
   {
-    id:'opendeurdag-jun', audience:'shoonya', pinned:true,
+    id:'opendeurdag-jun', audience:'shoonya',
     title:'Opendeurdag · 20+ styles', eyebrow:'14 Jun · 10:00 – 17:00 · free · 12+',
     date:'2026-06-14', dateLabel:'Sun 14 June',
     location:'Shoonya · 41 Stapelplein, Gent',
@@ -426,10 +426,9 @@ const EVENTS = [
     url:'https://www.shoonyadance.com/zomerstage',
     cta:'Reserve a spot',
   },
-  // ─── Gentse Feesten 2026 · 13 Shoonya workshops ───
-  // Sourced from the live programme at workshops.shoonyadance.com/gentse-feesten-2026/ (synced 2026-06-27).
-  // Each entry tagged group:'gentse-feesten' so they cluster under one header.
-  // Free drop-in (festival drop-in model, no per-workshop booking) — DM fallback for questions.
+  // ─── Gentse Feesten 2026 · auto-generated from projects/shoonya/workshop/gentse-feesten-2026.json ───
+  // Run `node projects/shoonya/workshop/gen-gentse-feesten.mjs` after editing the JSON. DO NOT hand-edit between the markers.
+  /* GF-AUTO:START */
   {
     id:'gf-lindy-hop-18', audience:'shoonya', group:'gentse-feesten',
     title:'Lindy Hop', eyebrow:'Sat 18 Jul · 18:00 · Salsabar',
@@ -543,6 +542,7 @@ const EVENTS = [
     url:'https://workshops.shoonyadance.com/gentse-feesten-2026/',
     cta:'Free · just show up',
   },
+  /* GF-AUTO:END */
   {
     id:'benenwerk', audience:'shoonya',
     title:'Benenwerk · Indian dance day', eyebrow:'8 Aug · Brugge · 19:00 – 01:00',
@@ -562,6 +562,7 @@ const EVENTS = [
     url:'https://www.dihp.be',
     cta:'Free · just show up',
   },
+  /* DIHP-AUTO:START */
   {
     id:'dihp-oriental-flow', audience:'shoonya', group:'dihp',
     title:'Oriental Flow', eyebrow:'Sat 22 Aug · 14:15 · Nathalie',
@@ -644,6 +645,17 @@ const EVENTS = [
     location:'Speelvloer',
     cta:'Free · just show up',
   },
+  /* DIHP-AUTO:END */
+  {
+    id:'dokfeesten', audience:'both',
+    title:'Dokfeesten - Indian dance', eyebrow:'29 Aug · 19:20 · Gent',
+    date:'2026-08-29', dateLabel:'Sat 29 August · 19:20',
+    location:'De Oude Dokken · Gent',
+    style:'semi-classical',
+    image:'images/dokfeesten-indian-dance.jpg',
+    url:'https://dokfeesten.be/#programma',
+    cta:'Free · just show up',
+  },
   {
     id:'opendeurdag-sep', audience:'both',
     title:'Opendeurdag · Season opener', eyebrow:'13 Sep · Free',
@@ -675,6 +687,7 @@ const EVENTS = [
   // ─── Kizomba Social Nights · monthly Friday series with Sonja KikiZomba ───
   // Group-clustered via GROUPS['social-nights'] (dates span Oct–Feb). Oct + Dec
   // from Sonja's confirmed submissions; Feb is a confirmed-date placeholder only.
+  /* SOCIALS-KIZ-AUTO:START */
   {
     id:'social-oct', audience:'shoonya', group:'social-nights',
     title:'Kizomba Social Night', eyebrow:'Fri 2 Oct · 20:00 · from €7',
@@ -705,9 +718,11 @@ const EVENTS = [
     url:'https://www.shoonyadance.com/calendar/kizomba-social-night-february-2027',
     cta:'Save the date',
   },
+  /* SOCIALS-KIZ-AUTO:END */
   // ─── Salsa Bachata Social Nights · monthly Friday series with Alex ───
   // 5 confirmed dates + calendar links (Swapnil 2026-06-27). Per-night DJ/price
   // not yet finalised → honest format sub-line; update when programmes confirm.
+  /* SOCIALS-SB-AUTO:START */
   {
     id:'sb-sep', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 11 Sep · 19:30',
@@ -758,8 +773,18 @@ const EVENTS = [
     url:'https://www.shoonyadance.com/calendar/salsa-bachata-social-night-february',
     cta:'Buy a ticket',
   },
+  /* SOCIALS-SB-AUTO:END */
   /* WORKSHOPS-AUTO:START */
-  // 12 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
+  // 13 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
+  {
+    id:'benenwerk', audience:'swapnil',
+    title:'Benenwerk', eyebrow:'8 Aug · Free',
+    date:'2026-08-08',
+    dateLabel:'Indian dance day · Bhangra + Bollywood workshops + ABC/Shoonya performances + DJ set',
+    location:'Brugge',
+    url:'https://cactusmusic.be/EN/Concerts/Calendar/bc-benenwerk',
+    cta:'Free · just show up',
+  },
   {
     id:'gentse-feesten', audience:'swapnil',
     pinnedFor:['swapnil'],
