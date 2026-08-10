@@ -95,6 +95,19 @@
   .eyebrow{font-family:var(--inter);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal)}
   header.hero .sub{margin-top:18px}
   .rule{height:1px;background:var(--ink);width:100%;transform-origin:left;animation:rule-in 900ms var(--ease) both}
+  /* ── Sep 2026 campaign routes (Claude, 2026-08-10) ───────────────────────
+     The four campaign actions, always visible, above the date-sorted list.
+     Before this, "Opendeurdag" and "Free trial week" were buried inside the
+     collapsed VIEW MORE group and there was NO class-finder route at all. */
+  .routes{margin:22px 0 4px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:400px){.routes{grid-template-columns:1fr}}
+  .routes__lbl{font-family:var(--inter);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--charcoal);margin-bottom:12px}
+  .route{display:flex;flex-direction:column;gap:5px;padding:15px 16px;border:1px solid var(--hairline);background:var(--card);text-decoration:none;transition:border-color var(--t-base) var(--ease),transform var(--t-base) var(--ease)}
+  .route:hover{border-color:var(--vibrant);transform:translateY(-1px)}
+  .route--primary{border-color:var(--vibrant);background:var(--vibrant-soft)}
+  .route__eyebrow{font-family:var(--inter);font-size:9.5px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--vibrant)}
+  .route__title{font-family:var(--pf);font-size:17px;line-height:1.2;color:var(--ink)}
+  .route__meta{font-family:var(--inter);font-size:11px;letter-spacing:.04em;color:var(--charcoal)}
 
   /* Featured event card — page-specific extensions to the system class */
   .featured-event-card::before{content:'';position:absolute;left:-8px;right:-8px;top:14px;bottom:18px;border:1px solid transparent;pointer-events:none;animation:halo 4.2s ease-in-out infinite}
@@ -208,6 +221,7 @@
 
   <div class="rule" aria-hidden="true"></div>
   <section id="pinned-slot" aria-label="Featured event"></section>
+  <section id="routes-slot" aria-label="Register, schedule, open house and trial week"></section>
   <div class="rule" aria-hidden="true"></div>
   <ul class="events stagger" id="event-list" aria-label="Upcoming events"></ul>
 
@@ -380,6 +394,18 @@ const EVENTS = [
     location:'Shoonya · 41 Stapelplein, Gent',
     url:'https://shoonyadance.com/calendar/oriental-flow-miniseries',
     cta:'Reserve a spot',
+  },
+  {
+    id:'groupe-furaya', audience:'shoonya',
+    pinnedFor:['shoonya'],
+    title:'African Dance & Percussion', eyebrow:'Festival · Sat 19 Sep',
+    subtitle:'Groupe Furaya · Congolese dance, song and live percussion',
+    date:'2026-09-19', endDate:'2026-09-19',
+    dateLabel:'Sat 19 Sep · 19:00 performance €20 · 20:30 free initiations',
+    location:'Shoonya · 41 Stapelplein, Gent',
+    image:'images/groupe-furaya.jpg',
+    url:'https://festivals.shoonyadance.com/groupe-furaya/',
+    cta:'Buy a ticket',
   },
   {
     id:'leylet-raqs', audience:'shoonya',
@@ -677,7 +703,7 @@ const EVENTS = [
   },
   /* SOCIALS-SB-AUTO:END */
   /* WORKSHOPS-AUTO:START */
-  // 13 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
+  // 12 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
   {
     id:'benenwerk', audience:'swapnil',
     pinnedFor:['swapnil'],
@@ -815,6 +841,13 @@ const EVENTS = [
   const T = {
     en: {
       eyebrow: 'Movement without borders · Gent · 2026',
+      routesLabel: 'Start here · September 2026',
+      routes: {
+        register:  { eyebrow:'Register',        title:'Weekly classes · Sep 2026', meta:'Pick your class and level' },
+        finder:    { eyebrow:'Find your class', title:'September schedule',        meta:'All styles, by day and level' },
+        openhouse: { eyebrow:'Sun 13 Sep',      title:'Opendeurdag',               meta:'Free · try any style' },
+        trial:     { eyebrow:'14 – 19 Sep',     title:'Free trial week',           meta:'Try the real weekly class' },
+      },
       countWord: 'upcoming', fullCalendar: 'Full calendar',
       opensIn: 'Opens in',
       pinned: 'Pinned', pinnedWeek: 'Pinned · this week', livePinned: 'Live · pinned',
@@ -827,6 +860,13 @@ const EVENTS = [
     },
     nl: {
       eyebrow: 'Beweging zonder grenzen · Gent · 2026',
+      routesLabel: 'Begin hier · september 2026',
+      routes: {
+        register:  { eyebrow:'Schrijf je in',   title:'Weeklessen · sep 2026', meta:'Kies je les en niveau' },
+        finder:    { eyebrow:'Vind je les',     title:'Septemberrooster',      meta:'Alle stijlen, per dag en niveau' },
+        openhouse: { eyebrow:'Zo 13 sep',       title:'Opendeurdag',           meta:'Gratis · probeer elke stijl' },
+        trial:     { eyebrow:'14 – 19 sep',     title:'Gratis proefweek',      meta:'Probeer de echte wekelijkse les' },
+      },
       countWord: 'gepland', fullCalendar: 'Volledige kalender',
       opensIn: 'Begint over',
       pinned: 'Vastgezet', pinnedWeek: 'Vastgezet · deze week', livePinned: 'Live · vastgezet',
@@ -926,8 +966,43 @@ const EVENTS = [
 
   let cdTimer = null;
 
+  // ── Sep 2026 campaign routes ─────────────────────────────────────────────
+  // Destinations verified live 2026-08-10. Tracked so link-in-bio traffic is
+  // separable from feed/story traffic in Squarespace Analytics.
+  const ROUTES_WINDOW = { from: '2026-08-10', to: '2026-09-23' };
+  const ROUTE_DEFS = [
+    { key:'register',  primary:true,
+      url:'https://www.shoonyadance.com/register?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=register' },
+    { key:'finder',
+      url:'https://schedule.shoonyadance.com/schedule-sep-2026/?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=classfinder' },
+    { key:'openhouse',
+      url:'https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-13-september?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=opendeurdag' },
+    { key:'trial',
+      url:'https://www.shoonyadance.com/try-a-class?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=trialweek' },
+  ];
+
+  function paintRoutes(){
+    const $r = document.getElementById('routes-slot');
+    if (!$r) return;
+    const now = todayLocal();
+    const on = now >= parseISO(ROUTES_WINDOW.from) && now <= parseISO(ROUTES_WINDOW.to);
+    if (!on){ $r.innerHTML = ''; return; }
+    const copy = tr().routes;
+    $r.innerHTML =
+      '<div class="routes__lbl">' + escapeHTML(tr().routesLabel) + '</div>' +
+      '<div class="routes">' + ROUTE_DEFS.map(function(d){
+        const c = copy[d.key];
+        return '<a class="route' + (d.primary ? ' route--primary' : '') + '" href="' + d.url +
+          '" target="_blank" rel="noopener">' +
+          '<span class="route__eyebrow">' + escapeHTML(c.eyebrow) + '</span>' +
+          '<span class="route__title">' + escapeHTML(c.title) + '</span>' +
+          '<span class="route__meta">' + escapeHTML(c.meta) + '</span></a>';
+      }).join('') + '</div>';
+  }
+
   function paint(){
     usedImages = new Set(); fallbackIdx = 0;
+    paintRoutes();
     if (cdTimer){ clearInterval(cdTimer); cdTimer = null; }
 
     const $pinned = document.getElementById('pinned-slot');
