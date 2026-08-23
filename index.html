@@ -369,6 +369,21 @@ const GROUPS = {
 };
 
 const EVENTS = [
+  /* Hand-added 2026-08-23 — morning / early weekly classes social set.
+     OUTSIDE every *-AUTO:START/END block on purpose; do not move it inside one. */
+  {
+    id:'morning-early-classes', audience:'shoonya',
+    title:'Dance & Fit · Pilates · Yoga',
+    // NB: the compact (non-pinned) card layout DROPS `subtitle` — verified by render
+    // 2026-08-23. Anything that must be seen goes in title / eyebrow / dateLabel.
+    eyebrow:'Finished before 18:30 \u00b7 pass from \u20ac40.50',
+    date:'2026-09-15', endDate:'2027-01-27',
+    dateLabel:'Wed 09:45 + 10:45 + 17:20 \u00b7 Tue 17:20',
+    location:'Shoonya \u00b7 41 Stapelplein, Gent',
+    image:'images/morning-early-classes.jpg',
+    url:'https://classes.shoonyadance.com/schedule-sep-2026.html',
+    cta:'Reserve a spot',
+  },
   {
     id:'reg-sep-2026', audience:'shoonya',
     // Pre-launch copy (before _start). After May 21, the public phase kicks
