@@ -77,16 +77,19 @@
     --t-fast:120ms; --t-base:240ms; --t-slow:480ms;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  /* overflow-x lives on <html> on purpose: on <body> it turns the body into a
+     scroll container, and a scroll container drops its own bottom padding —
+     which silently ate the 210px dock clearance below. Do not move it back. */
+  html{height:100%;overflow-x:hidden}
   body{
     font-family:var(--inter);font-size:15px;color:var(--ink);background:var(--paper);
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    text-rendering:optimizeLegibility;line-height:1.5;min-height:100dvh;overflow-x:hidden;padding-bottom:210px;
+    text-rendering:optimizeLegibility;line-height:1.5;min-height:100vh;min-height:100svh;
   }
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%;height:auto}
-  .page{max-width:480px;margin:0 auto;padding:0 24px;position:relative}
+  .page{max-width:480px;margin:0 auto;padding:0 24px 210px;position:relative}  /* 210px = fixed social-dock clearance (mobile-hub.css: min 200px) */
   header.hero{padding:40px 0 20px;text-align:center;position:relative}
   .brand-mark{width:48px;height:48px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;position:relative}
   .brand-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(181,100,247,.22))}

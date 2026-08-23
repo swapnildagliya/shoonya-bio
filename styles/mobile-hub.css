@@ -307,7 +307,13 @@
     color-mix(in srgb, var(--bg) 90%, transparent) 40%,
     transparent 100%);
 }
-/* Pages using this dock must reserve at least 200px of bottom padding. */
+/* Pages using this dock must reserve at least 200px of bottom clearance, and
+   that padding must sit on the in-flow content wrapper (e.g. main.page), NOT
+   on <body>. A <body> carrying overflow-x:hidden (or any non-visible overflow)
+   becomes its own scroll container, and a scroll container does not include
+   its bottom padding in scrollable height — the clearance silently vanishes
+   and this dock ends up sitting on top of the last row / footnote at max
+   scroll. Put overflow-x on <html> instead. (Fixed 2026-08-23.) */
 
 
 /* --- FEATURED EVENT CARD --------------------------------------------- */
