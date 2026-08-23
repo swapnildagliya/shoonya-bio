@@ -23,13 +23,15 @@
   /* v1.0 brand vibrants */
   --vibrant-purple:  #B564F7;   /* Shoonya Dance Centre (anchor)        */
   --vibrant-yellow:  #FBC70F;   /* ABC a Bollywood Company              */
-  --vibrant-saffron: #E85D1F;   /* @swapkebolly                         */
+  --vibrant-saffron: #E85D1F;   /* GIDF workshops · category dot — NOT @swapkebolly (D-081) */
+  --sw-cobalt:       #2154D8;   /* fallback for pre-oklch browsers       */
+  --sw-cobalt:       oklch(0.50 0.21 264); /* @swapkebolly Live/Hello act (D-096) */
   --vibrant-pink:    #EEAACF;   /* social / GIDF opening-party tint     */
 
   --brand-shoonya:   var(--vibrant-purple);
   --brand-abc:       var(--vibrant-yellow);
-  --brand-gidf:      var(--vibrant-saffron);
-  --brand-swapnil:   var(--vibrant-saffron);
+  --brand-gidf:      var(--vibrant-purple);   /* hub default = Shoonya host purple (D-006/ND-003). GIDF is programme-coded; it is NOT a saffron brand — see check-package-manifests.mjs:361 */
+  --brand-swapnil:   var(--sw-cobalt); /* act-coded (D-096) — this page is the Live/Hello act */
   --brand-cook:      var(--void-white);
 
   /* Semantic FG/BG (defaults — themers override `--vibrant` per brand) */
@@ -78,8 +80,8 @@
 
 [data-brand="shoonya"] { --vibrant: var(--vibrant-purple); }
 [data-brand="abc"]     { --vibrant: var(--vibrant-yellow); }
-[data-brand="gidf"]    { --vibrant: var(--vibrant-saffron); }
-[data-brand="swapnil"] { --vibrant: var(--vibrant-saffron); }
+[data-brand="gidf"]    { --vibrant: var(--vibrant-purple); } /* programme-coded: override --vibrant inline per programme (D-006) */
+[data-brand="swapnil"] { --vibrant: var(--sw-cobalt); } /* act-coded (D-096) */
 [data-brand="cook"]    { --vibrant: var(--void-white); }
 
 
@@ -147,7 +149,11 @@
 }
 /* Sub-line wraps to max 2 lines — never chops a word mid-character.
    Authoring rule: keep it short (studio + format); never repeat the
-   date or teacher already shown in the eyebrow (see workshops.json). */
+   date or teacher already shown in the eyebrow (see workshops.json).
+   Clamped on the CHILD span, not .link-row__meta itself: the --thumb-right
+   variant makes the parent a flex row (text + arrow), and -webkit-box on the
+   parent would stack the arrow under the text. Both pages therefore wrap the
+   sub-line in a <span> — keep it that way, or this rule silently does nothing. */
 .link-row__meta > span:not(.link-row__meta-arrow) {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -226,7 +232,7 @@
   padding-left: 5px;
   border-left: var(--line) solid rgba(26, 25, 23, 0.32);
 }
-/* DARK vibrants (purple/saffron) need WHITE text on solid badges.
+/* DARK vibrants (purple/cobalt) need WHITE text on solid badges.
    --dm-only excluded so its dark text stays visible on warm paper.   */
 [data-brand="shoonya"] .status-badge:not(.status-badge--dm-only),
 [data-brand="gidf"]    .status-badge:not(.status-badge--dm-only),
