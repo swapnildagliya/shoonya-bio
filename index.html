@@ -617,6 +617,23 @@ const EVENTS = [
     // (read 2026-08-27), so the board can show a real clock instead of a date.
     date:'2026-09-13', startTime:'10:00', endTime:'17:00',
     dateLabel:'19 free taster classes',
+    // Studio-TV only: the bio card ignores this. Transcribed from the live
+    // event page's "The programme" block (read 2026-08-27) — seven blocks of
+    // 50 minutes, three classes at a time. On the day itself the TV shows it
+    // as its own board between every page, so somebody standing in the hall
+    // can see what is on next without asking.
+    programme:{
+      note:'Seven blocks of 50 minutes · three at a time · pick one, or keep going all day',
+      blocks:[
+        { time:'10:00', items:['Burlesque','Ballet'] },
+        { time:'11:00', items:['Lindy Hop','Cissy Ball','Yoga'] },
+        { time:'12:00', items:['Solo Jazz','Kizomba','Indian Dance Technique'] },
+        { time:'13:00', items:['African & Congolese Dance','Pilates for Dancers'] },
+        { time:'14:00', items:['Flamenco','Bachata','Oriental Flow'] },
+        { time:'15:00', items:['Tap Dance','Cuban Salsa','Bollyfolk'] },
+        { time:'16:00', items:['Argentine Tango','Rueda de Casino','Raqs Sharqi'] },
+      ],
+    },
     location:'',
     image:'images/shoonya-opendeurdag-2022-001.jpg',
     url:'https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-13-september',
