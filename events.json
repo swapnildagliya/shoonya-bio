@@ -49,6 +49,7 @@
       "start_known": true,
       "end_known": false,
       "multi_day": false,
+      "description": "Indian dance performance with audience interaction at De Oude Dokken.",
       "date_label": "Sat 29 August · 19:20",
       "location": "De Oude Dokken · Gent",
       "image": "https://links.shoonyadance.com/images/dokfeesten-indian-dance.jpg",
@@ -339,6 +340,7 @@
       "start_known": false,
       "end_known": false,
       "multi_day": true,
+      "description": "Three Saturdays for absolute beginners and dancers who want a clean Kizomba foundation.",
       "date_label": "3 Saturday mornings · with Sonja KikiZomba",
       "image": "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
       "images": [
