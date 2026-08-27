@@ -381,6 +381,10 @@ const EVENTS = [
     // 2026-08-23. Anything that must be seen goes in title / eyebrow / dateLabel.
     eyebrow:'Finished before 18:30 \u00b7 pass from \u20ac40.50',
     date:'2026-09-15', endDate:'2027-01-27', price:'pass from €40.50',
+    // hook from projects/shoonya/morning-classes/facts.json (_source_hook:
+    // all 59 slots in the live publicSchedule feed checked). The times are
+    // already in dateLabel, so the line carries only the claim itself.
+    subtitle:'Shoonya now teaches during the day, not only in the evening.',
     dateLabel:'Wed 09:45 + 10:45 + 17:20 \u00b7 Tue 17:20',
     location:'Shoonya \u00b7 41 Stapelplein, Gent',
     image:'images/morning-early-classes.jpg',
@@ -459,7 +463,8 @@ const EVENTS = [
     // two disciplines have to live in the eyebrow or they are invisible, the
     // same trap as a group name in a pinned card's eyebrow.
     eyebrow:'Ballet + Contemporary · Tono Ferriol',
-    subtitle:'Int/Adv · one class pass across all four classes',
+    // board_line from events/workshop/2026-09-28-professional-morning-training.json
+    subtitle:'Open ballet and contemporary training for professional and semi-professional dancers.',
     date:'2026-09-28', endDate:'2026-12-10',
     dateLabel:'From Mon 28 Sep · Mon & Thu · first class free',
     location:'Shoonya · 41 Stapelplein, Gent',
@@ -580,6 +585,8 @@ const EVENTS = [
     id:'argentine-tango-milonga-november-2026', audience:'shoonya',
     title:'Milonga Shoonya · Argentine Tango', eyebrow:'Sun 1 Nov · Gisela & Sergio · €15 / €10',
     date:'2026-11-01', startTime:'16:45', endTime:'22:00', price:'€15 / €10',
+    // board_line from events/social-night/2026-11-01-argentine-tango-milonga.json
+    subtitle:'An Argentine Tango class and practica for all levels, followed by a milonga.',
     dateLabel:'Class & practica 16:45 · milonga 18:00 — 22:00',
     location:'',
     image:'images/milonga-shoonya.jpg',
@@ -652,6 +659,8 @@ const EVENTS = [
   },
   {
     id:'sangam', highlight:true, audience:'both',
+    // board_line from events/performance/2026-11-07-sangam.json
+    subtitle:'One child. One river. Two worlds that must meet. An Indian dance production.',
     title:'Sangam', eyebrow:'7 – 8 Nov · Gent',
     date:'2026-11-07', endDate:'2026-11-08',
     dateLabel:'ABC stage production', location:'',
@@ -722,9 +731,9 @@ const EVENTS = [
   {
     id:'sb-sep', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 11 Sep · 19:30',
-    subtitle:'A Solo Salsa workshop, then an open dance floor with DJ Kimo',
+    subtitle:'Workshop with Gheorghe & Timeo, then an open dance floor with DJ Kimo',
     date:'2026-09-11',
-    dateLabel:'Workshop with Alex · social till 01:00',
+    dateLabel:'Workshop with Gheorghe & Timeo · social till 01:00',
     startTime:'19:30',
     endTime:'01:00',
     location:'',
