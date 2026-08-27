@@ -640,7 +640,8 @@ const EVENTS = [
     cta:'Free · just show up',
   },
   {
-    id:'free-trial', audience:'both',
+    id:'free-trial',
+    subtitle:'Try a class with no reservation required — all levels welcome', audience:'both',
     title:'Free trial week', eyebrow:'14 – 19 Sep',
     date:'2026-09-14', endDate:'2026-09-19',
     dateLabel:'Drop into any class',
@@ -660,7 +661,8 @@ const EVENTS = [
     cta:'Buy a ticket',
   },
   {
-    id:'gidf-2027', audience:'both',
+    id:'gidf-2027',
+    subtitle:'Three days of workshops, a gala showcase and an opening party', audience:'both',
     title:'Gent India Dans Festival', eyebrow:'7 – 9 May 2027 · Edition Five',
     date:'2027-05-07', endDate:'2027-05-09',
     dateLabel:'Shoonya Dance Centre, Gent', location:'',
@@ -675,6 +677,7 @@ const EVENTS = [
   {
     id:'social-oct', audience:'shoonya', group:'social-nights',
     title:'Kizomba Social Night', eyebrow:'Fri 2 Oct · 19:30 · from €7',
+    subtitle:'A Semba workshop, a taste of Cape Verdean dance, then the floor opens',
     date:'2026-10-02',
     dateLabel:'Semba workshop + DJ Lokito & Sosso',
     startTime:'19:30',
@@ -688,6 +691,7 @@ const EVENTS = [
   {
     id:'social-dec', audience:'shoonya', group:'social-nights',
     title:'Kizomba Social Night', eyebrow:'Fri 4 Dec · 19:30 · from €7',
+    subtitle:'A Kizomba workshop, a taste of Angolan dance, then the floor opens',
     date:'2026-12-04',
     dateLabel:'Kizomba workshop + DJ Boevi & Sosso',
     startTime:'19:30',
@@ -701,6 +705,7 @@ const EVENTS = [
   {
     id:'social-feb', audience:'shoonya', group:'social-nights',
     title:'Kizomba Social Night', eyebrow:'Fri 5 Feb 2027 · save the date',
+    subtitle:'Programme, DJs and tickets announced soon.',
     date:'2027-02-05',
     dateLabel:'Programme to be announced',
     location:'',
@@ -717,6 +722,7 @@ const EVENTS = [
   {
     id:'sb-sep', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 11 Sep · 19:30',
+    subtitle:'A Solo Salsa workshop, then an open dance floor with DJ Kimo',
     date:'2026-09-11',
     dateLabel:'Workshop with Alex · social till 01:00',
     startTime:'19:30',
@@ -730,6 +736,7 @@ const EVENTS = [
   {
     id:'sb-oct', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 9 Oct · 19:30',
+    subtitle:'Workshop time, then an open dance floor. Full programme announced soon.',
     date:'2026-10-09',
     dateLabel:'Workshop with Alex · social till 01:00',
     startTime:'19:30',
@@ -743,6 +750,7 @@ const EVENTS = [
   {
     id:'sb-nov', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 13 Nov · 19:30',
+    subtitle:'Workshop time, then an open dance floor. Full programme announced soon.',
     date:'2026-11-13',
     dateLabel:'Workshop with Alex · social till 01:00',
     startTime:'19:30',
@@ -756,6 +764,7 @@ const EVENTS = [
   {
     id:'sb-dec', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 11 Dec · 19:30',
+    subtitle:'Workshop time, then an open dance floor. Full programme announced soon.',
     date:'2026-12-11',
     dateLabel:'Workshop with Alex · social till 01:00',
     startTime:'19:30',
@@ -769,6 +778,7 @@ const EVENTS = [
   {
     id:'sb-feb', audience:'shoonya', group:'salsa-bachata-nights',
     title:'Salsa & Bachata Social Night', eyebrow:'Fri 12 Feb 2027 · 19:30',
+    subtitle:'Workshop time, then an open dance floor. Full programme announced soon.',
     date:'2027-02-12',
     dateLabel:'Workshop with Alex · social till 01:00',
     startTime:'19:30',
@@ -811,6 +821,7 @@ const EVENTS = [
   {
     id:'summer-intensive', audience:'both',
     title:'Indian Dance Summer Intensive', eyebrow:'26 – 29 Aug · €150 full pass',
+    subtitle:'Five Indian dance forms: Bhangra, Terah Taali, Kalbeliya, Semi-Classical & BollyFolk',
     date:'2026-08-26', endDate:'2026-08-29',
     dateLabel:'5 Indian styles · with Swapnil',
     style:'semi-classical',
@@ -823,6 +834,7 @@ const EVENTS = [
   {
     id:'flamenco-summer-intensive', audience:'shoonya',
     title:'Flamenco Summer Intensive', eyebrow:'26 – 29 Aug · from €33',
+    subtitle:'Technique, Por Fiesta, Bulerías and a beginners\' introduction — drop in to one or all four',
     date:'2026-08-26', endDate:'2026-08-29',
     dateLabel:'4 workshops · with La Liz',
     image:'images/shoonya-flamenco-001.jpg',
@@ -844,6 +856,7 @@ const EVENTS = [
   {
     id:'kizomba-universe', audience:'shoonya',
     title:'Exploring the Kizomba Universe', eyebrow:'From 17 Oct · from €55',
+    subtitle:'Three modules: Konpa & Zouk, Tarraxinha, and Semba next level.',
     date:'2026-10-17', endDate:'2027-01-23',
     dateLabel:'3 Saturday afternoons · with Sonja KikiZomba',
     image:'images/kizomba-sawa-floor.jpg',
@@ -855,6 +868,7 @@ const EVENTS = [
   {
     id:'lindy-hop-bootcamp', audience:'shoonya',
     title:'Lindy Hop Bootcamp', eyebrow:'9 Sep · €35',
+    subtitle:'Drill swing outs, partnered Charleston and tuck turns. Intermediate level.',
     date:'2026-09-09',
     dateLabel:'1-night refresher · with Upside Down',
     image:'images/upside-down-10.jpg',
@@ -865,6 +879,7 @@ const EVENTS = [
   {
     id:'bhangra-starter', audience:'both',
     title:'Bhangra · Starter Series', eyebrow:'16 Sep – 7 Oct · beginners · €50',
+    subtitle:'High-energy Punjabi folk: jumps and dhol rhythms. Ages 12 and up.',
     date:'2026-09-16', endDate:'2026-10-07',
     dateLabel:'Wednesdays 19:30 · with Swapnil',
     style:'bhangra',
@@ -877,6 +892,7 @@ const EVENTS = [
   {
     id:'semiclassical-starter', audience:'both',
     title:'Indian Semi-Classical · Starter Series', eyebrow:'16 Sep – 7 Oct · beginners · €58',
+    subtitle:'Spins, rhythmic footwork and storytelling with your hands.',
     date:'2026-09-16', endDate:'2026-10-07',
     dateLabel:'Wednesdays 20:30 · with Swapnil',
     style:'semi-classical',
@@ -889,6 +905,7 @@ const EVENTS = [
   {
     id:'bachata-solo-miniseries', audience:'shoonya',
     title:'Bachata Solo Style · Miniseries', eyebrow:'8 Oct – 17 Dec · no partner · €124',
+    subtitle:'No partner needed, beginners welcome.',
     date:'2026-10-08', endDate:'2026-12-17',
     dateLabel:'Thursdays 19:00 · with Ioanna',
     image:'images/latin-close-frame.jpg',
@@ -900,6 +917,7 @@ const EVENTS = [
   {
     id:'bachata-choreo-minireeks', audience:'shoonya',
     title:'Bachata Choreo Minireeks', eyebrow:'10 Nov – 15 Dec · partner required · €75',
+    subtitle:'A six-session bachata choreography series.',
     date:'2026-11-10', endDate:'2026-12-15',
     dateLabel:'Tuesdays 21:00 · with Alex & Lenka',
     image:'images/bachata-choreo-alex-lenka.jpg',
@@ -910,6 +928,7 @@ const EVENTS = [
   {
     id:'round-trip-to-cuba', audience:'shoonya',
     title:'Round Trip to Cuba', eyebrow:'23 – 24 Jan 2027 · from €110',
+    subtitle:'Six masterclasses: Afrocuban, Rumba, Son, Salsa, Timba and Afrotimba Fusión.',
     date:'2027-01-23', endDate:'2027-01-24',
     dateLabel:'Cuban salsa · with Wilmer & Maria',
     image:'images/rtc-wilmer-maria.jpg',
