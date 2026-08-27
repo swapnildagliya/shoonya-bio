@@ -268,6 +268,13 @@
       "multi_day": false,
       "date_label": "Semba workshop + DJ Lokito & Sosso",
       "image": "https://links.shoonyadance.com/images/kizomba-social.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/kizomba-social.jpg",
+        "https://links.shoonyadance.com/images/kizomba-treat.jpg",
+        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
+        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
+      ],
       "url": "https://www.shoonyadance.com/calendar/kizomba-social-night-october-2026",
       "price": "from €7",
       "cta": "Buy a ticket"
@@ -321,6 +328,11 @@
       "multi_day": true,
       "date_label": "3 Saturday mornings · with Sonja KikiZomba",
       "image": "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg",
+        "https://links.shoonyadance.com/images/kizomba-treat.jpg"
+      ],
       "url": "https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/",
       "price": "from €55",
       "cta": "Reserve a spot"
@@ -334,7 +346,12 @@
       "end_known": false,
       "multi_day": true,
       "date_label": "3 Saturday afternoons · with Sonja KikiZomba",
-      "image": "https://links.shoonyadance.com/images/kizomba-social.jpg",
+      "image": "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
+      ],
       "url": "https://workshops.shoonyadance.com/exploring-the-kizomba-universe/",
       "price": "from €55",
       "cta": "Reserve a spot"
@@ -410,6 +427,13 @@
       "multi_day": false,
       "date_label": "Kizomba workshop + DJ Boevi & Sosso",
       "image": "https://links.shoonyadance.com/images/kizomba-social.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/kizomba-social.jpg",
+        "https://links.shoonyadance.com/images/kizomba-treat.jpg",
+        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
+        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
+      ],
       "url": "https://www.shoonyadance.com/calendar/kizomba-social-night-december-2026",
       "price": "from €7",
       "cta": "Buy a ticket"
@@ -458,6 +482,13 @@
       "multi_day": false,
       "date_label": "Programme to be announced",
       "image": "https://links.shoonyadance.com/images/kizomba-social.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/kizomba-social.jpg",
+        "https://links.shoonyadance.com/images/kizomba-treat.jpg",
+        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
+        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
+      ],
       "url": "https://www.shoonyadance.com/calendar/kizomba-social-night-february-2027",
       "cta": "Save the date"
     },
