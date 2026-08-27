@@ -4,20 +4,6 @@
   "_times": "start_known / end_known say whether a real clock time was published for this event. False means only the date is known — the board must show the date without a time rather than 00:00. multi_day marks a course, festival or weekend that runs over a date range: it has no single start, so no countdown and no progress bar.",
   "events": [
     {
-      "id": "reg-sep-2026",
-      "title": "Registration is open",
-      "start_time": "2026-05-21T00:00:00+02:00",
-      "end_time": "2026-09-13T23:59:59+02:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Open to everyone · for the 2026 → 2027 school year",
-      "date_label": "Open since 21 May",
-      "location": "shoonyadance.com",
-      "url": "https://www.shoonyadance.com/register",
-      "cta": "Reserve a spot"
-    },
-    {
       "id": "summer-intensive",
       "title": "Indian Dance Summer Intensive",
       "start_time": "2026-08-26T00:00:00+02:00",
