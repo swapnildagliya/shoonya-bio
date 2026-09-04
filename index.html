@@ -401,18 +401,6 @@ const EVENTS = [
     cta:'Reserve a spot',
   },
   {
-    id:'groupe-furaya', highlight:true, audience:'shoonya',
-    pinnedFor:['shoonya'],
-    title:'African Dance & Percussion', eyebrow:'Festival · Sat 19 Sep',
-    subtitle:'Groupe Furaya · Congolese dance, song and live percussion',
-    date:'2026-09-19', endDate:'2026-09-19',
-    dateLabel:'Sat 19 Sep · 19:00 performance €20 · 20:30 free initiations',
-    location:'Shoonya · 41 Stapelplein, Gent',
-    image:'images/groupe-furaya.jpg',
-    url:'https://festivals.shoonyadance.com/groupe-furaya/',
-    cta:'Buy a ticket',
-  },
-  {
     id:'leylet-raqs', audience:'shoonya',
     title:'Leylet Raqs · Heritage Edition',
     eyebrow:'Bellydance weekend · Raqs Sharqi',
@@ -659,11 +647,12 @@ const EVENTS = [
     cta:'Free · just show up',
   },
   {
-    id:'sangam', highlight:true, audience:'both',
+    boost:true, id:'sangam', highlight:true, audience:'both',
     // board_line from events/performance/2026-11-07-sangam.json
     subtitle:'One child. One river. Two worlds that must meet. An Indian dance production.',
     title:'Sangam', eyebrow:'7 – 8 Nov · Gent',
     date:'2026-11-07', endDate:'2026-11-08',
+    startTime:'19:30', endTime:'20:45',
     dateLabel:'ABC stage production', location:'',
     style:'bollywood',
     image:'images/sangam.jpg',
@@ -1065,7 +1054,11 @@ const EVENTS = [
   const groupMin = {};
   visiblePre.forEach(e => { if (e.group && (!(e.group in groupMin) || e._start < groupMin[e.group])) groupMin[e.group] = e._start; });
   const sortKey = e => (e.group && groupMin[e.group] != null) ? groupMin[e.group] : e._start;
-  const visible = visiblePre.sort((a,b) => (sortKey(a) - sortKey(b)) || (a._start - b._start));
+  // `boost: true` lifts a card to the top of the list without disturbing the date sort —
+  // used when a launch needs its card above the "View more" cut. Date order applies within
+  // boosted and non-boosted cards alike.
+  const visible = visiblePre.sort((a,b) =>
+    ((b.boost ? 1 : 0) - (a.boost ? 1 : 0)) || (sortKey(a) - sortKey(b)) || (a._start - b._start));
 
   const pinned = visible.find(e => e.pinned || (e.pinnedFor && e.pinnedFor.includes(AUDIENCE))) || visible[0];
   const rest = visible.filter(e => e !== pinned);
