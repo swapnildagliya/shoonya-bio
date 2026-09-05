@@ -372,6 +372,28 @@ const GROUPS = {
 };
 
 const EVENTS = [
+  /* Hand-added 2026-09-05 — Indian Dance Winter Intensive 2027 (/event-launch).
+     OUTSIDE every *-AUTO:START/END block on purpose; do not move it inside one.
+     No startTime/endTime on purpose (D-108): the event runs Fri 18:30 -> Sun 16:00 across
+     three days, so a single clock pair would put a nonsense time on the Studio-TV board.
+     It shows as a date range instead, which is correct.
+     WARNING: url is live only once the workshops page is deployed. Do not sync this bio
+     before that page returns 200, or the card points at a 404. */
+  {
+    id:'indian-dance-winter-intensive-2027', audience:'both',
+    title:'Indian Dance Winter Intensive 2027',
+    /* D-123: was '3 days \u00b7 5 forms \u00b7 with Swapnil Dagliya' \u2014 a counted triple, and
+       dateLabel and price already carry those facts. */
+    eyebrow:'with Swapnil Dagliya',
+    date:'2027-01-22', endDate:'2027-01-24',
+    dateLabel:'Fri 22 \u2013 Sun 24 Jan 2027',
+    subtitle:'Bhangra & Jhoomar, Semi-Classical, Group Choreography, Garba & Dandiya Raas, Khoriya.',
+    location:'Shoonya \u00b7 41 Stapelplein, Gent',
+    price:'from \u20ac35',
+    image:'images/winter-intensive-2027.jpg',
+    url:'https://workshops.shoonyadance.com/indian-dance-winter-intensive-2027/',
+    cta:'Reserve a spot',
+  },
   /* Hand-added 2026-08-23 — morning / early weekly classes social set.
      OUTSIDE every *-AUTO:START/END block on purpose; do not move it inside one. */
   {
@@ -850,6 +872,7 @@ const EVENTS = [
     image:'images/sonja-kikizomba.jpg',
     images:['images/sonja-kikizomba.jpg', 'images/kizomba-roma-bw.jpg', 'images/kizomba-treat.jpg'],
     price:'from €55',
+    boost:true,
     url:'https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/',
     cta:'Reserve a spot',
   },
@@ -862,6 +885,7 @@ const EVENTS = [
     image:'images/kizomba-sawa-floor.jpg',
     images:['images/kizomba-sawa-floor.jpg', 'images/kizomba-egypt.jpg', 'images/kizomba-roma-bw.jpg'],
     price:'from €55',
+    boost:true,
     url:'https://workshops.shoonyadance.com/exploring-the-kizomba-universe/',
     cta:'Reserve a spot',
   },
@@ -933,6 +957,7 @@ const EVENTS = [
     dateLabel:'Cuban salsa · with Wilmer & Maria',
     image:'images/rtc-wilmer-maria.jpg',
     price:'from €110',
+    boost:true,
     highlight:true,
     url:'https://workshops.shoonyadance.com/round-trip-to-cuba/',
     cta:'Reserve a spot',
@@ -1240,7 +1265,12 @@ const EVENTS = [
       $list.innerHTML = parts.join('');
 
       // Show only the first 5 rows; reveal the rest behind a "View more" button. Pinned hero is a separate slot and stays visible.
-      const VM_LIMIT = 5;
+      // Normally 5. Widened to 7 until 20 Sep 2026 because four boosted workshop
+      // cards (Sangam + the two Kizomba series + Round Trip to Cuba) would otherwise
+      // push the free trial week and the starter series below the fold during the two
+      // weeks they fill the semester. Date-derived on purpose: it reverts itself, so
+      // there is no "put it back to 5" step anyone has to remember.
+      const VM_LIMIT = (new Date() < new Date('2026-09-20T00:00:00')) ? 7 : 5;
       const vmRows = Array.from($list.children);
       if (vmRows.length > VM_LIMIT) {
         vmRows.slice(VM_LIMIT).forEach(li => li.classList.add('row-hidden'));

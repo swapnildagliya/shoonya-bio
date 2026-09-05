@@ -414,6 +414,22 @@
       "cta": "Buy a ticket"
     },
     {
+      "id": "indian-dance-winter-intensive-2027",
+      "title": "Indian Dance Winter Intensive 2027",
+      "start_time": "2027-01-22T00:00:00+01:00",
+      "end_time": "2027-01-24T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Bhangra & Jhoomar, Semi-Classical, Group Choreography, Garba & Dandiya Raas, Khoriya.",
+      "date_label": "Fri 22 – Sun 24 Jan 2027",
+      "location": "Shoonya · 41 Stapelplein, Gent",
+      "image": "https://links.shoonyadance.com/images/winter-intensive-2027.jpg",
+      "url": "https://workshops.shoonyadance.com/indian-dance-winter-intensive-2027/",
+      "price": "from €35",
+      "cta": "Reserve a spot"
+    },
+    {
       "id": "round-trip-to-cuba",
       "title": "Round Trip to Cuba",
       "start_time": "2027-01-23T00:00:00+01:00",
