@@ -3,3 +3,8 @@ spec.md
 audit-*.md
 quality-audit-*.md
 mockups/
+
+# Session artefact log written by the Design System tooling — timestamps and absolute
+# local paths, never site content. It reached the public site once (2026-09-20).
+# Also excluded at the rsync in scripts/deploy-bio.sh; this is the second line of defence.
+ARTIFACTS.log
