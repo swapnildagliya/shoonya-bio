@@ -6,130 +6,6 @@
   "_times": "start_known / end_known say whether a real clock time was published for this event. False means only the date is known — the board must show the date without a time rather than 00:00. multi_day marks a course, festival or weekend that runs over a date range: it has no single start, so no countdown and no progress bar.",
   "events": [
     {
-      "id": "lindy-hop-bootcamp",
-      "title": "Lindy Hop Bootcamp",
-      "start_time": "2026-09-09T00:00:00+02:00",
-      "end_time": "2026-09-09T23:59:59+02:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": false,
-      "description": "Drill swing outs, partnered Charleston and tuck turns. Intermediate level.",
-      "date_label": "1-night refresher · with Upside Down",
-      "image": "https://links.shoonyadance.com/images/upside-down-10.jpg",
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
-      "price": "€35",
-      "cta": "Reserve a spot"
-    },
-    {
-      "id": "sb-sep",
-      "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-09-11T19:30:00+02:00",
-      "end_time": "2026-09-12T01:00:00+02:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "A Solo Salsa workshop with Gheorghe & Timea, then DJ Kimo on the open floor.",
-      "date_label": "Solo Salsa with Gheorghe & Timea · DJ Kimo",
-      "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-september",
-      "cta": "Buy a ticket"
-    },
-    {
-      "id": "opendeurdag-sep",
-      "title": "Opendeurdag · Season opener",
-      "start_time": "2026-09-13T10:00:00+02:00",
-      "end_time": "2026-09-13T17:00:00+02:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "Drop in for one class or stay all day — every style, every teacher, under one roof.",
-      "date_label": "19 free taster classes",
-      "image": "https://links.shoonyadance.com/images/shoonya-opendeurdag-2022-001.jpg",
-      "programme": {
-        "note": "Seven blocks of 50 minutes · three at a time · pick one, or keep going all day",
-        "blocks": [
-          {
-            "time": "10:00",
-            "items": [
-              "Burlesque",
-              "Ballet"
-            ]
-          },
-          {
-            "time": "11:00",
-            "items": [
-              "Lindy Hop",
-              "Cissy Ball",
-              "Yoga"
-            ]
-          },
-          {
-            "time": "12:00",
-            "items": [
-              "Solo Jazz",
-              "Kizomba",
-              "Indian Dance Technique"
-            ]
-          },
-          {
-            "time": "13:00",
-            "items": [
-              "African & Congolese Dance",
-              "Pilates for Dancers"
-            ]
-          },
-          {
-            "time": "14:00",
-            "items": [
-              "Flamenco",
-              "Bachata",
-              "Oriental Flow"
-            ]
-          },
-          {
-            "time": "15:00",
-            "items": [
-              "Tap Dance",
-              "Cuban Salsa",
-              "Bollyfolk"
-            ]
-          },
-          {
-            "time": "16:00",
-            "items": [
-              "Argentine Tango",
-              "Rueda de Casino",
-              "Raqs Sharqi"
-            ]
-          }
-        ]
-      },
-      "url": "https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-13-september",
-      "price": "Free",
-      "cta": "Free · just show up"
-    },
-    {
-      "id": "free-trial",
-      "title": "Free trial week",
-      "start_time": "2026-09-14T00:00:00+02:00",
-      "end_time": "2026-09-19T23:59:59+02:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Try a class with no reservation required — all levels welcome",
-      "date_label": "Drop into any class",
-      "image": "https://links.shoonyadance.com/images/free-trial-week.jpg",
-      "url": "https://www.shoonyadance.com/try-a-class",
-      "cta": "Free · just show up"
-    },
-    {
       "id": "morning-early-classes",
       "title": "Dance & Fit · Pilates · Yoga",
       "start_time": "2026-09-15T00:00:00+02:00",
@@ -246,13 +122,13 @@
     {
       "id": "sb-oct",
       "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-10-09T19:30:00+02:00",
+      "start_time": "2026-10-09T20:30:00+02:00",
       "end_time": "2026-10-10T01:00:00+02:00",
       "start_known": true,
       "end_known": true,
       "multi_day": false,
-      "description": "A workshop, then an open dance floor, hosted by Alex. Full programme announced soon.",
-      "date_label": "Workshop + social night · hosted by Alex",
+      "description": "Just the dance floor this time: Dj Pacha on salsa, bachata, kizomba and merengue.",
+      "date_label": "Open floor with Dj Pacha · hosted by Alex",
       "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
       "images": [
         "https://links.shoonyadance.com/images/latin-rueda-group.jpg",

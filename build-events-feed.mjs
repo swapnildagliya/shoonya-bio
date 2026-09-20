@@ -42,6 +42,9 @@ const TZ = 'Europe/Brussels';
    chars (events.sample.json). Longer copy is dropped whole, never trimmed —
    half a sentence on a TV is worse than none. */
 const DESC_MAX = 90;
+// Subtitles that blew the cap, collected so the run can report them instead of
+// publishing description:null in silence.
+const descTooLong = [];
 
 /* ── Pull EVENTS + AUDIENCE straight out of the page ─────────────────────── */
 function readBio() {
@@ -128,7 +131,15 @@ function toFeed(e, today) {
     end_known: endKnown,
     multi_day: multiDay,
   };
+  // An over-long subtitle used to vanish here in silence: the board then showed
+  // a title, a date and no sentence at all, and nothing in the build said why.
+  // It cost a full round-trip on the 9 Oct social night (2026-09-20) — the new
+  // copy was 107 characters, the cap is 90, and the feed simply published
+  // description:null. Warn loudly; the builder already warns about missing times.
   if (subtitle && subtitle.length <= DESC_MAX) out.description = subtitle;
+  else if (subtitle) {
+    descTooLong.push({ id: out.id, len: subtitle.length, subtitle });
+  }
   if (dateLabel) out.date_label = dateLabel;
   if (e.location) out.location = e.location;
 
@@ -218,4 +229,11 @@ if (vague.length)
     `  ⓘ ${vague.length} single-day event(s) publish a date but no time: ` +
     vague.map((e) => e.id).join(', ') +
     `\n    Add startTime (and endTime) at the source once the real time is confirmed — the board shows the date alone until then.`,
+  );
+
+if (descTooLong.length)
+  console.log(
+    `  ⚠ ${descTooLong.length} subtitle(s) EXCEED ${DESC_MAX} chars and were DROPPED — those cards publish no sentence at all:\n` +
+    descTooLong.map((d) => `    ${d.id} (${d.len} chars): ${d.subtitle}`).join('\n') +
+    `\n    Shorten the subtitle at the source, then re-run. Silence here used to look like success.`,
   );
