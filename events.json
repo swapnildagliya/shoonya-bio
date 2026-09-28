@@ -22,47 +22,6 @@
       "cta": "Reserve a spot"
     },
     {
-      "id": "bhangra-starter",
-      "title": "Bhangra · Starter Series",
-      "start_time": "2026-09-16T00:00:00+02:00",
-      "end_time": "2026-10-07T23:59:59+02:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "High-energy Punjabi folk: jumps and dhol rhythms. Ages 12 and up.",
-      "date_label": "Wednesdays 19:30 · with Swapnil",
-      "image": "https://links.shoonyadance.com/images/bhangra-swapnil-group.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/bhangra-swapnil-group.jpg",
-        "https://links.shoonyadance.com/images/bhangra-group-line.jpg",
-        "https://links.shoonyadance.com/images/bhangra-flags.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/bhangra-danslessen-in-gent",
-      "price": "€50",
-      "cta": "Reserve a spot"
-    },
-    {
-      "id": "semiclassical-starter",
-      "title": "Indian Semi-Classical · Starter Series",
-      "start_time": "2026-09-16T00:00:00+02:00",
-      "end_time": "2026-10-07T23:59:59+02:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Spins, rhythmic footwork and storytelling with your hands.",
-      "date_label": "Wednesdays 20:30 · with Swapnil",
-      "image": "https://links.shoonyadance.com/images/indian-kathak-spin.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/indian-kathak-spin.jpg",
-        "https://links.shoonyadance.com/images/indian-semiclassical-group.jpg",
-        "https://links.shoonyadance.com/images/indian-kathak-red-blue.jpg",
-        "https://links.shoonyadance.com/images/indian-semiclassical-red.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/kathak-danslessen-in-gent",
-      "price": "€58",
-      "cta": "Reserve a spot"
-    },
-    {
       "id": "professional-morning-training",
       "title": "Professional Morning Training",
       "start_time": "2026-09-28T00:00:00+02:00",

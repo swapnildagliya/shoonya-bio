@@ -813,7 +813,7 @@ const EVENTS = [
   },
   /* SOCIALS-SB-AUTO:END */
   /* WORKSHOPS-AUTO:START */
-  // 12 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
+  // 10 workshop card(s) auto-generated from projects/shoonya/workshop/workshops.json — DO NOT hand-edit between the markers.
   {
     id:'benenwerk', audience:'swapnil',
     pinnedFor:['swapnil'],
@@ -899,32 +899,6 @@ const EVENTS = [
     image:'images/upside-down-10.jpg',
     price:'€35',
     url:'https://workshops.shoonyadance.com/lindy-hop-bootcamp/',
-    cta:'Reserve a spot',
-  },
-  {
-    id:'bhangra-starter', audience:'both',
-    title:'Bhangra · Starter Series', eyebrow:'16 Sep – 7 Oct · beginners · €50',
-    subtitle:'High-energy Punjabi folk: jumps and dhol rhythms. Ages 12 and up.',
-    date:'2026-09-16', endDate:'2026-10-07',
-    dateLabel:'Wednesdays 19:30 · with Swapnil',
-    style:'bhangra',
-    image:'images/bhangra-swapnil-group.jpg',
-    images:['images/bhangra-swapnil-group.jpg', 'images/bhangra-group-line.jpg', 'images/bhangra-flags.jpg'],
-    price:'€50',
-    url:'https://www.shoonyadance.com/bhangra-danslessen-in-gent',
-    cta:'Reserve a spot',
-  },
-  {
-    id:'semiclassical-starter', audience:'both',
-    title:'Indian Semi-Classical · Starter Series', eyebrow:'16 Sep – 7 Oct · beginners · €58',
-    subtitle:'Spins, rhythmic footwork and storytelling with your hands.',
-    date:'2026-09-16', endDate:'2026-10-07',
-    dateLabel:'Wednesdays 20:30 · with Swapnil',
-    style:'semi-classical',
-    image:'images/indian-kathak-spin.jpg',
-    images:['images/indian-kathak-spin.jpg', 'images/indian-semiclassical-group.jpg', 'images/indian-kathak-red-blue.jpg', 'images/indian-semiclassical-red.jpg'],
-    price:'€58',
-    url:'https://www.shoonyadance.com/kathak-danslessen-in-gent',
     cta:'Reserve a spot',
   },
   {
@@ -1116,14 +1090,19 @@ const EVENTS = [
   // Destinations verified live 2026-08-10. Tracked so link-in-bio traffic is
   // separable from feed/story traffic in Squarespace Analytics.
   const ROUTES_WINDOW = { from: '2026-08-10', to: '2026-09-23' };
+  // Each tile carries its OWN last day. The strip used to share one window, so on
+  // 21 Sep 2026 it was still offering an Open Door Day that ran on the 13th and a
+  // trial week that ended on the 19th — two dead tiles out of four, for the two
+  // days left on the strip's own clock. A tile whose date has passed drops itself;
+  // the strip disappears when nothing is left, whichever comes first.
   const ROUTE_DEFS = [
     { key:'register',  primary:true,
       url:'https://www.shoonyadance.com/register?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=register' },
     { key:'finder',
       url:'https://schedule.shoonyadance.com/schedule-sep-2026/?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=classfinder' },
-    { key:'openhouse',
+    { key:'openhouse', until:'2026-09-13',
       url:'https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-13-september?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=opendeurdag' },
-    { key:'trial',
+    { key:'trial', until:'2026-09-19',
       url:'https://www.shoonyadance.com/try-a-class?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=trialweek' },
   ];
 
@@ -1133,10 +1112,12 @@ const EVENTS = [
     const now = todayLocal();
     const on = now >= parseISO(ROUTES_WINDOW.from) && now <= parseISO(ROUTES_WINDOW.to);
     if (!on){ $r.innerHTML = ''; return; }
+    const live = ROUTE_DEFS.filter(function(d){ return !d.until || now <= parseISO(d.until); });
+    if (!live.length){ $r.innerHTML = ''; return; }
     const copy = tr().routes;
     $r.innerHTML =
       '<div class="routes__lbl">' + escapeHTML(tr().routesLabel) + '</div>' +
-      '<div class="routes">' + ROUTE_DEFS.map(function(d){
+      '<div class="routes">' + live.map(function(d){
         const c = copy[d.key];
         return '<a class="route' + (d.primary ? ' route--primary' : '') + '" href="' + d.url +
           '" target="_blank" rel="noopener">' +
