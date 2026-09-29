@@ -7,14 +7,14 @@
   "events": [
     {
       "id": "morning-early-classes",
-      "title": "Dance & Fit · Pilates · Yoga",
+      "title": "Pilates · Yoga",
       "start_time": "2026-09-15T00:00:00+02:00",
       "end_time": "2027-01-27T23:59:59+01:00",
       "start_known": false,
       "end_known": false,
       "multi_day": true,
-      "description": "Shoonya now teaches during the day, not only in the evening.",
-      "date_label": "Wed 09:45 + 10:45 + 17:20 · Tue 17:20",
+      "description": "Session passes — no semester commitment.",
+      "date_label": "Tue 17:20 · Wed 17:20",
       "location": "Shoonya · 41 Stapelplein, Gent",
       "image": "https://links.shoonyadance.com/images/morning-early-classes.jpg",
       "url": "https://classes.shoonyadance.com/schedule-sep-2026.html",
