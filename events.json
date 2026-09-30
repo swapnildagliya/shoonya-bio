@@ -88,15 +88,16 @@
       "multi_day": false,
       "description": "Just the dance floor this time: Dj Pacha on salsa, bachata, kizomba and merengue.",
       "date_label": "Open floor with Dj Pacha · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
+      "image": "https://links.shoonyadance.com/images/latin-close-frame.jpg",
       "images": [
-        "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
+        "https://links.shoonyadance.com/images/latin-close-frame.jpg",
         "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
         "https://links.shoonyadance.com/images/latin-open-line.jpg",
         "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
         "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
       ],
       "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-october",
+      "price": "from €5",
       "cta": "Buy a ticket"
     },
     {
