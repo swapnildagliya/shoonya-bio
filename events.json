@@ -30,33 +30,11 @@
       "end_known": false,
       "multi_day": true,
       "description": "Open ballet and contemporary training for professional and semi-professional dancers.",
-      "date_label": "From Mon 28 Sep · Mon & Thu · first class free",
+      "date_label": "Mon & Thu",
       "location": "Shoonya · 41 Stapelplein, Gent",
       "image": "https://links.shoonyadance.com/images/professional-morning-training.jpg",
       "url": "https://www.shoonyadance.com/professional-morning-training-gent",
       "cta": "Come try it free"
-    },
-    {
-      "id": "social-oct",
-      "title": "Kizomba Social Night",
-      "start_time": "2026-10-02T19:30:00+02:00",
-      "end_time": "2026-10-02T23:59:59+02:00",
-      "start_known": true,
-      "end_known": false,
-      "multi_day": false,
-      "description": "A Semba workshop, a taste of Cape Verdean dance, then the floor opens",
-      "date_label": "Semba workshop + DJ Lokito & Sosso",
-      "image": "https://links.shoonyadance.com/images/kizomba-social.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/kizomba-social.jpg",
-        "https://links.shoonyadance.com/images/kizomba-treat.jpg",
-        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
-        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
-        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/calendar/kizomba-social-night-october-2026",
-      "price": "from €7",
-      "cta": "Buy a ticket"
     },
     {
       "id": "bachata-solo-miniseries",
