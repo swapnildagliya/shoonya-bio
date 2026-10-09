@@ -481,7 +481,7 @@ const EVENTS = [
     location:'Shoonya · 41 Stapelplein, Gent',
     image:'images/professional-morning-training.jpg',
     url:'https://www.shoonyadance.com/professional-morning-training-gent',
-    cta:'See details',
+    cta:'More info',
   },
   // ─── Gentse Feesten 2026 · auto-generated from projects/shoonya/workshop/gentse-feesten-2026.json ───
   // Run `node projects/shoonya/workshop/gen-gentse-feesten.mjs` after editing the JSON. DO NOT hand-edit between the markers.
@@ -1076,7 +1076,10 @@ const EVENTS = [
   const visible = visiblePre.sort((a,b) =>
     ((b.boost ? 1 : 0) - (a.boost ? 1 : 0)) || (sortKey(a) - sortKey(b)) || (a._start - b._start));
 
-  const pinned = visible.find(e => e.pinned || (e.pinnedFor && e.pinnedFor.includes(AUDIENCE))) || visible[0];
+  // A one-day event happening TODAY takes the hero (Swapnil 2026-10-09: tonight's social night was
+  // buried in a collapsed group). An explicit pin still wins; otherwise the default is the first card.
+  const tonight = visible.find(e => +e._start === +today && +e._end === +today);
+  const pinned = visible.find(e => e.pinned || (e.pinnedFor && e.pinnedFor.includes(AUDIENCE))) || tonight || visible[0];
   const rest = visible.filter(e => e !== pinned);
 
   // ─── Runtime Event JSON-LD — language-independent, built once ───
