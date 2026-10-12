@@ -57,28 +57,6 @@
       "cta": "Reserve a spot"
     },
     {
-      "id": "sb-oct",
-      "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-10-09T20:30:00+02:00",
-      "end_time": "2026-10-10T01:00:00+02:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "Just the dance floor this time: Dj Pacha on salsa, bachata, kizomba and merengue.",
-      "date_label": "Open floor with Dj Pacha · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/latin-close-frame.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/latin-close-frame.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-october",
-      "price": "from €5",
-      "cta": "Buy a ticket"
-    },
-    {
       "id": "kizomba-beginner-bootcamp",
       "title": "Kizomba Beginner Bootcamp",
       "start_time": "2026-10-17T00:00:00+02:00",
@@ -181,22 +159,21 @@
     {
       "id": "sb-nov",
       "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-11-13T19:30:00+01:00",
+      "start_time": "2026-11-13T21:00:00+01:00",
       "end_time": "2026-11-14T01:00:00+01:00",
       "start_known": true,
       "end_known": true,
       "multi_day": false,
-      "description": "A workshop, then an open dance floor, hosted by Alex. Full programme announced soon.",
-      "date_label": "Workshop + social night · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
+      "description": "Dance freely, practise and connect: DJ Kimo on salsa, bachata, kizomba and merengue.",
+      "date_label": "Open floor with DJ Kimo · hosted by Alex",
+      "image": "https://links.shoonyadance.com/images/dj-kimo-decks.jpg",
       "images": [
-        "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
+        "https://links.shoonyadance.com/images/dj-kimo-decks.jpg",
+        "https://links.shoonyadance.com/images/latin-side-step.jpg",
+        "https://links.shoonyadance.com/images/latin-close-embrace-black.jpg"
       ],
       "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-november",
+      "price": "from €5",
       "cta": "Buy a ticket"
     },
     {
