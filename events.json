@@ -177,6 +177,21 @@
       "cta": "Buy a ticket"
     },
     {
+      "id": "flamenco-technique",
+      "title": "Flamenco Technique",
+      "start_time": "2026-11-21T00:00:00+01:00",
+      "end_time": "2027-01-16T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "This monthly intensive workshop serves as a deep complement to your regular classes.",
+      "date_label": "3 Saturdays 10:00–12:00 · with La Liz",
+      "image": "https://links.shoonyadance.com/images/flamenco-technique.jpg",
+      "url": "https://workshops.shoonyadance.com/flamenco-technique/",
+      "price": "€28",
+      "cta": "Reserve a spot"
+    },
+    {
       "id": "social-dec",
       "title": "Kizomba Social Night",
       "start_time": "2026-12-04T19:30:00+01:00",
