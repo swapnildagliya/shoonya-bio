@@ -309,6 +309,21 @@
       "cta": "Buy a ticket"
     },
     {
+      "id": "ghent-tap-festival-2027",
+      "title": "Ghent Tap Festival 2027",
+      "start_time": "2027-03-06T00:00:00+01:00",
+      "end_time": "2027-03-07T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Tap workshops with international artists and an evening show.",
+      "date_label": "Sat 6 – Sun 7 Mar 2027",
+      "location": "Shoonya · 41 Stapelplein, Gent",
+      "image": "https://links.shoonyadance.com/images/ghent-tap-festival-2027.jpg",
+      "url": "https://festivals.shoonyadance.com/ghent-tap-festival/",
+      "cta": "Save the date"
+    },
+    {
       "id": "gidf-2027",
       "title": "Gent India Dans Festival",
       "start_time": "2027-05-07T00:00:00+02:00",
