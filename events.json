@@ -37,34 +37,29 @@
       "cta": "More info"
     },
     {
-      "id": "bachata-solo-miniseries",
-      "title": "Bachata Solo Style · Miniseries",
-      "start_time": "2026-10-08T00:00:00+02:00",
-      "end_time": "2026-12-17T23:59:59+01:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "No partner needed, beginners welcome.",
-      "date_label": "Thursdays 19:00 · with Ioanna",
-      "image": "https://links.shoonyadance.com/images/latin-close-frame.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/latin-close-frame.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/bachata-solo-style-gent",
-      "price": "€124",
-      "cta": "Reserve a spot"
+      "id": "argentine-tango-milonga-november-2026",
+      "title": "Milonga Shoonya · Argentine Tango",
+      "start_time": "2026-11-01T16:45:00+01:00",
+      "end_time": "2026-11-01T22:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": false,
+      "description": "An Argentine Tango class and practica for all levels, followed by a milonga.",
+      "date_label": "Class & practica 16:45 · milonga 18:00 — 22:00",
+      "image": "https://links.shoonyadance.com/images/milonga-shoonya.jpg",
+      "url": "https://tickets.shoonyadance.com/entry/milonga-shoonya-2026-11-01",
+      "price": "€15 / €10",
+      "cta": "Buy your ticket"
     },
     {
       "id": "kizomba-beginner-bootcamp",
       "title": "Kizomba Beginner Bootcamp",
-      "start_time": "2026-10-17T00:00:00+02:00",
+      "start_time": "2026-11-07T00:00:00+01:00",
       "end_time": "2027-01-23T23:59:59+01:00",
       "start_known": false,
       "end_known": false,
       "multi_day": true,
-      "description": "Three Saturdays for absolute beginners and dancers who want a clean Kizomba foundation.",
+      "description": "Two Saturdays left for beginners who want a clean Kizomba foundation.",
       "date_label": "2 Saturdays 11:00–14:00 · with Sonja KikiZomba",
       "image": "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
       "images": [
@@ -79,7 +74,7 @@
     {
       "id": "kizomba-universe",
       "title": "Exploring the Kizomba Universe",
-      "start_time": "2026-10-17T00:00:00+02:00",
+      "start_time": "2026-11-07T00:00:00+01:00",
       "end_time": "2027-01-23T23:59:59+01:00",
       "start_known": false,
       "end_known": false,
@@ -95,21 +90,6 @@
       "url": "https://workshops.shoonyadance.com/exploring-the-kizomba-universe/",
       "price": "from €55",
       "cta": "Reserve a spot"
-    },
-    {
-      "id": "argentine-tango-milonga-november-2026",
-      "title": "Milonga Shoonya · Argentine Tango",
-      "start_time": "2026-11-01T16:45:00+01:00",
-      "end_time": "2026-11-01T22:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "An Argentine Tango class and practica for all levels, followed by a milonga.",
-      "date_label": "Class & practica 16:45 · milonga 18:00 — 22:00",
-      "image": "https://links.shoonyadance.com/images/milonga-shoonya.jpg",
-      "url": "https://tickets.shoonyadance.com/entry/milonga-shoonya-2026-11-01",
-      "price": "€15 / €10",
-      "cta": "Buy your ticket"
     },
     {
       "id": "sangam-sat",
