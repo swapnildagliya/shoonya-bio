@@ -289,21 +289,6 @@
       "cta": "Buy a ticket"
     },
     {
-      "id": "sevillanas-refresh",
-      "title": "Sevillanas Refresh",
-      "start_time": "2027-02-20T00:00:00+01:00",
-      "end_time": "2027-02-21T23:59:59+01:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "A two-day refresher for dancers who have learned Sevillanas before.",
-      "date_label": "2 mornings 10:00–12:00 · with La Liz",
-      "image": "https://links.shoonyadance.com/images/shoonya-flamenco-001.jpg",
-      "url": "https://workshops.shoonyadance.com/sevillanas-refresh/",
-      "price": "from €30",
-      "cta": "Reserve a spot"
-    },
-    {
       "id": "ghent-tap-festival-2027",
       "title": "Ghent Tap Festival 2027",
       "start_time": "2027-03-06T00:00:00+01:00",
