@@ -304,6 +304,36 @@
       "cta": "Save the date"
     },
     {
+      "id": "sevillanas-refresh-march-2027",
+      "title": "Sevillanas Refresh · La Liz",
+      "start_time": "2027-03-13T00:00:00+01:00",
+      "end_time": "2027-03-14T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Een opfriscursus voor dansers die al eerder Sevillanas hebben geleerd.",
+      "date_label": "13–14 mrt 2027 · 10:00–12:00 per dag",
+      "location": "Shoonya · Stapelplein 41, Gent",
+      "image": "https://links.shoonyadance.com/images/sevillanas-refresh-march-2027.jpg",
+      "url": "https://www.shoonyadance.com/calendar/sevillanas-refresh-march-2027",
+      "cta": "Info & inschrijven"
+    },
+    {
+      "id": "sevillanas-rumba-social-march-2027",
+      "title": "Sevillanas & Rumba · Social Night",
+      "start_time": "2027-03-19T19:30:00+01:00",
+      "end_time": "2027-03-20T00:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": true,
+      "description": "An opportunity to practise your sevillanas, party and meet other lovers of flamenco.",
+      "date_label": "Vr 19 mrt 2027 · vanaf 19:30",
+      "location": "Shoonya · Stapelplein 41, Gent",
+      "image": "https://links.shoonyadance.com/images/sevillanas-rumba-social-march-2027.jpg",
+      "url": "https://www.shoonyadance.com/calendar/sevillanas-rumba-social-night-march-2027",
+      "cta": "Info & tickets"
+    },
+    {
       "id": "gidf-2027",
       "title": "Gent India Dans Festival",
       "start_time": "2027-05-07T00:00:00+02:00",
