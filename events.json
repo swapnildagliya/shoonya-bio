@@ -171,6 +171,22 @@
       "cta": "Reserve a spot"
     },
     {
+      "id": "contemporary-dance-lab",
+      "title": "Contemporary Dance Lab",
+      "start_time": "2026-11-29T11:00:00+01:00",
+      "end_time": "2026-11-29T13:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": false,
+      "description": "Spend a morning immersing yourself in contemporary dance.",
+      "date_label": "Sunday 11:00–13:00 · with Tono Ferriol",
+      "location": "Shoonya · 41 Stapelplein, Gent",
+      "image": "https://links.shoonyadance.com/images/contemporary-dance-lab.jpg",
+      "url": "https://workshops.shoonyadance.com/contemporary-dance-lab/",
+      "price": "€30",
+      "cta": "Reserve a spot"
+    },
+    {
       "id": "social-dec",
       "title": "Kizomba Social Night",
       "start_time": "2026-12-04T19:30:00+01:00",
