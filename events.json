@@ -7,19 +7,18 @@
   "events": [
     {
       "id": "morning-early-classes",
-      "title": "Pilates · Yoga",
+      "title": "Yoga · Pilates · Ballet",
       "start_time": "2026-09-15T00:00:00+02:00",
       "end_time": "2027-01-27T23:59:59+01:00",
       "start_known": false,
       "end_known": false,
       "multi_day": true,
-      "description": "Session passes — no semester commitment.",
-      "date_label": "Tue 17:20 · Wed 17:20",
-      "location": "Shoonya · 41 Stapelplein, Gent",
+      "description": "Class passes — no semester commitment.",
+      "date_label": "Ballet Mon & Thu 10:00 · Pilates Tue 17:20 · Yoga Tue 19:35 & Wed 17:20",
       "image": "https://links.shoonyadance.com/images/morning-early-classes.jpg",
-      "url": "https://classes.shoonyadance.com/schedule-sep-2026.html",
-      "price": "pass from €40.50",
-      "cta": "Reserve a spot"
+      "url": "https://tickets.shoonyadance.com/register/workshop",
+      "price": "from €40.50",
+      "cta": "Choose your pass"
     },
     {
       "id": "professional-morning-training",
