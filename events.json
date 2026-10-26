@@ -262,6 +262,21 @@
       "cta": "Reserve a spot"
     },
     {
+      "id": "opendeurdag-jan",
+      "title": "Opendeurdag",
+      "start_time": "2027-01-31T10:00:00+01:00",
+      "end_time": "2027-01-31T17:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": false,
+      "description": "Drop in for one class or stay all day — no registration, no commitment.",
+      "date_label": "Free taster classes",
+      "image": "https://links.shoonyadance.com/images/opendeurdag-31-jan-2027.jpg",
+      "url": "https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-31-januari",
+      "price": "Free",
+      "cta": "Free · just show up"
+    },
+    {
       "id": "social-feb",
       "title": "Kizomba Social Night",
       "start_time": "2027-02-05T00:00:00+01:00",
