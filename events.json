@@ -375,6 +375,20 @@
       "date_label": "Shoonya Dance Centre, Gent",
       "url": "https://gidf.abcdans.com",
       "cta": "See details"
+    },
+    {
+      "id": "france-retreat",
+      "title": "Zomerstage 2027",
+      "start_time": "2027-07-03T00:00:00+02:00",
+      "end_time": "2027-07-09T23:59:59+02:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Six nights and five full class days, with your stay, meals and classes included.",
+      "date_label": "6 nights · stay, meals & classes",
+      "image": "https://links.shoonyadance.com/images/zomerstage-2027.jpg",
+      "url": "https://zomerstage.shoonyadance.com/",
+      "cta": "Request your place"
     }
   ]
 }
