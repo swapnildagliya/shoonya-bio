@@ -29,6 +29,19 @@
       "approved": true
     }
   ],
-  "abc": [],
+  "abc": [
+    {
+      "id": "sangam-2026",
+      "priority": 3,
+      "from": null,
+      "until": "2026-11-08",
+      "text": {
+        "en": "SANGAM · Indian dance production · 7 & 8 November · Tickets →"
+      },
+      "link": "https://abcdans.com/sangam/",
+      "source": "Design System/events/performance/2026-11-07-sangam.json (date, end_date); ABC page abcdans.com/sangam/",
+      "approved": true
+    }
+  ],
   "swapnil": []
 }
