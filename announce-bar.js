@@ -62,10 +62,13 @@
     try { return sessionStorage.getItem(DISMISS_KEY) === brand + ':' + id; } catch (e) { return false; }
   }
 
-  function textFor(msg) {
+  // text and link are each { nl, en } (link may also be one plain string).
+  function inLang(v) {
+    if (!v || typeof v === 'string') return v || '';
     var nl = /^nl/i.test(document.documentElement.lang || '');
-    return (nl ? msg.text.nl : msg.text.en) || msg.text.en || msg.text.nl || '';
+    return (nl ? v.nl : v.en) || v.en || v.nl || '';
   }
+  function textFor(msg) { return inLang(msg.text); }
 
   function paint(msg) {
     var css = document.createElement('style');
@@ -89,7 +92,7 @@
     bar.setAttribute('data-announce-id', msg.id || '');
 
     var label = document.createElement(msg.link ? 'a' : 'span');
-    if (msg.link) label.href = msg.link;
+    if (msg.link) label.href = inLang(msg.link);
     label.textContent = textFor(msg);
     bar.appendChild(label);
 
@@ -131,7 +134,10 @@
       place();
     });
 
-    new MutationObserver(function () { label.textContent = textFor(msg); })
+    new MutationObserver(function () {
+      label.textContent = textFor(msg);
+      if (msg.link) label.href = inLang(msg.link);
+    })
       .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   }
 

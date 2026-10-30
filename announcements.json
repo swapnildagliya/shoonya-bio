@@ -1,29 +1,31 @@
 {
-  "_note": "Announcement bars for www.shoonyadance.com, abcdans.com and swapnil.dance. ONE file for all three, published at https://links.shoonyadance.com/announcements.json and painted by announce-bar.js. On any day each site shows the APPROVED message with the lowest priority number whose from..until window contains today (Europe/Brussels, both ends inclusive). No live message = no bar. Every date must come from its owner file (semester-config.json, the event's facts JSON) — never typed from memory. /stale-watch checks this file weekly with scripts/announce-check.mjs and drafts the next message as approved:false; only Swapnil flips approved to true.",
+  "_note": "Announcement bars for www.shoonyadance.com, abcdans.com and swapnil.dance. ONE file for all three, published at https://links.shoonyadance.com/announcements.json and painted by announce-bar.js. On any day each site shows the APPROVED message with the lowest priority number whose from..until window contains today (Europe/Brussels, both ends inclusive). No live message = no bar. Every date must come from its owner file (semester-config.json, the event's facts JSON) — never typed from memory. /stale-watch checks this file weekly with scripts/announce-check.mjs. Guide + selection rule: Design System/docs/announcement-bars.md.",
   "_schema": {
     "id": "kebab-case, unique per brand",
-    "priority": "1 = most urgent (deadlines), 5 = always-on fallback",
+    "priority": "Swapnil's order (2026-10-30): 1 weekly class registration · 2 festival · 3 performance · 4 workshop · 5 social night",
     "from": "YYYY-MM-DD or null (= already live)",
     "until": "YYYY-MM-DD or null (= open-ended; must then carry until_status)",
     "until_status": "why until is null — UNVERIFIED <what is missing>, or EVERGREEN",
     "text": "{ nl, en } — the bar picks by <html lang>; missing language falls back to the other",
-    "link": "absolute URL or site-relative path",
+    "link": "{ nl, en } or one string — absolute URL or site-relative path",
     "source": "owner file the dates were read from",
-    "approved": "true only after Swapnil said yes in chat"
+    "approved": "true only after Swapnil said yes in chat; /stale-watch drafts with false"
   },
   "shoonya": [
     {
-      "id": "autumn-2026-instappen",
-      "priority": 5,
+      "id": "sangam-2026",
+      "priority": 3,
       "from": null,
-      "until": null,
-      "until_status": "UNVERIFIED — autumn 2026 registration close date is not in semester-config.json; ask Swapnil",
+      "until": "2026-11-08",
       "text": {
-        "nl": "Je kan nog instappen · Kies je les en schrijf je in →",
-        "en": "You can still join · Choose your class and register →"
+        "nl": "SANGAM · Indiase dansvoorstelling · 7 & 8 november · Tickets →",
+        "en": "SANGAM · Indian dance production · 7 & 8 November · Tickets →"
       },
-      "link": "/register",
-      "source": "live Squarespace bar text, 2026-09-21 (EXPIRY-LEDGER)",
+      "link": {
+        "nl": "https://performances.shoonyadance.com/sangam/nl/",
+        "en": "https://performances.shoonyadance.com/sangam/"
+      },
+      "source": "Design System/events/performance/2026-11-07-sangam.json (date, end_date, pages.primary)",
       "approved": true
     }
   ],
