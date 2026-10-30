@@ -1,0 +1,32 @@
+{
+  "_note": "Announcement bars for www.shoonyadance.com, abcdans.com and swapnil.dance. ONE file for all three, published at https://links.shoonyadance.com/announcements.json and painted by announce-bar.js. On any day each site shows the APPROVED message with the lowest priority number whose from..until window contains today (Europe/Brussels, both ends inclusive). No live message = no bar. Every date must come from its owner file (semester-config.json, the event's facts JSON) — never typed from memory. /stale-watch checks this file weekly with scripts/announce-check.mjs and drafts the next message as approved:false; only Swapnil flips approved to true.",
+  "_schema": {
+    "id": "kebab-case, unique per brand",
+    "priority": "1 = most urgent (deadlines), 5 = always-on fallback",
+    "from": "YYYY-MM-DD or null (= already live)",
+    "until": "YYYY-MM-DD or null (= open-ended; must then carry until_status)",
+    "until_status": "why until is null — UNVERIFIED <what is missing>, or EVERGREEN",
+    "text": "{ nl, en } — the bar picks by <html lang>; missing language falls back to the other",
+    "link": "absolute URL or site-relative path",
+    "source": "owner file the dates were read from",
+    "approved": "true only after Swapnil said yes in chat"
+  },
+  "shoonya": [
+    {
+      "id": "autumn-2026-instappen",
+      "priority": 5,
+      "from": null,
+      "until": null,
+      "until_status": "UNVERIFIED — autumn 2026 registration close date is not in semester-config.json; ask Swapnil",
+      "text": {
+        "nl": "Je kan nog instappen · Kies je les en schrijf je in →",
+        "en": "You can still join · Choose your class and register →"
+      },
+      "link": "/register",
+      "source": "live Squarespace bar text, 2026-09-21 (EXPIRY-LEDGER)",
+      "approved": true
+    }
+  ],
+  "abc": [],
+  "swapnil": []
+}
