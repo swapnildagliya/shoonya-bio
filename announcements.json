@@ -41,8 +41,8 @@
         "nl": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/nl/",
         "en": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/"
       },
-      "source": "Design System/events/miniseries/2026-11-10-bachata-choreo-minireeks.json (date, page_url). until = first session; late entry after 10 Nov not confirmed",
-      "approved": false
+      "source": "Design System/events/miniseries/2026-11-10-bachata-choreo-minireeks.json (date, page_url). Late entry after 10 Nov allowed (Swapnil, 2026-11-03); bar hands over to Flamenco on 11 Nov",
+      "approved": true
     },
     {
       "id": "flamenco-technique-2026-11",
@@ -58,7 +58,7 @@
         "en": "https://workshops.shoonyadance.com/flamenco-technique/"
       },
       "source": "Design System/events/workshop/2026-11-21-flamenco-technique-monthly.json (date, page_url, page_url_nl)",
-      "approved": false
+      "approved": true
     }
   ],
   "abc": [
