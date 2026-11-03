@@ -27,6 +27,38 @@
       },
       "source": "Design System/events/performance/2026-11-07-sangam.json (date, end_date, pages.primary)",
       "approved": true
+    },
+    {
+      "id": "bachata-choreo-minireeks-2026-11",
+      "priority": 4,
+      "from": "2026-11-09",
+      "until": "2026-11-10",
+      "text": {
+        "nl": "Bachata Choreo Minireeks · minireeks · 10 november · Schrijf je in →",
+        "en": "Bachata Choreo Minireeks · mini-series · 10 November · Register →"
+      },
+      "link": {
+        "nl": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/nl/",
+        "en": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/"
+      },
+      "source": "Design System/events/miniseries/2026-11-10-bachata-choreo-minireeks.json (date, page_url). until = first session; late entry after 10 Nov not confirmed",
+      "approved": false
+    },
+    {
+      "id": "flamenco-technique-2026-11",
+      "priority": 4,
+      "from": "2026-11-11",
+      "until": "2026-11-21",
+      "text": {
+        "nl": "Flamenco Technique · workshop · 21 november · Schrijf je in →",
+        "en": "Flamenco Technique · workshop · 21 November · Register →"
+      },
+      "link": {
+        "nl": "https://workshops.shoonyadance.com/flamenco-technique/nl/",
+        "en": "https://workshops.shoonyadance.com/flamenco-technique/"
+      },
+      "source": "Design System/events/workshop/2026-11-21-flamenco-technique-monthly.json (date, page_url, page_url_nl)",
+      "approved": false
     }
   ],
   "abc": [

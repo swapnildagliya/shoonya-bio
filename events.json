@@ -36,21 +36,6 @@
       "cta": "More info"
     },
     {
-      "id": "argentine-tango-milonga-november-2026",
-      "title": "Milonga Shoonya · Argentine Tango",
-      "start_time": "2026-11-01T16:45:00+01:00",
-      "end_time": "2026-11-01T22:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "Tango class, practica and milonga with Gisela Graef Marino & Sergio Molini.",
-      "date_label": "Class & practica 16:45 · milonga 18:00 — 22:00",
-      "image": "https://tv.shoonyadance.com/assets/milonga-photo.jpg",
-      "url": "https://tickets.shoonyadance.com/entry/milonga-shoonya-2026-11-01",
-      "price": "€15 / €10",
-      "cta": "Buy your ticket"
-    },
-    {
       "id": "kizomba-beginner-bootcamp",
       "title": "Kizomba Beginner Bootcamp",
       "start_time": "2026-11-07T00:00:00+01:00",
