@@ -296,6 +296,21 @@ footer .foodnote { font-family: var(--font-display-warm), Georgia, serif; font-s
 footer .where { margin-top: 12px; color: var(--ink); }
 footer a { color: inherit; }
 
+/* "New" badge (menu.json new_until) */
+.new {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 7px 1px;
+  border-radius: 4px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
 </style>
 </head>
 <body>
@@ -431,6 +446,18 @@ footer a { color: inherit; }
           <div class="line"><span class="name">Flora Sour Cherry</span><span class="price">€ 3.50</span></div>
           <p class="note">Organic sour, barrel-aged · 3.5% · 33 cl</p>
         </li>
+        <li>
+          <div class="line"><span class="name">Lupulus Organicus <span class="new">New</span></span><span class="price">€ 4.50</span></div>
+          <p class="note">Organic · 8.5%</p>
+        </li>
+        <li>
+          <div class="line"><span class="name">Quintine Nature <span class="new">New</span></span><span class="price">€ 4.50</span></div>
+          <p class="note">Brasserie des Légendes · 5.9% · 33 cl</p>
+        </li>
+        <li>
+          <div class="line"><span class="name">Slaapmutske Bio-Tripel <span class="new">New</span></span><span class="price">€ 4.50</span></div>
+          <p class="note">Brouwerij Slaapmutske, Melle · 8% · 33 cl</p>
+        </li>
         </ul>
       </section>
       <section data-cat="beer">
@@ -442,7 +469,7 @@ footer a { color: inherit; }
         </li>
         <li>
           <div class="line"><span class="name">Flora Nada</span><span class="price">€ 3.50</span></div>
-          <p class="note">IPA · 0.3% · 33 cl</p>
+          <p class="note">IPA, Mandarina Bavaria hops · 0.3% · 33 cl</p>
         </li>
         </ul>
       </section>
