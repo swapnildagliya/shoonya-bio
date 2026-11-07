@@ -18,8 +18,8 @@
       "from": null,
       "until": "2026-11-08",
       "text": {
-        "nl": "SANGAM · Indiase dansvoorstelling · 7 & 8 november · Tickets →",
-        "en": "SANGAM · Indian dance production · 7 & 8 November · Tickets →"
+        "nl": "SANGAM · Indiase dansvoorstelling · 7 & 8 november · Uitverkocht",
+        "en": "SANGAM · Indian dance production · 7 & 8 November · Sold out"
       },
       "link": {
         "nl": "https://performances.shoonyadance.com/sangam/nl/",
@@ -68,7 +68,7 @@
       "from": null,
       "until": "2026-11-08",
       "text": {
-        "en": "SANGAM · Indian dance production · 7 & 8 November · Tickets →"
+        "en": "SANGAM · Indian dance production · 7 & 8 November · Sold out"
       },
       "link": "https://abcdans.com/sangam/",
       "source": "Design System/events/performance/2026-11-07-sangam.json (date, end_date); ABC page abcdans.com/sangam/",
@@ -82,7 +82,7 @@
       "from": null,
       "until": "2026-11-08",
       "text": {
-        "en": "SANGAM · Indian dance production · 7 & 8 November · Tickets →"
+        "en": "SANGAM · Indian dance production · 7 & 8 November · Sold out"
       },
       "link": "https://performances.shoonyadance.com/sangam/",
       "source": "Design System/events/performance/2026-11-07-sangam.json (date, end_date, pages.primary.url) — swapnil.dance/sangam/ is noindex, so the public page",
