@@ -36,61 +36,6 @@
       "cta": "More info"
     },
     {
-      "id": "kizomba-beginner-bootcamp",
-      "title": "Kizomba Beginner Bootcamp",
-      "start_time": "2026-11-07T00:00:00+01:00",
-      "end_time": "2027-01-23T23:59:59+01:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Build your Kizomba foundation with Sonja KikiZomba. Two Saturdays remain.",
-      "date_label": "2 Saturdays 11:00–14:00 · with Sonja KikiZomba",
-      "image": "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
-        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg",
-        "https://links.shoonyadance.com/images/kizomba-treat.jpg"
-      ],
-      "url": "https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/",
-      "price": "from €55",
-      "cta": "Reserve a spot"
-    },
-    {
-      "id": "kizomba-universe",
-      "title": "Exploring the Kizomba Universe",
-      "start_time": "2026-11-07T00:00:00+01:00",
-      "end_time": "2027-01-23T23:59:59+01:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Tarraxinha and Semba next level with Sonja KikiZomba.",
-      "date_label": "2 Saturdays 15:00–18:00 · with Sonja KikiZomba",
-      "image": "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
-        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
-        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
-      ],
-      "url": "https://workshops.shoonyadance.com/exploring-the-kizomba-universe/",
-      "price": "from €55",
-      "cta": "Reserve a spot"
-    },
-    {
-      "id": "sangam-sat",
-      "title": "Sangam",
-      "start_time": "2026-11-07T19:30:00+01:00",
-      "end_time": "2026-11-07T21:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "A village without water, and a child who belongs to no one. An Indian dance production.",
-      "date_label": "ABC stage production",
-      "image": "https://links.shoonyadance.com/images/sangam.jpg",
-      "highlight": true,
-      "url": "https://tickets.shoonyadance.com/register/performance/e118e65f-daa2-4509-bf9c-607bdd1a1430",
-      "cta": "Buy a ticket"
-    },
-    {
       "id": "sangam-sun",
       "title": "Sangam",
       "start_time": "2026-11-08T15:00:00+01:00",
@@ -102,8 +47,8 @@
       "date_label": "ABC stage production",
       "image": "https://links.shoonyadance.com/images/sangam.jpg",
       "highlight": true,
-      "url": "https://tickets.shoonyadance.com/register/performance/9c2f617f-b6d8-4b39-ad8e-b7958dd589c2",
-      "cta": "Buy a ticket"
+      "url": "https://performances.shoonyadance.com/sangam/",
+      "cta": "Sold out"
     },
     {
       "id": "bachata-choreo-minireeks",
@@ -228,6 +173,46 @@
       "image": "https://links.shoonyadance.com/images/winter-intensive-2027.jpg",
       "url": "https://workshops.shoonyadance.com/indian-dance-winter-intensive-2027/",
       "price": "from €35",
+      "cta": "Reserve a spot"
+    },
+    {
+      "id": "kizomba-beginner-bootcamp",
+      "title": "Kizomba Beginner Bootcamp",
+      "start_time": "2027-01-23T00:00:00+01:00",
+      "end_time": "2027-01-23T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": false,
+      "description": "Build your Kizomba foundation with Sonja KikiZomba. Two Saturdays remain.",
+      "date_label": "Module C · 11:00–14:00 · with Sonja KikiZomba",
+      "image": "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/sonja-kikizomba.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg",
+        "https://links.shoonyadance.com/images/kizomba-treat.jpg"
+      ],
+      "url": "https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/",
+      "price": "from €55",
+      "cta": "Reserve a spot"
+    },
+    {
+      "id": "kizomba-universe",
+      "title": "Exploring the Kizomba Universe",
+      "start_time": "2027-01-23T00:00:00+01:00",
+      "end_time": "2027-01-23T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": false,
+      "description": "Semba next level: dips and tricks with musicality.",
+      "date_label": "Semba next level · 15:00–18:00 · with Sonja KikiZomba",
+      "image": "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+      "images": [
+        "https://links.shoonyadance.com/images/kizomba-sawa-floor.jpg",
+        "https://links.shoonyadance.com/images/kizomba-egypt.jpg",
+        "https://links.shoonyadance.com/images/kizomba-roma-bw.jpg"
+      ],
+      "url": "https://workshops.shoonyadance.com/exploring-the-kizomba-universe/",
+      "price": "from €55",
       "cta": "Reserve a spot"
     },
     {
