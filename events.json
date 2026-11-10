@@ -36,21 +36,6 @@
       "cta": "More info"
     },
     {
-      "id": "sangam-sun",
-      "title": "Sangam",
-      "start_time": "2026-11-08T15:00:00+01:00",
-      "end_time": "2026-11-08T16:30:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "A village without water, and a child who belongs to no one. An Indian dance production.",
-      "date_label": "ABC stage production",
-      "image": "https://links.shoonyadance.com/images/sangam.jpg",
-      "highlight": true,
-      "url": "https://performances.shoonyadance.com/sangam/",
-      "cta": "Sold out"
-    },
-    {
       "id": "bachata-choreo-minireeks",
       "title": "Bachata Choreo Minireeks",
       "start_time": "2026-11-10T00:00:00+01:00",
