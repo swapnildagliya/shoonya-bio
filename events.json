@@ -126,22 +126,21 @@
     {
       "id": "sb-dec",
       "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-12-11T19:30:00+01:00",
+      "start_time": "2026-12-11T20:45:00+01:00",
       "end_time": "2026-12-12T01:00:00+01:00",
       "start_known": true,
       "end_known": true,
       "multi_day": false,
-      "description": "Workshop and social dancing with Alex Papaianopol. Full programme coming soon.",
-      "date_label": "Workshop + social night · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
+      "description": "Salsa & bachata oefenavond with DJ Marc: practise, socialise, all levels welcome.",
+      "date_label": "Oefenavond with DJ Marc · hosted by Alex",
+      "image": "https://links.shoonyadance.com/images/dj-marc-decks.jpg",
       "images": [
-        "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
+        "https://links.shoonyadance.com/images/dj-marc-decks.jpg",
         "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
+        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg"
       ],
       "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-december",
+      "price": "from €6",
       "cta": "Buy a ticket"
     },
     {
