@@ -51,26 +51,6 @@
       "cta": "Reserve a spot"
     },
     {
-      "id": "sb-nov",
-      "title": "Salsa & Bachata Social Night",
-      "start_time": "2026-11-13T21:00:00+01:00",
-      "end_time": "2026-11-14T01:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "Open dancing with host Alex and DJ Kimo: salsa, bachata, kizomba and merengue.",
-      "date_label": "Open floor with DJ Kimo · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/dj-kimo-decks.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/dj-kimo-decks.jpg",
-        "https://links.shoonyadance.com/images/latin-side-step.jpg",
-        "https://links.shoonyadance.com/images/latin-close-embrace-black.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-november",
-      "price": "from €5",
-      "cta": "Buy a ticket"
-    },
-    {
       "id": "flamenco-technique",
       "title": "Flamenco Technique",
       "start_time": "2026-11-21T00:00:00+01:00",

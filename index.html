@@ -1007,6 +1007,7 @@ const EVENTS = [
       eyebrow: 'Movement without borders · Gent · 2026',
       routesLabel: 'Start here · September 2026',
       routes: {
+        gift:      { label:'Gift idea', eyebrow:'Gift voucher', title:'Give dance as a gift', meta:'From €25 · valid for 12 months' },
         register:  { eyebrow:'Register',        title:'Weekly classes · Sep 2026', meta:'Pick your class and level' },
         finder:    { eyebrow:'Find your class', title:'September schedule',        meta:'All styles, by day and level' },
         openhouse: { eyebrow:'Sun 13 Sep',      title:'Opendeurdag',               meta:'Free · try any style' },
@@ -1026,6 +1027,7 @@ const EVENTS = [
       eyebrow: 'Beweging zonder grenzen · Gent · 2026',
       routesLabel: 'Begin hier · september 2026',
       routes: {
+        gift:      { label:'Cadeautip', eyebrow:'Cadeaubon', title:'Geef dans cadeau', meta:'Vanaf €25 · 12 maanden geldig' },
         register:  { eyebrow:'Schrijf je in',   title:'Weeklessen · sep 2026', meta:'Kies je les en niveau' },
         finder:    { eyebrow:'Vind je les',     title:'Septemberrooster',      meta:'Alle stijlen, per dag en niveau' },
         openhouse: { eyebrow:'Zo 13 sep',       title:'Opendeurdag',           meta:'Gratis · probeer elke stijl' },
@@ -1140,16 +1142,19 @@ const EVENTS = [
   // ── Sep 2026 campaign routes ─────────────────────────────────────────────
   // Destinations verified live 2026-08-10. Tracked so link-in-bio traffic is
   // separable from feed/story traffic in Squarespace Analytics.
-  const ROUTES_WINDOW = { from: '2026-08-10', to: '2026-09-23' };
+  const ROUTES_WINDOW = { from: '2026-08-10', to: '2026-12-31' };
   // Each tile carries its OWN last day. The strip used to share one window, so on
   // 21 Sep 2026 it was still offering an Open Door Day that ran on the 13th and a
   // trial week that ended on the 19th — two dead tiles out of four, for the two
   // days left on the strip's own clock. A tile whose date has passed drops itself;
   // the strip disappears when nothing is left, whichever comes first.
   const ROUTE_DEFS = [
-    { key:'register',  primary:true,
+    // Gift vouchers (14 Nov 2026, owner "Yes, add it"): live in the app since 6 Nov; one tile until New Year.
+    { key:'gift', primary:true, from:'2026-11-14', until:'2026-12-31',
+      url:'https://portal.shoonyadance.com/gift?utm_source=bio&utm_medium=bio&utm_campaign=gift-vouchers-2026&utm_content=gift' },
+    { key:'register',  primary:true, until:'2026-09-23',
       url:'https://www.shoonyadance.com/register?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=register' },
-    { key:'finder',
+    { key:'finder', until:'2026-09-23',
       url:'https://schedule.shoonyadance.com/schedule-sep-2026/?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=classfinder' },
     { key:'openhouse', until:'2026-09-13',
       url:'https://www.shoonyadance.com/calendar/opendeurdag-gratis-dansen-gent-13-september?utm_source=bio&utm_medium=bio&utm_campaign=sep2026-classes&utm_content=opendeurdag' },
@@ -1163,11 +1168,11 @@ const EVENTS = [
     const now = todayLocal();
     const on = now >= parseISO(ROUTES_WINDOW.from) && now <= parseISO(ROUTES_WINDOW.to);
     if (!on){ $r.innerHTML = ''; return; }
-    const live = ROUTE_DEFS.filter(function(d){ return !d.until || now <= parseISO(d.until); });
+    const live = ROUTE_DEFS.filter(function(d){ return (!d.from || now >= parseISO(d.from)) && (!d.until || now <= parseISO(d.until)); });
     if (!live.length){ $r.innerHTML = ''; return; }
     const copy = tr().routes;
     $r.innerHTML =
-      '<div class="routes__lbl">' + escapeHTML(tr().routesLabel) + '</div>' +
+      '<div class="routes__lbl">' + escapeHTML((copy[live[0].key] && copy[live[0].key].label) || tr().routesLabel) + '</div>' +
       '<div class="routes">' + live.map(function(d){
         const c = copy[d.key];
         return '<a class="route' + (d.primary ? ' route--primary' : '') + '" href="' + d.url +
