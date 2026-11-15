@@ -38,7 +38,7 @@
     items: [
       { id: 'classes', nl: 'Danslessen', en: 'Classes', kind: 'group',
         links: [
-          { addr: '@cta', nl: 'Weekrooster', en: 'Weekly schedule' },
+          { addr: '@cta', nl: 'Weekrooster (sep \u2013 jan)', en: 'Weekly schedule (Sep \u2013 Jan)' }   /* owner 15 Nov: label the period until the spring timetable exists */,
           { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles' },
           { addr: '/private-class', nl: 'Privé- en groepslessen', en: 'Private & group classes' }
         ],
