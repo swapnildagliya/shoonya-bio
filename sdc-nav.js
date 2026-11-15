@@ -161,7 +161,9 @@
     (kids || []).forEach(function (c) { if (c) el.appendChild(c); });
     return el;
   }
-  var CHEV = '<svg viewBox="0 0 12 8" width="11" height="8" aria-hidden="true" focusable="false"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+  var CHEV = '<svg viewBox="0 0 12 8" width="11" height="7" aria-hidden="true" focusable="false"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>';
+  var ICON_BACK = '<svg viewBox="0 0 8 12" width="8" height="12" aria-hidden="true" focusable="false"><path d="M6.5 1l-5 5 5 5" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>';
+  var ICON_X = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>';
   var uid = 0;
   function nid(p) { uid += 1; return NS + '-' + p + '-' + uid; }
 
@@ -408,7 +410,8 @@
     var panel = h('div', { id: 'sdc-panel', 'class': 'sdc-panel', role: 'dialog', 'aria-modal': 'true', hidden: true, 'data-wg-notranslate': true });
     applyTheme(panel, th);
     var topbar = h('div', { 'class': 'sdc-ptop' }, [langSwitch('phone'),
-      h('button', { type: 'button', 'class': 'sdc-close' }, [h('span', { 'class': 'sdc-x', 'aria-hidden': 'true', text: '×' }), h('span', { 'class': 'sdc-vh' }, [lbl(CONFIG.ui.close)])])]);
+      h('button', { type: 'button', 'class': 'sdc-close' }, [h('span', { 'class': 'sdc-x', 'aria-hidden': 'true' }), h('span', { 'class': 'sdc-vh' }, [lbl(CONFIG.ui.close)])])]);
+    topbar.querySelector('.sdc-x').insertAdjacentHTML('beforeend', ICON_X);
     var scroll = h('div', { 'class': 'sdc-pscroll' });
     var mainView = h('div', { 'class': 'sdc-view sdc-view-main' });
     var pnav = h('nav', { 'class': 'sdc-pnav' }); var pul = h('ul', { 'class': 'sdc-plist' });
@@ -419,9 +422,10 @@
       else {
         var vid = nid('view'), rid = nid('row');
         var row = h('button', { type: 'button', 'class': 'sdc-prow', id: rid, 'aria-expanded': 'false', 'aria-controls': vid }, [lbl(top)]);
-        row.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 8 12" width="8" height="12" aria-hidden="true" focusable="false"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>');
+        row.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 8 12" width="8" height="12" aria-hidden="true" focusable="false"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>');
         var vtitle = lbl(top, 'sdc-vtitle'); var vtid = nid('vt'); vtitle.setAttribute('id', vtid);
-        var back = h('button', { type: 'button', 'class': 'sdc-back' }, [h('span', { 'aria-hidden': 'true', text: '‹ ' }), lbl(CONFIG.ui.back)]);
+        var back = h('button', { type: 'button', 'class': 'sdc-back' }, [h('span', { 'class': 'sdc-bk', 'aria-hidden': 'true' }), lbl(CONFIG.ui.back)]);
+        back.querySelector('.sdc-bk').insertAdjacentHTML('beforeend', ICON_BACK);
         var accs = [];
         var view = h('div', { 'class': 'sdc-view', id: vid, hidden: true, role: 'group', 'aria-labelledby': vtid }, [back, vtitle, groupBody(top, 'phone', accs)]);
         li.appendChild(row); views.push({ row: row, view: view, back: back, accs: accs });
@@ -482,7 +486,7 @@
     function setOpen(tr, open) {
       if (open) ui.triggers.forEach(function (o) { if (o !== tr) setOpen(o, false); });
       tr.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) { tr.drop.hidden = false; clamp(tr.drop); } else { tr.drop.hidden = true; tr.drop.style.transform = ''; tr.pinned = false; }
+      if (open) { layoutVars(); tr.drop.hidden = false; clamp(tr.drop); } else { tr.drop.hidden = true; tr.drop.style.transform = ''; tr.pinned = false; }
     }
     function clamp(drop) {
       drop.style.transform = '';
@@ -603,64 +607,96 @@
       if (!inner || !logo) return;
       var ir = inner.getBoundingClientRect(), lr = logo.getBoundingClientRect();
       if (lr.width) ui.root.style.setProperty('--sdc-left', Math.round(lr.right - ir.left + 16) + 'px');
+      var rr = ui.root.getBoundingClientRect(), hr = nat.hdr.getBoundingClientRect();     // panels hang from the header's bottom edge
+      if (rr.height && hr.height) ui.root.style.setProperty('--sdc-drop-top', Math.round(hr.bottom - rr.top) + 'px');
     }
     layoutVars();
   }
 
-  /* ═══════════════ 5. CSS ═══════════════ */
+  /* ═══════════════ 5. CSS ═══════════════
+     DESIGN SYSTEM (visual pass, 15 Nov 2026)
+     Spacing scale (px): 4 · 8 · 12 · 16 · 24 · 32 · 48   (--s1 … --s7). Every gap, padding and margin comes from it, with four
+                         optical / target-size exceptions: 6 (item padding and chevron gap between 1000 and 1139 px, to fit Dutch labels),
+                         9 (pulls the language switch's last letter flush with the Register button's edge), 36 (language button width),
+                         44 (touch row height of the open style lists on the phone).
+     Type scale (px):    14 small (small bar, language, quiet links) · 16 base (the page's own nav size: dropdown links, phone sub-links)
+                         · 18 large (phone top links, group headings) · 24 display (phone main rows, phone view title).
+     Faces:              the page's own nav face (PT Serif) for everything; the site's heading face (Marcellus) only for group
+                         headings and the phone's main rows / titles. One weight (400) everywhere except the active language (700).
+     Borders:            one hairline, 1px, the menu's own text colour at 20% (--sdc-hair). Used for panel edges and 3 dividers.
+     States:             hover / open = 1px underline (offset 4px)   ·  focus = 2px ring in the Shoonya purple #B564F7 (3.4:1 on white)
+                         pressed (phone) = 60% opacity            ·  Register hover = purple fill, black text (6.1:1).
+     Colour:             nothing new. Text = the page's nav colour; secondary text = the same colour at 80% (12.6:1); the only accent is the
+                         logo purple, used for focus rings and the Register hover.
+     Radius:             the page's own button radius (Register, panel bottom corners).
+     Motion:             120 ms opacity fades only; none under prefers-reduced-motion.
+     ═════════════════════════════════════════════════════════════════════════ */
   var CSS = [
     '#sdc-nav{display:none}',
+    '#sdc-nav,.sdc-panel{--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--t-sm:14px;--t-md:var(--sdc-size,16px);--t-lg:18px;--t-xl:24px;',
+    '--sdc-display:Marcellus,var(--sdc-font);--sdc-accent:#B564F7;--sdc-quiet:var(--sdc-color);--sdc-hair:rgba(0,0,0,.2);--sdc-line:1px solid var(--sdc-hair)}',
+    '@supports (color:color-mix(in srgb,red,blue)){#sdc-nav,.sdc-panel{--sdc-quiet:color-mix(in srgb,var(--sdc-color) 80%,transparent);--sdc-hair:color-mix(in srgb,var(--sdc-color) 20%,transparent)}}',
     '.sdc-panel[hidden],.sdc-drop[hidden],.sdc-view[hidden]{display:none!important}',
     // native menu: hidden but still occupying its space, so nothing moves
     'html.sdc-nav-on #header .header-nav,html.sdc-nav-on #header .header-actions,html.sdc-nav-on #header .header-burger{visibility:hidden!important}',
     'html.sdc-nav-open,html.sdc-nav-open body{overflow:hidden!important}',
     'html.sdc-nav-open [id^="boei"]{display:none!important}',
-    'html.sdc-nav-on #sdc-nav{display:flex;position:absolute;z-index:3;top:0;bottom:0;right:0;left:var(--sdc-left,220px);flex-direction:column;align-items:flex-end;justify-content:space-between;',
-    'font-family:var(--sdc-font);font-size:var(--sdc-size);font-weight:var(--sdc-weight);color:var(--sdc-color);letter-spacing:var(--sdc-ls);text-transform:var(--sdc-tt);line-height:1.2}',
+    'html.sdc-nav-on #sdc-nav{display:flex;position:absolute;z-index:3;top:0;bottom:0;right:0;left:var(--sdc-left,220px);flex-direction:column;align-items:flex-end;justify-content:center;gap:var(--s1);',
+    'font-family:var(--sdc-font);font-size:var(--t-md);font-weight:var(--sdc-weight);color:var(--sdc-color);letter-spacing:var(--sdc-ls);text-transform:var(--sdc-tt);line-height:1.3}',
     '#sdc-nav *,.sdc-panel *{box-sizing:border-box}',
-    '#sdc-nav ul,.sdc-panel ul{list-style:none;margin:0;padding:0}',
+    '#sdc-nav ul,.sdc-panel ul,#sdc-nav li,.sdc-panel li{list-style:none;margin:0;padding:0}',
     '#sdc-nav a,.sdc-panel a{color:var(--sdc-color)!important;font:inherit!important;letter-spacing:inherit!important;text-transform:inherit!important;text-decoration:none;background:none}',
-    '#sdc-nav button,.sdc-panel button{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;background:none;border:0;margin:0;padding:0;cursor:pointer}',
-    '#sdc-nav :focus-visible,.sdc-panel :focus-visible{outline:2px solid currentColor;outline-offset:3px}',
+    '#sdc-nav button,.sdc-panel button{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;background:none;border:0;margin:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}',
+    '#sdc-nav :focus-visible,.sdc-panel :focus-visible{outline:2px solid var(--sdc-accent);outline-offset:2px}',
     '.sdc-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}',
-    // desktop
-    '.sdc-small{height:36px;display:flex;align-items:center}',
-    '.sdc-small .sdc-row{display:flex;align-items:center;gap:20px}',
-    '#sdc-nav a.sdc-sm{font-size:14px!important;display:inline-flex;align-items:center;min-height:32px}',
-    '.sdc-sm:hover{text-decoration:underline;text-underline-offset:3px}',
-    '.sdc-lang{display:inline-flex;gap:2px;align-items:center}',
-    '.sdc-langbtn{font-size:14px;min-width:32px;min-height:32px;border-radius:6px;opacity:.65}',
-    '.sdc-langbtn[aria-pressed="true"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}',
-    '.sdc-main{flex:1;display:flex;align-items:center}',
-    '.sdc-main>.sdc-row{display:flex;align-items:center;gap:6px}',
-    '.sdc-item{position:relative;display:flex;align-items:center}',
-    '.sdc-top{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;white-space:nowrap}',
-    '.sdc-top:hover{text-decoration:underline;text-underline-offset:4px}',
-    '.sdc-trigger svg{transition:transform .15s}',
-    '.sdc-trigger[aria-expanded="true"] svg{transform:rotate(180deg)}',
-    '#sdc-nav a.sdc-reg,.sdc-panel a.sdc-reg{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;margin-left:10px;white-space:nowrap;background:var(--sdc-btn-bg);color:var(--sdc-btn-fg)!important;border-radius:var(--sdc-btn-radius)}',
-    '.sdc-reg:hover{opacity:.88}',
-    '#sdc-nav .sdc-reg:focus-visible{outline-color:var(--sdc-btn-bg)}',
-    '.sdc-drop{position:absolute;top:calc(100% + 6px);left:0;z-index:5;background:var(--sdc-bg);color:var(--sdc-color);padding:22px 26px;border:1px solid var(--sdc-color);border-radius:var(--sdc-btn-radius);box-shadow:0 12px 24px 0 rgba(0,0,0,.12);min-width:240px;animation:sdc-in .12s ease-out}',
-    '.sdc-right .sdc-drop{left:auto;right:0}',
-    '.sdc-drop .sdc-body{display:flex;gap:34px;align-items:flex-start}',
-    '.sdc-drop .sdc-col{min-width:180px}',
-    '.sdc-drop .sdc-col-lead{min-width:190px;padding-right:6px}',
-    '.sdc-drop .sdc-list li+li{margin-top:2px}',
-    '.sdc-drop .sdc-list a{display:block;padding:7px 0;white-space:nowrap}',
-    '.sdc-drop .sdc-list a:hover{text-decoration:underline;text-underline-offset:3px}',
-    '.sdc-gh{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}',
-    '@keyframes sdc-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}',
-    '.sdc-burger,.sdc-vtitle-dummy{display:none}',
+    // ── desktop: small bar (secondary) ──
+    '.sdc-small{flex:none;height:var(--s6);display:flex;align-items:center;font-size:var(--t-sm)}',
+    '.sdc-small .sdc-row{display:flex;align-items:center;gap:var(--s5)}',
+    '#sdc-nav a.sdc-sm{display:inline-flex;align-items:center;min-height:var(--s6);color:var(--sdc-quiet)!important}',
+    '#sdc-nav a.sdc-sm:hover{color:var(--sdc-color)!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}',
+    '#sdc-nav .sdc-langli{position:relative;margin-right:-9px}',
+    '.sdc-langli::before{content:"";position:absolute;left:calc(var(--s3) * -1);top:50%;height:var(--t-sm);transform:translateY(-50%);border-left:var(--sdc-line)}',
+    '.sdc-lang{display:inline-flex;align-items:center}',
+    '#sdc-nav .sdc-langbtn{font-size:var(--t-sm);min-width:36px;min-height:var(--s6);color:var(--sdc-quiet)}',
+    '#sdc-nav .sdc-langbtn:hover,.sdc-panel .sdc-langbtn:hover{color:var(--sdc-color)}',
+    '#sdc-nav .sdc-langbtn[aria-pressed="true"],.sdc-panel .sdc-langbtn[aria-pressed="true"]{color:var(--sdc-color);font-weight:700}',
+    '.sdc-panel .sdc-langbtn{color:var(--sdc-quiet)}',
+    // ── desktop: main bar (primary) ──
+    '.sdc-main{flex:none;display:flex;align-items:center}',
+    '.sdc-main>.sdc-row{display:flex;align-items:center}',
+    '.sdc-item{display:flex;align-items:center}',
+    '#sdc-nav .sdc-top{display:inline-flex;align-items:center;gap:var(--s2);min-height:var(--s7);padding:0 var(--s3);white-space:nowrap}',
+    '#sdc-nav .sdc-top:hover,#sdc-nav .sdc-trigger[aria-expanded="true"]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}',
+    '.sdc-trigger svg{flex:none;opacity:.75;transition:transform .12s}',
+    '.sdc-trigger[aria-expanded="true"] svg{transform:rotate(180deg);opacity:1}',
+    '#sdc-nav a.sdc-reg,.sdc-panel a.sdc-reg{display:inline-flex;align-items:center;justify-content:center;min-height:var(--s7);padding:0 var(--s5);margin-left:var(--s3);white-space:nowrap;background:var(--sdc-btn-bg);color:var(--sdc-btn-fg)!important;border-radius:var(--sdc-btn-radius);transition:background-color .12s,color .12s}',
+    '#sdc-nav a.sdc-reg:hover,.sdc-panel a.sdc-reg:active{background:var(--sdc-accent);color:var(--sdc-color)!important}',
+    // ── desktop: dropdown panels. Attached to the header edge, hairline + one soft shadow, fade only ──
+    '.sdc-drop{position:absolute;top:var(--sdc-drop-top,100%);left:auto;z-index:5;min-width:240px;margin-left:calc(var(--s3) * -1);padding:var(--s5);background:var(--sdc-bg);color:var(--sdc-color);',
+    'border:var(--sdc-line);border-radius:0 0 var(--sdc-btn-radius) var(--sdc-btn-radius);box-shadow:0 24px 32px -24px rgba(0,0,0,.28);animation:sdc-in .12s ease-out}',
+    '.sdc-drop::before{content:"";position:absolute;left:0;right:0;top:calc(var(--s4) * -1);height:var(--s4)}',      // hover bridge, short enough not to cover the bar's own buttons
+    '.sdc-right .sdc-drop{right:0;margin-left:0}',
+    // inside a short window the body (not the panel, so the hover bridge is not clipped) scrolls; the 4px keeps focus rings from being cut
+    '.sdc-drop .sdc-body{display:flex;gap:var(--s6);align-items:flex-start;max-height:calc(100vh - var(--sdc-drop-top,0px) - 56px);overflow-y:auto;overscroll-behavior:contain;padding:var(--s1);margin:calc(var(--s1) * -1)}',
+    '.sdc-drop.sdc-wide .sdc-body{display:grid;grid-template-columns:repeat(3,max-content);column-gap:var(--s7);row-gap:0}',
+    '.sdc-drop .sdc-col{min-width:0}',
+    '.sdc-drop.sdc-wide .sdc-col-lead{grid-column:1/-1;padding-bottom:var(--s4);margin-bottom:var(--s5);border-bottom:var(--sdc-line)}',
+    '.sdc-drop.sdc-wide .sdc-col-lead .sdc-list{display:flex;gap:var(--s6)}',
+    '.sdc-drop .sdc-list{line-height:var(--s5)}',      // 24px on 16px = 1.5; the links inherit it (their font shorthand resets line-height)
+    '.sdc-drop .sdc-list a{display:block;padding:var(--s1) 0;white-space:nowrap}',
+    '#sdc-nav .sdc-drop .sdc-list a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}',
+    '.sdc-gh{display:block;font-family:var(--sdc-display);font-size:var(--t-lg);font-weight:400;line-height:var(--s5);letter-spacing:0;text-transform:none;margin-bottom:var(--s3)}',
+    '@keyframes sdc-in{from{opacity:0}to{opacity:1}}',
+    '.sdc-burger{display:none}',
     // narrow desktops: tighter spacing so the Dutch labels fit beside the logo
     '@media (min-width:' + CONFIG.phoneBelow + 'px) and (max-width:1139px){',
-    '#sdc-nav .sdc-top{padding:0 5px;gap:5px;font-size:15px}',
-    '.sdc-main>.sdc-row{gap:0}',
-    '#sdc-nav a.sdc-reg{padding:0 14px;margin-left:6px;font-size:15px!important}',
-    '.sdc-small .sdc-row{gap:14px}',
+    '#sdc-nav .sdc-top{padding:0 6px;gap:6px}',
+    '#sdc-nav a.sdc-reg{padding:0 var(--s3);margin-left:var(--s1)}',
+    '.sdc-small .sdc-row{gap:var(--s4)}',
+    '#sdc-nav .sdc-langli::before{left:calc(var(--s2) * -1)}',
     '}',
-    '@media (prefers-reduced-motion:reduce){.sdc-drop{animation:none}.sdc-trigger svg{transition:none}}',
-    // phone layout
+    '@media (prefers-reduced-motion:reduce){.sdc-drop,.sdc-panel{animation:none}.sdc-trigger svg,#sdc-nav a.sdc-reg,.sdc-panel a.sdc-reg{transition:none}}',
+    // ── phone: header button ──
     '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){',
     'html.sdc-nav-on #sdc-nav{left:auto;width:auto;flex-direction:row;align-items:center;justify-content:flex-end}',
     '#sdc-nav .sdc-small,#sdc-nav .sdc-main{display:none}',
@@ -669,33 +705,44 @@
     '.sdc-bars i{position:absolute;left:0;right:0;height:1px;background:currentColor}',
     '.sdc-bars i:nth-child(1){top:0}.sdc-bars i:nth-child(2){top:8px}.sdc-bars i:nth-child(3){top:16px}',
     '}',
-    '.sdc-panel{position:fixed;z-index:200000;inset:0;display:flex;flex-direction:column;background:var(--sdc-bg);color:var(--sdc-color);',
-    'font-family:var(--sdc-font);font-size:calc(var(--sdc-size) + 2px);font-weight:var(--sdc-weight);letter-spacing:var(--sdc-ls);text-transform:var(--sdc-tt);line-height:1.25}',
-    '.sdc-ptop{flex:none;display:flex;align-items:center;justify-content:space-between;padding:6px 14px 6px 20px;border-bottom:1px solid var(--sdc-color);min-height:60px}',
-    '.sdc-ptop .sdc-langbtn{min-width:44px;min-height:44px;font-size:16px}',
-    '.sdc-close{width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center}',
-    '.sdc-x{font-size:34px;line-height:1}',
-    '.sdc-pscroll{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:6px 20px var(--sdc-bottom,16px)}',
-    '.sdc-panel .sdc-prow{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:10px 0;text-align:left;border-bottom:1px solid var(--sdc-color)}',
-    '.sdc-panel .sdc-prow-sm{min-height:44px;font-size:15px;border-bottom:0}',
-    '.sdc-psmall{margin-top:6px;padding-top:4px;border-top:1px solid var(--sdc-color)}',
-    '.sdc-pregwrap{margin:18px 0 12px}',
-    '.sdc-panel a.sdc-reg-phone{display:flex;width:100%;margin-left:0;min-height:52px}',
-    '.sdc-back{display:flex;align-items:center;min-height:48px;width:100%;text-align:left}',
-    '.sdc-vtitle{display:block;font-size:calc(var(--sdc-size) + 6px);margin:6px 0 10px}',
+    // ── phone: full-screen panel ──
+    '.sdc-panel{position:fixed;z-index:200000;inset:0;display:flex;flex-direction:column;background:var(--sdc-bg);color:var(--sdc-color);animation:sdc-in .12s ease-out;',
+    'font-family:var(--sdc-font);font-size:var(--t-md);font-weight:var(--sdc-weight);letter-spacing:var(--sdc-ls);text-transform:var(--sdc-tt);line-height:1.3}',
+    '.sdc-panel a:active,.sdc-panel button:active{opacity:.6}',
+    '.sdc-ptop{flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 var(--s3) 0 var(--s5);border-bottom:var(--sdc-line);min-height:64px}',
+    '.sdc-ptop .sdc-lang{margin-left:calc(var(--s3) * -1)}',
+    '.sdc-ptop .sdc-langbtn{min-width:var(--s7);min-height:var(--s7);font-size:var(--t-md)}',
+    '.sdc-close{width:var(--s7);height:var(--s7);display:inline-flex;align-items:center;justify-content:center}',
+    '.sdc-x{display:flex}',
+    '.sdc-pscroll{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:var(--s2) var(--s5) var(--sdc-bottom,16px)}',
+    // main view: five rows, no rules between them
+    '.sdc-pnav{font-family:var(--sdc-display);font-size:var(--t-xl)}',
+    '.sdc-panel .sdc-prow{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:var(--s2) 0;text-align:left}',
+    '.sdc-panel .sdc-prow svg{flex:none;opacity:.75}',
+    '.sdc-pregwrap{margin:var(--s5) 0 var(--s6)}',
+    '.sdc-panel a.sdc-reg-phone{display:flex;width:100%;margin-left:0;min-height:56px;font-size:var(--t-lg)!important}',
+    '.sdc-psmall{font-size:var(--t-md)}',
+    '.sdc-panel .sdc-plist-small{display:grid;grid-template-columns:max-content max-content;column-gap:var(--s6)}',
+    '.sdc-panel .sdc-psmall a.sdc-prow-sm{min-height:44px;padding:var(--s1) 0;color:var(--sdc-quiet)!important;white-space:nowrap}',
+    // sub views
+    '.sdc-panel .sdc-back{display:flex;align-items:center;gap:var(--s2);min-height:var(--s7);width:100%;text-align:left;color:var(--sdc-quiet)}',
+    '.sdc-bk{display:flex}',
+    '.sdc-vtitle{display:block;font-family:var(--sdc-display);font-size:var(--t-xl);line-height:1.2;margin:var(--s2) 0 var(--s4)}',
     '.sdc-view .sdc-body{display:block}',
-    '.sdc-view .sdc-col{margin-bottom:14px}',
+    '.sdc-view .sdc-col{margin:0}',
+    '.sdc-view .sdc-col-lead{margin-bottom:var(--s5)}',
     '.sdc-panel .sdc-view ul[hidden]{display:none!important}',
-    '.sdc-view .sdc-list a{display:flex;align-items:center;min-height:48px;padding:8px 0;border-bottom:1px solid var(--sdc-color);font-size:var(--sdc-size)}',
-    '.sdc-view .sdc-gh{margin:18px 0 4px}',
-    '.sdc-view .sdc-accwrap{margin-bottom:0}',
-    '.sdc-panel .sdc-acc{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:8px 0;text-align:left;border-bottom:1px solid var(--sdc-color);font-size:var(--sdc-size)}',
-    '.sdc-panel .sdc-acc .sdc-gh{display:inline;margin:0;font-size:inherit;font-weight:inherit;text-transform:none;letter-spacing:inherit}',
-    '.sdc-panel .sdc-acc svg{flex:none;transition:transform .15s}',
-    '.sdc-panel .sdc-acc[aria-expanded="true"] svg{transform:rotate(180deg)}',
-    '.sdc-panel .sdc-accwrap .sdc-list{padding-left:14px}',
-    '.sdc-panel .sdc-plist-small{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}',
-    '.sdc-panel .sdc-psmall a.sdc-prow-sm{min-height:44px;padding:4px 0;font-size:15px!important}',
+    '.sdc-view .sdc-list{font-size:var(--t-lg)}',
+    '.sdc-view .sdc-list a{display:flex;align-items:center;min-height:var(--s7);padding:var(--s1) 0}',
+    // accordions: the only ruled rows in the phone menu
+    '.sdc-view .sdc-accwrap{border-bottom:var(--sdc-line)}',
+    '.sdc-view .sdc-col-lead+.sdc-accwrap{border-top:var(--sdc-line)}',
+    '.sdc-panel .sdc-acc{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:var(--s2) 0;text-align:left;font-family:var(--sdc-display);font-size:var(--t-lg)}',
+    '.sdc-panel .sdc-acc .sdc-gh{display:inline;margin:0;font-size:inherit;line-height:inherit}',
+    '.sdc-panel .sdc-acc svg{flex:none;opacity:.75;transition:transform .12s}',
+    '.sdc-panel .sdc-acc[aria-expanded="true"] svg{transform:rotate(180deg);opacity:1}',
+    '.sdc-panel .sdc-accwrap .sdc-list{padding:0 0 var(--s3) var(--s4);font-size:var(--t-md)}',
+    '.sdc-panel .sdc-accwrap .sdc-list a{min-height:44px}',
     '@media (prefers-reduced-motion:reduce){.sdc-panel .sdc-acc svg{transition:none}}',
     '@media (min-width:' + CONFIG.phoneBelow + 'px){.sdc-panel{display:none!important}}'
   ].join('\n');
