@@ -134,7 +134,7 @@
 
   /* ═══════════════ helpers ═══════════════ */
   var NS = 'sdc';
-  var state = { on: false, nodes: [], observers: [], cleanups: [], report: null };
+  var state = { on: false, torn: false, nodes: [], observers: [], cleanups: [], report: null };
   var doc = document;
 
   function isNl() { return /^nl/i.test(doc.documentElement.lang || ''); }
@@ -145,6 +145,7 @@
   function keyOf(href) {
     var u;
     try { u = new URL(href, location.href); } catch (e) { return null; }
+    if (!/^(https?:|mailto:|tel:)$/.test(u.protocol)) return null;     // only ordinary links are mirrored
     var path = u.pathname.length > 1 ? u.pathname.replace(/\/+$/, '') : u.pathname;
     var host = u.hostname.toLowerCase();
     var same = host === 'www.shoonyadance.com' || host === location.hostname.toLowerCase();
@@ -181,11 +182,21 @@
   function on(target, ev, fn, opt) { var g = guard(fn); target.addEventListener(ev, g, opt); state.cleanups.push(function () { target.removeEventListener(ev, g, opt); }); }
 
   function teardown() {
-    doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nav-open');
+    state.torn = true;
+    var hadFocus = false;
+    try { hadFocus = state.nodes.some(function (n) { return n.contains && n.contains(doc.activeElement); }) || doc.activeElement === doc.body; } catch (e) {}
+    doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nav-open', 'sdc-nolang');
     state.nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
     state.observers.forEach(function (o) { try { o.disconnect(); } catch (e) {} });
     state.cleanups.forEach(function (f) { try { f(); } catch (e) {} });
     var wr = doc.getElementById('siteWrapper'); if (wr) wr.removeAttribute('inert');
+    var ab = doc.querySelector('.announce-bar'); if (ab) ab.removeAttribute('inert');      // the announcement must stay usable
+    if (hadFocus) {                                                                           // give focus back to the native menu control
+      try {
+        var c = Array.prototype.filter.call(doc.querySelectorAll('#header .header-burger-btn, #header .header-nav-item a, #header .header-title a'), function (x) { return x.getClientRects().length; })[0];
+        if (c && c.focus) c.focus();
+      } catch (e) {}
+    }
     state.nodes = []; state.observers = []; state.cleanups = []; state.on = false;
     window.SDC_NAV = undefined;
   }
@@ -448,6 +459,21 @@
     return { root: root, panel: panel, triggers: triggers, burger: burger, views: views, navLabels: navLabels, mainView: mainView, scroll: scroll, closeBtn: topbar.querySelector('.sdc-close') };
   }
 
+  // Weglot excludes some pages from translation (calendar, register, news, ...): there the NL/EN buttons would do nothing.
+  function langAvailable() {
+    try {
+      var rules = (window.Weglot && Weglot.options && Weglot.options.excluded_paths) || [], p = location.pathname;
+      for (var i = 0; i < rules.length; i++) {
+        var r = rules[i]; if (!r || !r.regex) continue;
+        var langs = r.excluded_languages || [], hit = false;
+        try { hit = new RegExp(r.regex).test(p); } catch (e) {}
+        if (hit && (langs.length === 0 || langs.indexOf('nl') !== -1 || langs.indexOf('en') !== -1)) return false;
+      }
+    } catch (e) {}
+    return true;
+  }
+  function syncLang() { doc.documentElement.classList.toggle('sdc-nolang', !langAvailable()); }
+
   var langGroups = [];
   function langSwitch(kind) {
     var g = h('div', { 'class': 'sdc-lang', role: 'group' });
@@ -473,6 +499,7 @@
     });
     ui.navLabels.forEach(function (p) { p[0].setAttribute('aria-label', t(p[1])); });
     var cur = nl ? 'nl' : 'en';
+    syncLang();
     ui.panel.setAttribute('aria-label', t(CONFIG.ui.menu));
     langGroups.forEach(function (g) {
       g.setAttribute('aria-label', t(CONFIG.ui.lang));
@@ -525,6 +552,7 @@
 
     /* ---- phone panel ---- */
     var activeView = null, lastFocus = null, bottomTimer = null;
+    state.cleanups.push(function () { if (bottomTimer) clearInterval(bottomTimer); });
     function setAcc(a, open, v) {
       if (open) v.accs.forEach(function (o) { if (o !== a) setAcc(o, false, v); });
       a.btn.setAttribute('aria-expanded', open ? 'true' : 'false'); a.list.hidden = !open;
@@ -590,6 +618,7 @@
       else if (e.shiftKey && cur === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && cur === last) { e.preventDefault(); first.focus(); }
     });
+    on(doc, 'mercury:load', function () { syncLang(); });
     on(window, 'resize', function () { if (panelOpen()) { if (!mqPhone.matches) closePanel(false); else cookieOffset(); } layoutVars(); });
 
     /* ---- language: drive the real Weglot control ---- */
@@ -598,11 +627,11 @@
         on(b, 'click', function () { var code = b.getAttribute('data-code'); if (window.Weglot && Weglot.switchTo) Weglot.switchTo(code); });
       });
     });
-    var mo = new MutationObserver(guard(function () { refresh(ui); }));
+    var mo = new MutationObserver(guard(function () { if (!state.torn) refresh(ui); }));
     mo.observe(doc.documentElement, { attributes: true, attributeFilter: ['lang'] });
     mo.observe(nat.list, { childList: true, subtree: true, characterData: true });   // page translation of native labels
     state.observers.push(mo);
-    if (window.Weglot && Weglot.on) { try { Weglot.on('languageChanged', guard(function () { refresh(ui); setTimeout(guard(function () { refresh(ui); }), 600); })); } catch (e) {} }
+    if (window.Weglot && Weglot.on) { try { Weglot.on('languageChanged', guard(function () { if (state.torn) return; refresh(ui); setTimeout(guard(function () { if (!state.torn) refresh(ui); }), 600); })); } catch (e) {} }
 
     /* ---- left offset next to the native logo ---- */
     function layoutVars() {
@@ -660,6 +689,7 @@
     '#sdc-nav .sdc-langli{position:relative;margin-right:-9px}',
     '.sdc-langli::before{content:"";position:absolute;left:calc(var(--s3) * -1);top:50%;height:var(--t-sm);transform:translateY(-50%);border-left:var(--sdc-line)}',
     '.sdc-lang{display:inline-flex;align-items:center}',
+    'html.sdc-nolang .sdc-lang,html.sdc-nolang #sdc-nav .sdc-langli,html.sdc-nolang #sdc-nav .sdc-langli::before{display:none!important}',
     '#sdc-nav .sdc-langbtn{font-size:var(--t-sm);min-width:36px;min-height:var(--s6);color:var(--sdc-quiet)}',
     '#sdc-nav .sdc-langbtn:hover,.sdc-panel .sdc-langbtn:hover{color:var(--sdc-color)}',
     '#sdc-nav .sdc-langbtn[aria-pressed="true"],.sdc-panel .sdc-langbtn[aria-pressed="true"]{color:var(--sdc-color);font-weight:700}',
@@ -737,7 +767,7 @@
     // ── phone: full-screen panel ──
     '.sdc-panel{position:fixed;z-index:200000;inset:0;display:flex;flex-direction:column;background:var(--sdc-bg);color:var(--sdc-color);animation:sdc-in .12s ease-out;',
     'font-family:var(--sdc-font);font-size:var(--t-md);font-weight:var(--sdc-weight);letter-spacing:var(--sdc-ls);text-transform:var(--sdc-tt);line-height:1.3}',
-    '.sdc-panel a:active,.sdc-panel button:active{opacity:.6}',
+    '.sdc-panel a:active,.sdc-panel button:active{background:rgba(0,0,0,.06)}',
     '.sdc-ptop{flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 var(--s3) 0 var(--s5);border-bottom:var(--sdc-line);min-height:64px}',
     '.sdc-ptop .sdc-lang{margin-left:calc(var(--s3) * -1)}',
     '.sdc-ptop .sdc-langbtn{min-width:var(--s7);min-height:var(--s7);font-size:var(--t-md)}',
@@ -858,16 +888,24 @@
     } catch (e) {
       nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
       state.nodes = []; state.cleanups.forEach(function (f) { try { f(); } catch (x) {} });
-      doc.documentElement.classList.remove('sdc-nav-on');
+      doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nolang');
       window.SDC_NAV = undefined;
       try { console.warn('[sdc-nav] not started, native menu stays:', e && e.message); } catch (x) {}
     }
   }
 
+  // If the visitor opened the NATIVE phone menu before this script arrived, leave the native menu in charge until it is closed.
+  function nativeMenuOpen() { return !!(doc.body && doc.body.classList.contains('header--menu-open')); }
+  function whenNativeClosed(fn) {
+    if (!nativeMenuOpen()) { fn(); return; }
+    var mo = new MutationObserver(function () { if (!nativeMenuOpen()) { mo.disconnect(); fn(); } });
+    mo.observe(doc.body, { attributes: true, attributeFilter: ['class'] });
+  }
+
   function start() {
     // Wait for Weglot (the real language control) up to 6 s; without it the
     // new menu would have a dead language switch, so we do not start at all.
-    weglotReady(function (ok) { if (ok) init(); else { try { console.warn('[sdc-nav] Weglot not found, native menu stays'); } catch (e) {} } }, 6000);
+    weglotReady(function (ok) { if (ok) whenNativeClosed(init); else { try { console.warn('[sdc-nav] Weglot not found, native menu stays'); } catch (e) {} } }, 6000);
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', start); else start();
 })();
