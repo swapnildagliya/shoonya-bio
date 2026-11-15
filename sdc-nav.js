@@ -686,6 +686,9 @@
     '.sdc-drop .sdc-list a{display:block;padding:var(--s1) 0;white-space:nowrap}',
     '#sdc-nav .sdc-drop .sdc-list a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}',
     '.sdc-gh{display:block;font-family:var(--sdc-display);font-size:var(--t-lg);font-weight:400;line-height:var(--s5);letter-spacing:0;text-transform:none;margin-bottom:var(--s3)}',
+    // owner 15 Nov: group headings stronger, a dash in front of each style (desktop dropdowns with groups only)
+    '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-gh{font-size:var(--t-xl);line-height:var(--s5);padding-bottom:var(--s2);margin-bottom:var(--s3);border-bottom:2px solid var(--sdc-color)}',
+    '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-list a::before{content:"\\2013";content:"\\2013" / "";display:inline-block;width:var(--s4);color:var(--sdc-quiet)}',
     '@keyframes sdc-in{from{opacity:0}to{opacity:1}}',
     '.sdc-burger{display:none}',
     // narrow desktops: tighter spacing so the Dutch labels fit beside the logo
