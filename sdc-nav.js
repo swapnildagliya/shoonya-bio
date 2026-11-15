@@ -706,6 +706,15 @@
     '.sdc-hc-x{display:block;font-size:16px;line-height:24px;opacity:.8}',
     'html:not([lang^="nl"]) .sdc-hc [data-l="nl"]{display:none!important}html[lang^="nl"] .sdc-hc [data-l="en"]{display:none!important}',
     '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}}',
+    // ── homepage: the free-trial box (built by classes.shoonyadance.com/trial-banner.js) restyled to match the menu: white, black type, black button ──
+    'html.sdc-nav-on .st{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}',
+    'html.sdc-nav-on .st .st-h{font-family:Marcellus,var(--sdc-font,inherit)!important;font-size:28px!important;line-height:36px!important;font-weight:400!important;color:#000!important;margin:0 0 12px!important}',
+    'html.sdc-nav-on .st .st-b{font-size:18px!important;line-height:28px!important;color:#000!important}',
+    'html.sdc-nav-on .st .st-b strong{font-weight:700!important;color:#000!important}',
+    'html.sdc-nav-on .st .st-s{display:block!important;margin-top:12px!important;font-size:16px!important;line-height:24px!important;color:rgba(0,0,0,.8)!important}',
+    'html.sdc-nav-on .st .st-c{display:inline-flex!important;align-items:center!important;min-height:48px!important;margin-top:24px!important;padding:0 28px!important;background:#000!important;color:#fff!important;border-radius:8px!important;font-size:16px!important;line-height:1.2!important;letter-spacing:0!important;text-transform:none!important;font-weight:400!important;text-decoration:none!important;border:0!important}',
+    'html.sdc-nav-on .st .st-c:hover{background:#B564F7!important;color:#000!important}',
+    'html.sdc-nav-on .st .st-c:focus-visible{outline:2px solid #B564F7!important;outline-offset:2px!important}',
     '@keyframes sdc-in{from{opacity:0}to{opacity:1}}',
     '.sdc-burger{display:none}',
     // narrow desktops: tighter spacing so the Dutch labels fit beside the logo
