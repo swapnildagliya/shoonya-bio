@@ -29,6 +29,10 @@
     phoneBelow: 1000,
 
     // Homepage strip with three choices under the hero. Separate switch: set false to run the menu without it.
+    // Countdown inside the live announcement bar (www only). A message in announcements.json may carry
+    // "countdown_to" (ISO instant WITH offset) and "countdown_label": {nl,en}. Set false to switch off.
+    countdown: true,
+
     homeChoices: false,   // 15 Nov: off at go-live (owner has not approved the strip yet); set true to show it
 
     // Addresses may be written as a path ("/faq") or a full URL. "@cta" means
@@ -500,6 +504,7 @@
     ui.navLabels.forEach(function (p) { p[0].setAttribute('aria-label', t(p[1])); });
     var cur = nl ? 'nl' : 'en';
     syncLang();
+    if (state.cdTick) state.cdTick();
     ui.panel.setAttribute('aria-label', t(CONFIG.ui.menu));
     langGroups.forEach(function (g) {
       g.setAttribute('aria-label', t(CONFIG.ui.lang));
@@ -689,6 +694,7 @@
     '#sdc-nav .sdc-langli{position:relative;margin-right:-9px}',
     '.sdc-langli::before{content:"";position:absolute;left:calc(var(--s3) * -1);top:50%;height:var(--t-sm);transform:translateY(-50%);border-left:var(--sdc-line)}',
     '.sdc-lang{display:inline-flex;align-items:center}',
+    '.announce-bar .sdc-cd{font-variant-numeric:tabular-nums}',
     'html.sdc-nolang .sdc-lang,html.sdc-nolang #sdc-nav .sdc-langli,html.sdc-nolang #sdc-nav .sdc-langli::before{display:none!important}',
     '#sdc-nav .sdc-langbtn{font-size:var(--t-sm);min-width:36px;min-height:var(--s6);color:var(--sdc-quiet)}',
     '#sdc-nav .sdc-langbtn:hover,.sdc-panel .sdc-langbtn:hover{color:var(--sdc-color)}',
@@ -817,6 +823,71 @@
     })();
   }
 
+  /* ═══════════════ 5b. countdown in the announcement bar ═══════════════ */
+  // The shared announce-bar.js is NOT changed (abcdans.com and swapnil.dance read it too). This adds its own <span> after the bar's text.
+  // The dated text always stays, so the bar is complete without the countdown; the span is aria-hidden so a screen reader is not interrupted.
+  // Instants are absolute (ISO with offset): the device's time zone does not matter. At or after the instant the span goes, the text stays.
+  function startCountdown() {
+    var stopped = false, timer = null, tries = 0, el = null, bar = null, to = NaN, lab = null;
+    function nudge() { try { window.dispatchEvent(new Event('resize')); } catch (e) {} }   // announce-bar.js re-places the header on resize
+    function stop() {
+      stopped = true; if (timer) { clearInterval(timer); timer = null; }
+      var had = !!(el && el.parentNode); if (had) el.parentNode.removeChild(el); el = null; state.cdTick = null;
+      if (had) nudge();
+    }
+    state.cleanups.push(function () { stopped = true; if (timer) clearInterval(timer); if (el && el.parentNode) el.parentNode.removeChild(el); el = null; state.cdTick = null; });
+    function fmt(ms) {
+      var nl = isNl(), mins = Math.floor(ms / 60000), d = Math.floor(mins / 1440), hh = Math.floor((mins % 1440) / 60), m = mins % 60;
+      if (mins < 1) return nl ? 'minder dan 1 min' : 'under 1 min';
+      var parts = [];
+      if (d > 0) parts.push(d + (nl ? (d === 1 ? ' dag' : ' dagen') : (d === 1 ? ' day' : ' days')));
+      if (d > 0 || hh > 0) parts.push(hh + (nl ? ' uur' : ' h'));
+      parts.push(m + ' min');
+      var s = parts.join(' \u00b7 '), l = lab && (nl ? lab.nl : lab.en);
+      return (nl ? 'nog ' : '') + s + (l ? ' ' + l : '');
+    }
+    function tick() {
+      if (stopped) return;
+      if (!bar || !bar.isConnected) { stop(); return; }
+      var left = to - Date.now();
+      if (!(left > 0)) { stop(); return; }
+      var h0 = bar.offsetHeight, s = ' \u00b7 ' + fmt(left);
+      if (el.textContent !== s) el.textContent = s;
+      if (bar.offsetHeight !== h0) nudge();
+    }
+    function begin(msg) {
+      to = Date.parse(msg.countdown_to); lab = msg.countdown_label || null;
+      if (isNaN(to) || to <= Date.now() || !bar.isConnected) return;
+      el = h('span', { 'class': 'sdc-cd', 'aria-hidden': 'true', 'data-wg-notranslate': true });
+      bar.insertBefore(el, bar.querySelector('button') || null);
+      state.cdTick = tick; tick(); nudge();
+      // Any later height change of the bar (translation, fonts, narrow rotate) re-places the header, not only our own tick.
+      try {
+        if (window.ResizeObserver) {
+          var ro = new ResizeObserver(function () { if (!stopped) nudge(); });
+          ro.observe(bar);
+          state.cleanups.push(function () { try { ro.disconnect(); } catch (e) {} });
+        }
+      } catch (e) {}
+      timer = setInterval(guard(tick), 30000);
+      on(doc, 'visibilitychange', function () { if (doc.visibilityState === 'visible') tick(); });
+    }
+    (function find() {
+      if (stopped) return;
+      var b = doc.querySelector('.announce-bar[data-announce-id]');
+      if (b) {
+        bar = b; var id = b.getAttribute('data-announce-id');
+        fetch('https://links.shoonyadance.com/announcements.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+          if (stopped || !d) return;
+          var m = (d.shoonya || []).filter(function (x) { return x && x.id === id; })[0];
+          if (m && m.countdown_to) begin(m);
+        }).catch(function () {});
+        return;
+      }
+      if (++tries < 40) setTimeout(guard(find), 500);
+    })();
+  }
+
   // Homepage only: three choices in a slim strip right under the hero (the hero video and its headline are not touched).
   // Own try/catch: if anything here fails the strip is removed and the menu itself carries on.
   var HOME_CHOICES = [
@@ -885,6 +956,7 @@
       // LAST STEP: only now does the native menu get hidden.
       doc.documentElement.classList.add('sdc-nav-on');
       state.on = true;
+      if (CONFIG.countdown) { try { startCountdown(); } catch (e) {} }   // own try: a failure here never takes the menu down
     } catch (e) {
       nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
       state.nodes = []; state.cleanups.forEach(function (f) { try { f(); } catch (x) {} });

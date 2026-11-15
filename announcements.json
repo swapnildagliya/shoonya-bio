@@ -17,6 +17,8 @@
       "priority": 1,
       "from": "2026-11-15",
       "until": "2026-12-07",
+      "countdown_to": "2026-12-07T09:00:00+01:00",
+      "countdown_label": { "nl": "tot 7 dec", "en": "until 7 Dec" },
       "text": {
         "nl": "Inschrijven voorjaar 2027: huidige leerlingen vanaf 30 nov om 9 uur, iedereen vanaf 7 dec om 9 uur.",
         "en": "Spring 2027 registration: current students from 30 Nov at 9:00, everyone from 7 Dec at 9:00."
