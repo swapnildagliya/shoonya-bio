@@ -19,7 +19,8 @@
 (function () {
   'use strict';
   if (window.top !== window) return;                // top page only, not the chat/video iframes
-  if (window.SDC_NAV) return;                       // never run twice
+  if (window.SDC_NAV || window.__sdcNavStarted) return;  // never run twice, even if the script is loaded twice within the start-up window
+  window.__sdcNavStarted = true;
 
   /* ═══════════════ CONFIG ═══════════════ */
   var CONFIG = {
@@ -342,7 +343,7 @@
     links.forEach(function (l) { ul.appendChild(h('li', null, [a(l)])); });
     return ul;
   }
-  function groupBody(top, mode) {   // shared body used by desktop dropdown and phone panel view
+  function groupBody(top, mode, accs) {   // shared body used by desktop dropdown and phone panel view
     var body = h('div', { 'class': 'sdc-body' });
     if (top.links.length && top.groups.length) {
       var left = h('div', { 'class': 'sdc-col sdc-col-lead' }, [linkList(top.links)]);
@@ -352,6 +353,15 @@
     }
     top.groups.forEach(function (g) {
       var hid = nid('gh');
+      if (mode === 'phone') {                      // phone: collapsed accordion, real button + hidden list
+        var bid = nid('gb');
+        var btn = h('button', { type: 'button', 'class': 'sdc-acc', id: hid, 'aria-expanded': 'false', 'aria-controls': bid }, [lbl(g, 'sdc-gh')]);
+        btn.insertAdjacentHTML('beforeend', CHEV);
+        var pul = linkList(g.links); pul.setAttribute('id', bid); pul.setAttribute('role', 'group'); pul.setAttribute('aria-labelledby', hid); pul.hidden = true;
+        body.appendChild(h('div', { 'class': 'sdc-col sdc-accwrap' }, [btn, pul]));
+        if (accs) accs.push({ btn: btn, list: pul });
+        return;
+      }
       var head = lbl(g, 'sdc-gh'); head.setAttribute('id', hid);
       var ul = linkList(g.links); ul.setAttribute('aria-labelledby', hid);
       body.appendChild(h('div', { 'class': 'sdc-col' }, [head, ul]));
@@ -412,8 +422,9 @@
         row.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 8 12" width="8" height="12" aria-hidden="true" focusable="false"><path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>');
         var vtitle = lbl(top, 'sdc-vtitle'); var vtid = nid('vt'); vtitle.setAttribute('id', vtid);
         var back = h('button', { type: 'button', 'class': 'sdc-back' }, [h('span', { 'aria-hidden': 'true', text: '‹ ' }), lbl(CONFIG.ui.back)]);
-        var view = h('div', { 'class': 'sdc-view', id: vid, hidden: true, role: 'group', 'aria-labelledby': vtid }, [back, vtitle, groupBody(top)]);
-        li.appendChild(row); views.push({ row: row, view: view, back: back });
+        var accs = [];
+        var view = h('div', { 'class': 'sdc-view', id: vid, hidden: true, role: 'group', 'aria-labelledby': vtid }, [back, vtitle, groupBody(top, 'phone', accs)]);
+        li.appendChild(row); views.push({ row: row, view: view, back: back, accs: accs });
       }
       pul.appendChild(li);
     });
@@ -496,7 +507,7 @@
     on(doc, 'pointerdown', function (e) { ui.triggers.forEach(function (tr) { if (!tr.li.contains(e.target)) setOpen(tr, false); }); });
     on(doc, 'keydown', function (e) {
       if (e.key !== 'Escape') return;
-      if (panelOpen()) { e.preventDefault(); if (activeView) closeView(true); else closePanel(true); return; }
+      if (panelOpen()) { e.preventDefault(); var oa = activeView && openAcc(activeView); if (oa) { setAcc(oa, false, activeView); oa.btn.focus(); } else if (activeView) closeView(true); else closePanel(true); return; }
       ui.triggers.forEach(function (tr) {
         if (tr.btn.getAttribute('aria-expanded') === 'true') {
           var inside = tr.li.contains(doc.activeElement);
@@ -507,6 +518,20 @@
 
     /* ---- phone panel ---- */
     var activeView = null, lastFocus = null, bottomTimer = null;
+    function setAcc(a, open, v) {
+      if (open) v.accs.forEach(function (o) { if (o !== a) setAcc(o, false, v); });
+      a.btn.setAttribute('aria-expanded', open ? 'true' : 'false'); a.list.hidden = !open;
+    }
+    function openAcc(v) { return v.accs.filter(function (a) { return a.btn.getAttribute('aria-expanded') === 'true'; })[0]; }
+    ui.views.forEach(function (v) {
+      v.accs.forEach(function (a) {
+        on(a.btn, 'click', function () {
+          var open = a.btn.getAttribute('aria-expanded') === 'true';
+          setAcc(a, !open, v);
+          if (!open) setTimeout(guard(function () { var r = a.btn.getBoundingClientRect(), sr = ui.scroll.getBoundingClientRect(); if (r.top < sr.top || r.bottom > sr.bottom) a.btn.scrollIntoView({ block: 'start' }); }), 0);
+        });
+      });
+    });
     function panelOpen() { return !ui.panel.hidden; }
     function cookieOffset() {
       var b = doc.querySelector('.gdpr-cookie-banner, .sqs-cookie-banner-v2'), off = 0;
@@ -537,6 +562,7 @@
     }
     function closeView(focusRow) {
       var v = activeView; if (!v) return;
+      v.accs.forEach(function (a) { setAcc(a, false, v); });
       v.view.hidden = true; v.row.setAttribute('aria-expanded', 'false'); ui.mainView.hidden = false; activeView = null;
       ui.scroll.scrollTop = 0; if (focusRow) v.row.focus();
     }
@@ -651,16 +677,26 @@
     '.sdc-x{font-size:34px;line-height:1}',
     '.sdc-pscroll{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:6px 20px var(--sdc-bottom,16px)}',
     '.sdc-panel .sdc-prow{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:10px 0;text-align:left;border-bottom:1px solid var(--sdc-color)}',
-    '.sdc-panel .sdc-prow-sm{min-height:48px;font-size:var(--sdc-size);border-bottom:0}',
-    '.sdc-psmall{margin-top:8px;padding-top:6px;border-top:1px solid var(--sdc-color)}',
+    '.sdc-panel .sdc-prow-sm{min-height:44px;font-size:15px;border-bottom:0}',
+    '.sdc-psmall{margin-top:6px;padding-top:4px;border-top:1px solid var(--sdc-color)}',
     '.sdc-pregwrap{margin:18px 0 12px}',
     '.sdc-panel a.sdc-reg-phone{display:flex;width:100%;margin-left:0;min-height:52px}',
     '.sdc-back{display:flex;align-items:center;min-height:48px;width:100%;text-align:left}',
     '.sdc-vtitle{display:block;font-size:calc(var(--sdc-size) + 6px);margin:6px 0 10px}',
     '.sdc-view .sdc-body{display:block}',
     '.sdc-view .sdc-col{margin-bottom:14px}',
+    '.sdc-panel .sdc-view ul[hidden]{display:none!important}',
     '.sdc-view .sdc-list a{display:flex;align-items:center;min-height:48px;padding:8px 0;border-bottom:1px solid var(--sdc-color);font-size:var(--sdc-size)}',
     '.sdc-view .sdc-gh{margin:18px 0 4px}',
+    '.sdc-view .sdc-accwrap{margin-bottom:0}',
+    '.sdc-panel .sdc-acc{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:8px 0;text-align:left;border-bottom:1px solid var(--sdc-color);font-size:var(--sdc-size)}',
+    '.sdc-panel .sdc-acc .sdc-gh{display:inline;margin:0;font-size:inherit;font-weight:inherit;text-transform:none;letter-spacing:inherit}',
+    '.sdc-panel .sdc-acc svg{flex:none;transition:transform .15s}',
+    '.sdc-panel .sdc-acc[aria-expanded="true"] svg{transform:rotate(180deg)}',
+    '.sdc-panel .sdc-accwrap .sdc-list{padding-left:14px}',
+    '.sdc-panel .sdc-plist-small{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}',
+    '.sdc-panel .sdc-psmall a.sdc-prow-sm{min-height:44px;padding:4px 0;font-size:15px!important}',
+    '@media (prefers-reduced-motion:reduce){.sdc-panel .sdc-acc svg{transition:none}}',
     '@media (min-width:' + CONFIG.phoneBelow + 'px){.sdc-panel{display:none!important}}'
   ].join('\n');
 
