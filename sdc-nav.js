@@ -28,6 +28,9 @@
     // switch is 800; the Dutch labels need a little more room on one row.
     phoneBelow: 1000,
 
+    // Homepage strip with three choices under the hero. Separate switch: set false to run the menu without it.
+    homeChoices: true,
+
     // Addresses may be written as a path ("/faq") or a full URL. "@cta" means
     // "the address of the native header button" (today: Weekly Class Schedule).
     // fixed:true = the address is allowed to come from this config because it
@@ -689,6 +692,20 @@
     // owner 15 Nov: group headings stronger, a dash in front of each style (desktop dropdowns with groups only)
     '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-gh{font-size:var(--t-xl);line-height:var(--s5);padding-bottom:var(--s2);margin-bottom:var(--s3);border-bottom:2px solid var(--sdc-color)}',
     '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-list a::before{content:"\\2013";content:"\\2013" / "";display:inline-block;width:var(--s4);color:var(--sdc-quiet)}',
+    // ── homepage: three choices in one slim strip directly under the hero (hero video and headline untouched) ──
+    '.sdc-hc{background:var(--sdc-bg,#fff);color:var(--sdc-color,#000);font-family:var(--sdc-font);border-bottom:1px solid rgba(0,0,0,.2);position:relative;z-index:1}',
+    '.sdc-hc,.sdc-hc *{box-sizing:border-box}',
+    '.sdc-hc-in{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr)}',
+    '.sdc-hc-d+.sdc-hc-d{border-left:1px solid rgba(0,0,0,.2);padding-left:24px}',
+    '.sdc-hc a{display:block;padding:24px 24px 24px 0;color:inherit!important;text-decoration:none;font:inherit}',
+    '.sdc-hc a:hover .sdc-hc-t span:first-child{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}',
+    '.sdc-hc a:focus-visible{outline:2px solid #B564F7;outline-offset:-2px}',
+    '.sdc-hc-t{display:flex;justify-content:space-between;gap:16px;font-family:Marcellus,var(--sdc-font);font-size:24px;line-height:32px;margin:0}',
+    '.sdc-hc-t::after{content:none}',
+    '.sdc-hc-arr{flex:none}',
+    '.sdc-hc-x{display:block;font-size:16px;line-height:24px;opacity:.8}',
+    'html:not([lang^="nl"]) .sdc-hc [data-l="nl"]{display:none!important}html[lang^="nl"] .sdc-hc [data-l="en"]{display:none!important}',
+    '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}}',
     '@keyframes sdc-in{from{opacity:0}to{opacity:1}}',
     '.sdc-burger{display:none}',
     // narrow desktops: tighter spacing so the Dutch labels fit beside the logo
@@ -761,6 +778,46 @@
     })();
   }
 
+  // Homepage only: three choices in a slim strip right under the hero (the hero video and its headline are not touched).
+  // Own try/catch: if anything here fails the strip is removed and the menu itself carries on.
+  var HOME_CHOICES = [
+    { nl: 'Bekijk de wekelijkse lessen', en: 'See the weekly classes',
+      nlh: 'https://schedule.shoonyadance.com/nl/styles/', enh: 'https://schedule.shoonyadance.com/styles/' },
+    { nl: 'Probeer eerst', en: 'Try first',
+      nlh: '/try-a-class', enh: '/try-a-class' },
+    { nl: 'Workshops & events', en: 'Workshops & events',
+      nlh: '/calendar', enh: '/calendar' }
+  ];
+  function homeChoices(ui, nodes) {
+    var el = null;
+    try {
+      var path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+      if (!CONFIG.homeChoices) return;
+      if (path !== '/' && path !== '/home') return;
+      var hero = doc.querySelector('#sections > section.page-section') || doc.querySelector('main section.page-section');
+      if (!hero || !hero.parentNode || hero.nextSibling === null) return;
+      var cs = window.getComputedStyle(ui.root), bc = window.getComputedStyle(doc.body).color;
+      el = h('section', { 'class': 'sdc-hc', 'data-wg-notranslate': true,
+        style: '--sdc-font:' + cs.fontFamily + ';--sdc-color:' + (bc && !/rgba?\(255, ?255, ?255/.test(bc) ? bc : '#000') + ';--sdc-bg:#fff' });
+      var inner = h('div', { 'class': 'sdc-hc-in' });
+      HOME_CHOICES.forEach(function (c) {
+        var d = h('div', { 'class': 'sdc-hc-d' });
+        ['nl', 'en'].forEach(function (l) {
+          var a = h('a', { href: c[l + 'h'], 'data-l': l }, [
+            h('span', { 'class': 'sdc-hc-t' }, [h('span', { text: c[l] }), h('span', { 'class': 'sdc-hc-arr', 'aria-hidden': 'true', text: '\u2192' })])
+          ]);
+          d.appendChild(a);
+        });
+        inner.appendChild(d);
+      });
+      el.appendChild(inner);
+      hero.parentNode.insertBefore(el, hero.nextSibling);
+      nodes.push(el);
+    } catch (e) {
+      try { if (el && el.parentNode) el.parentNode.removeChild(el); } catch (x) {}
+    }
+  }
+
   function init() {
     var nodes = [], styleEl = null;
     try {
@@ -779,6 +836,7 @@
       doc.body.appendChild(ui.panel); nodes.push(ui.panel);
       state.nodes = nodes;
       wire(ui, nat);
+      homeChoices(ui, nodes);
       /*SDC_FAULT_C*/
       state.report = {
         version: 'preview-2026-11-15', rows: model.rows, missing: model.missing,
