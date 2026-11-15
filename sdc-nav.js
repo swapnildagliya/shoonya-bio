@@ -29,7 +29,7 @@
     phoneBelow: 1000,
 
     // Homepage strip with three choices under the hero. Separate switch: set false to run the menu without it.
-    homeChoices: true,
+    homeChoices: false,   // 15 Nov: off at go-live (owner has not approved the strip yet); set true to show it
 
     // Addresses may be written as a path ("/faq") or a full URL. "@cta" means
     // "the address of the native header button" (today: Weekly Class Schedule).
