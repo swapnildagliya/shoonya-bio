@@ -13,6 +13,38 @@
   },
   "shoonya": [
     {
+      "id": "weekly-registration-spring-2027-opening",
+      "priority": 1,
+      "from": "2026-11-15",
+      "until": "2026-12-07",
+      "text": {
+        "nl": "Inschrijven voorjaar 2027: huidige leerlingen vanaf 30 nov om 9 uur, iedereen vanaf 7 dec om 9 uur.",
+        "en": "Spring 2027 registration: current students from 30 Nov at 9:00, everyone from 7 Dec at 9:00."
+      },
+      "link": {
+        "nl": "https://www.shoonyadance.com/register",
+        "en": "https://www.shoonyadance.com/register"
+      },
+      "source": "Event Submission/config/semester-config.json (spring 2027 registration: current_students_open 2026-11-30T09:00+01:00, general_open 2026-12-07T09:00+01:00, register_page). Text approved by Swapnil in chat, 15 Nov 2026.",
+      "approved": true
+    },
+    {
+      "id": "weekly-registration-spring-2027-open",
+      "priority": 1,
+      "from": "2026-12-08",
+      "until": "2027-03-08",
+      "text": {
+        "nl": "Inschrijven voor het voorjaar 2027 is open · Schrijf je in →",
+        "en": "Spring 2027 registration is open · Register →"
+      },
+      "link": {
+        "nl": "https://www.shoonyadance.com/register",
+        "en": "https://www.shoonyadance.com/register"
+      },
+      "source": "Event Submission/config/semester-config.json (spring 2027 registration: general_open 2026-12-07T09:00+01:00, closes 2027-03-08). DRAFT by Claude 15 Nov 2026, not yet approved.",
+      "approved": false
+    },
+    {
       "id": "bachata-choreo-minireeks-2026-11",
       "priority": 4,
       "from": "2026-11-09",
