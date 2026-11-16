@@ -1,0 +1,342 @@
+{
+ "items": [
+  {
+   "folder": true,
+   "text": "The Centre",
+   "key": "/the-centre",
+   "links": [
+    {
+     "href": "https://info.shoonyadance.com/",
+     "text": "New to Shoonya?",
+     "target": "_blank"
+    },
+    {
+     "href": "https://info.shoonyadance.com/about/",
+     "text": "About Us",
+     "target": "_blank"
+    },
+    {
+     "href": "https://info.shoonyadance.com/our-studios/",
+     "text": "Our Studios",
+     "target": "_blank"
+    },
+    {
+     "href": "/private-class",
+     "text": "Private & Group Classes",
+     "target": null
+    },
+    {
+     "href": "/contact",
+     "text": "Contact Us",
+     "target": null
+    },
+    {
+     "href": "/gift-voucher",
+     "text": "Gift voucher",
+     "target": null
+    }
+   ]
+  },
+  {
+   "folder": true,
+   "text": "Courses",
+   "key": "/courses-old",
+   "links": [
+    {
+     "href": "https://styles.shoonyadance.com/",
+     "text": "Overview",
+     "target": "_blank"
+    },
+    {
+     "href": "/afrikaanse-congolese-dans-gent",
+     "text": "African Congolese Dance",
+     "target": null
+    },
+    {
+     "href": "/argentijnse-tango-danslessen-gent",
+     "text": "Argentine Tango",
+     "target": null
+    },
+    {
+     "href": "/ballet-voor-volwassenen-in-gent",
+     "text": "Ballet",
+     "target": null
+    },
+    {
+     "href": "/bachata-solo-style-gent",
+     "text": "Bachata Solo Style",
+     "target": null
+    },
+    {
+     "href": "/bachata-dance-classes-in-ghent",
+     "text": "Bachata",
+     "target": null
+    },
+    {
+     "href": "/bollyfolk-danslessen-in-gent",
+     "text": "Bollyfolk",
+     "target": null
+    },
+    {
+     "href": "/bollywood-danslessen-in-gent",
+     "text": "Bollywood",
+     "target": null
+    },
+    {
+     "href": "/bhangra-danslessen-in-gent",
+     "text": "Bhangra",
+     "target": null
+    },
+    {
+     "href": "/burlesque-lessen-in-gent",
+     "text": "Burlesque",
+     "target": null
+    },
+    {
+     "href": "/cissy-ball-danslessen-in-gent",
+     "text": "Cissy Ball",
+     "target": null
+    },
+    {
+     "href": "/cuban-salsa-in-gent",
+     "text": "Cuban Salsa",
+     "target": null
+    },
+    {
+     "href": "/flamenco-danslessen-in-gent",
+     "text": "Flamenco",
+     "target": null
+    },
+    {
+     "href": "/kathak-danslessen-in-gent",
+     "text": "Indian Semi-Classical",
+     "target": null
+    },
+    {
+     "href": "/indian-dance-in-belgium",
+     "text": "Indian Dance Technique",
+     "target": null
+    },
+    {
+     "href": "/kizomba-danslessen-in-gent",
+     "text": "Kizomba",
+     "target": null
+    },
+    {
+     "href": "/lindy-hop-danslessen-in-gent",
+     "text": "Lindy Hop",
+     "target": null
+    },
+    {
+     "href": "/oriental-flow-gent",
+     "text": "Oriental Flow",
+     "target": null
+    },
+    {
+     "href": "/pilates-voor-dansers-gent",
+     "text": "Pilates for dancers",
+     "target": null
+    },
+    {
+     "href": "/professional-morning-training-gent",
+     "text": "Professional Morning Training",
+     "target": null
+    },
+    {
+     "href": "/raqs-sharqi-danslessen-in-gent",
+     "text": "Raqs Sharqi · Belly Dance",
+     "target": null
+    },
+    {
+     "href": "/rueda-de-casino-danslessen-gent",
+     "text": "Rueda de Casino",
+     "target": null
+    },
+    {
+     "href": "/solo-jazz-danslessen-in-gent",
+     "text": "Solo Jazz",
+     "target": null
+    },
+    {
+     "href": "/tapdans-lessen-in-gent",
+     "text": "Tap Dance",
+     "target": null
+    },
+    {
+     "href": "/yoga-lessen-in-gent",
+     "text": "Yoga",
+     "target": null
+    }
+   ]
+  },
+  {
+   "folder": false,
+   "href": "/calendar",
+   "text": "Calendar",
+   "target": null
+  },
+  {
+   "folder": true,
+   "text": "Workshops & Festivals",
+   "key": "/events-and-festivals",
+   "links": [
+    {
+     "href": "https://workshops.shoonyadance.com/",
+     "text": "Miniseries & Workshops",
+     "target": "_blank"
+    },
+    {
+     "href": "https://festivals.shoonyadance.com/ghent-tap-festival/",
+     "text": "Ghent Tap Festival",
+     "target": null
+    },
+    {
+     "href": "https://festivals.shoonyadance.com/leylet-raqs/",
+     "text": "Leylet Raqs",
+     "target": null
+    },
+    {
+     "href": "https://gidf.abcdans.com/",
+     "text": "Gent India Dans Festival",
+     "target": null
+    },
+    {
+     "href": "https://zomerstage.shoonyadance.com/",
+     "text": "Zomerstage",
+     "target": null
+    }
+   ]
+  },
+  {
+   "folder": true,
+   "text": "Register",
+   "key": "/register-menu",
+   "links": [
+    {
+     "href": "/register",
+     "text": "Weekly classes",
+     "target": null
+    },
+    {
+     "href": "https://links.shoonyadance.com/go/workshop/",
+     "text": "Workshops & festivals",
+     "target": "_blank"
+    },
+    {
+     "href": "https://links.shoonyadance.com/go/ticket/",
+     "text": "Tickets",
+     "target": "_blank"
+    }
+   ]
+  }
+ ],
+ "cta": {
+  "href": "https://schedule.shoonyadance.com/schedule-spring-2027/",
+  "text": "Weekly Class Schedule",
+  "target": "_blank"
+ },
+ "foot": [
+  {
+   "href": "/about",
+   "text": "About Us",
+   "target": null
+  },
+  {
+   "href": "/our-studios",
+   "text": "Our Studios",
+   "target": null
+  },
+  {
+   "href": "/calendar",
+   "text": "Calendar",
+   "target": null
+  },
+  {
+   "href": "/news",
+   "text": "News",
+   "target": null
+  },
+  {
+   "href": "/privacy-policy",
+   "text": "Privacy Policy",
+   "target": "_blank"
+  },
+  {
+   "href": "/faq",
+   "text": "FAQ",
+   "target": null
+  },
+  {
+   "href": "/house-rules",
+   "text": "House Rules",
+   "target": null
+  },
+  {
+   "href": "/newsletter",
+   "text": "Newsletter",
+   "target": null
+  },
+  {
+   "href": "/contact",
+   "text": "Contact",
+   "target": null
+  },
+  {
+   "href": "https://tickets.shoonyadance.com/brand-resources?lang=en",
+   "text": "Logos & usage",
+   "target": null
+  },
+  {
+   "href": "/who-is-a-shoonya-member",
+   "text": "Who is a Shoonya member?",
+   "target": null
+  },
+  {
+   "href": "https://www.abcbollywoodbelgium.com",
+   "text": "ABC a bollywood company",
+   "target": "_blank"
+  },
+  {
+   "href": "https://www.instagram.com/shoonyadance",
+   "text": "",
+   "target": "_blank"
+  },
+  {
+   "href": "https://www.facebook.com/shoonyadance",
+   "text": "",
+   "target": "_blank"
+  },
+  {
+   "href": "https://www.youtube.com/@shoonyadance",
+   "text": "",
+   "target": "_blank"
+  },
+  {
+   "href": "https://open.spotify.com/user/shoonyadance",
+   "text": "",
+   "target": "_blank"
+  }
+ ],
+ "theme": {
+  "font": "\"PT Serif\"",
+  "size": "16px",
+  "weight": "400",
+  "color": "rgb(0, 0, 0)",
+  "ls": "normal",
+  "tt": "none",
+  "bg": "rgb(255, 255, 255)",
+  "btnBg": "rgb(0, 0, 0)",
+  "btnFg": "rgb(255, 255, 255)",
+  "btnRadius": "10px",
+  "bodyFont": "sans-serif"
+ },
+ "logo": {
+  "src": "https://images.squarespace-cdn.com/content/v1/643161d3f0077c58bb466e03/d64889b5-b474-414f-b152-0fe8d3396ca5/shoonya-logo-purple.png?format=1500w",
+  "alt": "Shoonya Dance Centre",
+  "w": 196.578125,
+  "h": 89.984375
+ },
+ "headerH": 116,
+ "rootExists": true,
+ "bodyFontLink": []
+}
