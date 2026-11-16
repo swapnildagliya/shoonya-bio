@@ -33,7 +33,7 @@
     // "countdown_to" (ISO instant WITH offset) and "countdown_label": {nl,en}. Set false to switch off.
     countdown: true,
 
-    homeChoices: false,   // 15 Nov: off at go-live (owner has not approved the strip yet); set true to show it
+    homeChoices: true,    // 16 Nov: ON (owner approved the strip after seeing desktop + phone renders)
 
     // Addresses may be written as a path ("/faq") or a full URL. "@cta" means
     // "the address of the native header button" (today: Weekly Class Schedule).
