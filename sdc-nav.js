@@ -34,6 +34,9 @@
     countdown: true,
 
     homeChoices: true,    // 16 Nov: ON (owner approved the strip after seeing desktop + phone renders)
+    // Phones only (<=600px). Each is its own switch. heroCap: homepage hero = screen minus bar and strip, so the strip shows on the first screen. phoneBar: announcement bar text 14 px, about 3 lines instead of 4. Measured 16 Nov: layout shift cap ~0.16, bar ~0.07, both ~0.21 (menu alone 0.03).
+    heroCap: false,   // 16 Nov: owner chose bar only (cap measured at ~0.16 layout shift); set true to show the strip on the first phone screen
+    phoneBar: true,
 
     // Addresses may be written as a path ("/faq") or a full URL. "@cta" means
     // "the address of the native header button" (today: Weekly Class Schedule).
@@ -189,7 +192,7 @@
     state.torn = true;
     var hadFocus = false;
     try { hadFocus = state.nodes.some(function (n) { return n.contains && n.contains(doc.activeElement); }) || doc.activeElement === doc.body; } catch (e) {}
-    doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nav-open', 'sdc-nolang');
+    doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nav-open', 'sdc-nolang', 'sdc-bar14');
     state.nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
     state.observers.forEach(function (o) { try { o.disconnect(); } catch (e) {} });
     state.cleanups.forEach(function (f) { try { f(); } catch (e) {} });
@@ -203,6 +206,7 @@
     }
     state.nodes = []; state.observers = []; state.cleanups = []; state.on = false;
     window.SDC_NAV = undefined;
+    try { window.dispatchEvent(new Event('resize')); } catch (e) {}   // the bar is back to its native size: announce-bar.js re-places the header
   }
 
   /* ═══════════════ 1. read the native menu ═══════════════ */
@@ -509,6 +513,7 @@
     var cur = nl ? 'nl' : 'en';
     syncLang();
     if (state.cdTick) state.cdTick();
+    if (state.capUpdate) state.capUpdate();
     ui.panel.setAttribute('aria-label', t(CONFIG.ui.menu));
     langGroups.forEach(function (g) {
       g.setAttribute('aria-label', t(CONFIG.ui.lang));
@@ -744,6 +749,10 @@
     '.sdc-hc-t::after{content:none}',
     '.sdc-hc-arr{flex:none}',
     '.sdc-hc-x{display:block;font-size:16px;line-height:24px;opacity:.8}',
+    // Phones only (<=600px). 16 Nov, owner choice: the announcement bar text is 14 px and tighter (about 3 lines instead of 4) and, on the homepage, the hero is as tall as the screen minus bar and strip, so the three choices show on the first screen. --sdc-reserve is set by the script only when the strip exists; without the class nothing changes.
+    '@media (max-width:600px){html.sdc-nav-on.sdc-bar14 .announce-bar{font-size:14px;line-height:1.25;padding:8px 44px}',
+    'html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important}',
+    '@supports (height:100svh){html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important}}}',
     'html:not([lang^="nl"]) .sdc-hc [data-l="nl"]{display:none!important}html[lang^="nl"] .sdc-hc [data-l="en"]{display:none!important}',
     '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}}',
     // ── homepage: the free-trial box (built by classes.shoonyadance.com/trial-banner.js) restyled to match the menu: white, black type, black button ──
@@ -902,6 +911,30 @@
     { nl: 'Workshops & events', en: 'Workshops & events',
       nlh: '/calendar', enh: '/calendar' }
   ];
+  // Phones: hero = screen height minus the announcement bar and the strip. Sets --sdc-reserve on <html>; the CSS (<=600px only) reads it.
+  // Updates when the bar appears, changes height or is closed, when the strip changes height (language) and on resize/rotation.
+  function capHero(hero, strip) {
+    var root = doc.documentElement, bar = null, ro = null, mo = null, raf = 0;
+    function put() {
+      raf = 0;
+      var b = doc.querySelector('.announce-bar');
+      if (b !== bar) { bar = b; if (ro) { try { ro.disconnect(); } catch (e) {} ro.observe && strip && ro.observe(strip); if (bar) ro.observe(bar); } }
+      var r = (bar ? bar.getBoundingClientRect().height : 0) + strip.getBoundingClientRect().height;
+      root.style.setProperty('--sdc-reserve', Math.round(r) + 'px');
+    }
+    function queue() { if (!raf) raf = window.requestAnimationFrame ? window.requestAnimationFrame(put) : setTimeout(put, 16); }
+    hero.classList.add('sdc-hero-cap');
+    put();
+    on(window, 'resize', queue); on(window, 'orientationchange', queue);
+    try { if (window.ResizeObserver) { ro = new ResizeObserver(queue); ro.observe(strip); if (bar) ro.observe(bar); } } catch (e) {}
+    try { if (window.MutationObserver && doc.body) { mo = new MutationObserver(queue); mo.observe(doc.body, { childList: true }); } } catch (e) {}
+    state.capUpdate = queue;
+    state.cleanups.push(function () {
+      try { if (ro) ro.disconnect(); if (mo) mo.disconnect(); } catch (e) {}
+      hero.classList.remove('sdc-hero-cap'); root.style.removeProperty('--sdc-reserve'); state.capUpdate = null;
+    });
+  }
+
   function homeChoices(ui, nodes) {
     var el = null;
     try {
@@ -927,6 +960,7 @@
       el.appendChild(inner);
       hero.parentNode.insertBefore(el, hero.nextSibling);
       nodes.push(el);
+      try { if (CONFIG.heroCap) capHero(hero, el); } catch (e) {}   // own try: a failure here leaves the full-height hero and the strip as before
     } catch (e) {
       try { if (el && el.parentNode) el.parentNode.removeChild(el); } catch (x) {}
     }
@@ -960,11 +994,13 @@
       // LAST STEP: only now does the native menu get hidden.
       doc.documentElement.classList.add('sdc-nav-on');
       state.on = true;
+      if (CONFIG.phoneBar) doc.documentElement.classList.add('sdc-bar14');
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {}   // phone bar got tighter: announce-bar.js re-places the header
       if (CONFIG.countdown) { try { startCountdown(); } catch (e) {} }   // own try: a failure here never takes the menu down
     } catch (e) {
       nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
       state.nodes = []; state.cleanups.forEach(function (f) { try { f(); } catch (x) {} });
-      doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nolang');
+      doc.documentElement.classList.remove('sdc-nav-on', 'sdc-nolang', 'sdc-bar14');
       window.SDC_NAV = undefined;
       try { console.warn('[sdc-nav] not started, native menu stays:', e && e.message); } catch (x) {}
     }
