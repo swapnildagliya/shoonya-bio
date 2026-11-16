@@ -18,7 +18,10 @@
       "from": "2026-11-15",
       "until": "2026-12-07",
       "countdown_to": "2026-12-07T09:00:00+01:00",
-      "countdown_label": { "nl": "tot 7 dec", "en": "until 7 Dec" },
+      "countdown_label": {
+        "nl": "tot 7 dec",
+        "en": "until 7 Dec"
+      },
       "text": {
         "nl": "Inschrijven voorjaar 2027: huidige leerlingen vanaf 30 nov om 9 uur, iedereen vanaf 7 dec om 9 uur.",
         "en": "Spring 2027 registration: current students from 30 Nov at 9:00, everyone from 7 Dec at 9:00."
@@ -44,22 +47,6 @@
         "en": "https://www.shoonyadance.com/register"
       },
       "source": "Event Submission/config/semester-config.json (spring 2027 registration: general_open 2026-12-07T09:00+01:00, closes 2027-03-08). Text approved by Swapnil in chat, 15 Nov 2026 (switch-on given the same evening).",
-      "approved": true
-    },
-    {
-      "id": "bachata-choreo-minireeks-2026-11",
-      "priority": 4,
-      "from": "2026-11-09",
-      "until": "2026-11-10",
-      "text": {
-        "nl": "Bachata Choreo Minireeks · minireeks · 10 november · Schrijf je in →",
-        "en": "Bachata Choreo Minireeks · mini-series · 10 November · Register →"
-      },
-      "link": {
-        "nl": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/nl/",
-        "en": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/"
-      },
-      "source": "Design System/events/miniseries/2026-11-10-bachata-choreo-minireeks.json (date, page_url). Late entry after 10 Nov allowed (Swapnil, 2026-11-03); bar hands over to Flamenco on 11 Nov",
       "approved": true
     },
     {
