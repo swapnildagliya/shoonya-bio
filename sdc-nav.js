@@ -42,7 +42,7 @@
     items: [
       { id: 'classes', nl: 'Danslessen', en: 'Classes', kind: 'group',
         links: [
-          { addr: '@cta', nl: 'Weekrooster (sep \u2013 jan)', en: 'Weekly schedule (Sep \u2013 Jan)' }   /* owner 15 Nov: label the period until the spring timetable exists */,
+          { addr: '@cta', nl: 'Weekrooster', en: 'Weekly schedule', hrefNl: 'https://schedule.shoonyadance.com/nl/schedule-spring-2027/' }   /* 16 Nov: spring 2027 timetable is live; the native header button holds the English address, Dutch visitors get hrefNl */,
           { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles' },
           { addr: '/private-class', nl: 'Privé- en groepslessen', en: 'Private & group classes' }
         ],
@@ -288,7 +288,7 @@
     }
     function link(spec, group) {
       var res = resolve(spec.addr, spec.fixed); if (!res) return null;
-      var o = { nl: spec.nl, en: spec.en, href: res.rec.href, target: res.rec.target, key: res.rec.key, source: res.source, native: null };
+      var o = { nl: spec.nl, en: spec.en, href: res.rec.href, hrefNl: spec.hrefNl || null, target: res.rec.target, key: res.rec.key, source: res.source, native: null };
       mark(res, spec.en + ' / ' + spec.nl, group); return o;
     }
     var top = [];
@@ -500,6 +500,10 @@
       else if (s.native) txt = norm(s.native.el.textContent) || s.native.text;
       else txt = nl ? s.nl : s.en;
       if (r.el.textContent !== txt) r.el.textContent = txt;
+      if (s.hrefNl && r.el.parentNode && r.el.parentNode.getAttribute) {   // Dutch visitors get their own address for this link
+        var want = nl ? s.hrefNl : s.href;
+        if (r.el.parentNode.getAttribute('href') !== want) r.el.parentNode.setAttribute('href', want);
+      }
     });
     ui.navLabels.forEach(function (p) { p[0].setAttribute('aria-label', t(p[1])); });
     var cur = nl ? 'nl' : 'en';
