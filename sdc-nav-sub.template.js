@@ -6,6 +6,8 @@
 (function () {
   // card motion for the subdomain sites (separate file; optional, never blocks the menu)
   try { if (!window.__sdcMotionSub && !document.querySelector('script[data-sdc-motion]')) { var ms = document.createElement('script'); ms.src = 'https://links.shoonyadance.com/sdc-motion-sub.js'; ms.defer = true; ms.setAttribute('data-sdc-motion', '1'); document.head.appendChild(ms); } } catch (e) {}
+  // the www footer on the subdomain sites (separate file; the site's own footer stays if it fails)
+  try { if (!window.__sdcFooterSub && !document.querySelector('script[data-sdc-footer]')) { var fs_ = document.createElement('script'); fs_.src = 'https://links.shoonyadance.com/sdc-footer-sub.js'; fs_.defer = true; fs_.setAttribute('data-sdc-footer', '1'); document.head.appendChild(fs_); } } catch (e) {}
 })();
 (function () {
   var doc = document;
