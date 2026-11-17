@@ -4,6 +4,10 @@
    that goes to the page's declared Dutch/English counterpart (<link rel="alternate" hreflang>). The menu itself,
    its labels, groups and styling stay in sdc-nav.js, so a menu change there reaches every site. */
 (function () {
+  // card motion for the subdomain sites (separate file; optional, never blocks the menu)
+  try { if (!window.__sdcMotionSub && !document.querySelector('script[data-sdc-motion]')) { var ms = document.createElement('script'); ms.src = 'https://links.shoonyadance.com/sdc-motion-sub.js'; ms.defer = true; ms.setAttribute('data-sdc-motion', '1'); document.head.appendChild(ms); } } catch (e) {}
+})();
+(function () {
   var doc = document;
   if (window.__sdcSub || doc.getElementById('header')) return;   // already running, or a real Squarespace header is present
   window.__sdcSub = true;
