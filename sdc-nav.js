@@ -98,7 +98,7 @@
       "/ballet-voor-volwassenen-in-gent": "Ballet",
       "/professional-morning-training-gent": "Professional Morning Training",
       "/flamenco-danslessen-in-gent": "Flamenco",
-      "/indian-dance-in-belgium": "Indische Danstechniek",
+      "/indian-dance-in-belgium": "Indische Dans Flow",
       "/kathak-danslessen-in-gent": "Indisch Semi-klassiek (Kathak)",
       "/oriental-flow-gent": "Oriental Flow",
       "/solo-jazz-danslessen-in-gent": "Solo Jazz",
