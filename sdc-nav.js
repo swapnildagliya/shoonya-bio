@@ -46,7 +46,7 @@
       { id: 'classes', nl: 'Danslessen', en: 'Classes', kind: 'group',
         links: [
           { addr: '@cta', nl: 'Weekrooster', en: 'Weekly schedule', hrefNl: 'https://schedule.shoonyadance.com/nl/schedule-spring-2027/' }   /* 16 Nov: spring 2027 timetable is live; the native header button holds the English address, Dutch visitors get hrefNl */,
-          { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles' },
+          { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles', go: 'https://schedule.shoonyadance.com/styles/', goNl: 'https://schedule.shoonyadance.com/nl/styles/' },
           { addr: '/private-class', nl: 'Privé- en groepslessen', en: 'Private & group classes' }
         ],
         // The native Courses folder, three headings. A style that is in the
@@ -76,11 +76,11 @@
           { addr: '/calendar?category=Performance', nl: 'Voorstellingen', en: 'Performances', fixed: true },
           { addr: 'https://links.shoonyadance.com/go/ticket/', nl: 'Tickets', en: 'Tickets' }
         ] },
-      { id: 'new', nl: 'Nieuw hier?', en: 'New here?', kind: 'link', addr: 'https://info.shoonyadance.com/' },
+      { id: 'new', nl: 'Nieuw hier?', en: 'New here?', kind: 'link', addr: 'https://info.shoonyadance.com/', go: 'https://schedule.shoonyadance.com/new/', goNl: 'https://schedule.shoonyadance.com/nl/new/' },
       { id: 'centre', nl: 'Het centrum', en: 'The centre', kind: 'group', align: 'right',
         links: [
-          { addr: 'https://info.shoonyadance.com/about/', nl: 'Over ons', en: 'About us' },
-          { addr: 'https://info.shoonyadance.com/our-studios/', nl: "Onze studio's", en: 'Our studios' },
+          { addr: 'https://info.shoonyadance.com/about/', nl: 'Over ons', en: 'About us', go: 'https://schedule.shoonyadance.com/about/', goNl: 'https://schedule.shoonyadance.com/nl/about/' },
+          { addr: 'https://info.shoonyadance.com/our-studios/', nl: "Onze studio's", en: 'Our studios', go: 'https://schedule.shoonyadance.com/studios/', goNl: 'https://schedule.shoonyadance.com/nl/studios/' },
           { addr: '/house-rules', nl: 'Huisregels', en: 'House rules' },                       // footer, if present
           { addr: '/who-is-a-shoonya-member', nl: 'Wie is Shoonya-lid?', en: 'Who is a Shoonya member?' }  // footer, if present
         ] }
@@ -292,15 +292,15 @@
     }
     function link(spec, group) {
       var res = resolve(spec.addr, spec.fixed); if (!res) return null;
-      var o = { nl: spec.nl, en: spec.en, href: res.rec.href, hrefNl: spec.hrefNl || null, target: res.rec.target, key: res.rec.key, source: res.source, native: null };
+      var o = { nl: spec.nl, en: spec.en, href: spec.go || res.rec.href, hrefNl: spec.goNl || spec.hrefNl || null,   /* go / goNl = the final destination, used instead of the info. / styles. shim address the native link points at (18 Nov review) */ target: res.rec.target, key: res.rec.key, source: res.source, native: null };
       mark(res, spec.en + ' / ' + spec.nl, group); return o;
     }
     var top = [];
     CONFIG.items.forEach(function (it) {
       var top1 = { id: it.id, nl: it.nl, en: it.en, kind: it.kind, align: it.align || 'left', links: [], groups: [] };
       if (it.kind === 'link') {
-        var l = link({ addr: it.addr, nl: it.nl, en: it.en }, it.en);
-        if (!l) return; top1.href = l.href; top1.target = l.target; top.push(top1); return;
+        var l = link({ addr: it.addr, nl: it.nl, en: it.en, go: it.go, goNl: it.goNl }, it.en);
+        if (!l) return; top1.href = l.href; top1.hrefNl = l.hrefNl; top1.target = l.target; top.push(top1); return;
       }
       (it.links || []).forEach(function (s) { var l = link(s, it.en); if (l) top1.links.push(l); });
       if (it.nativeFolder) {
