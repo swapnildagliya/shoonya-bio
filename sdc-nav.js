@@ -45,7 +45,7 @@
     items: [
       { id: 'classes', nl: 'Danslessen', en: 'Classes', kind: 'group',
         links: [
-          { addr: '@cta', nl: 'Weekrooster', en: 'Weekly schedule', hrefNl: 'https://schedule.shoonyadance.com/nl/schedule-spring-2027/' }   /* 16 Nov: spring 2027 timetable is live; the native header button holds the English address, Dutch visitors get hrefNl */,
+          { addr: '@cta', nl: 'Weekrooster', en: 'Weekly schedule', hrefNl: 'https://schedule.shoonyadance.com/?lang=nl' }   /* 20 Nov 2026: points at the schedule INDEX (lists the running semester first), never a semester URL, so it never needs swapping. The native header button holds https://schedule.shoonyadance.com/ */,
           { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles', go: 'https://schedule.shoonyadance.com/styles/', goNl: 'https://schedule.shoonyadance.com/nl/styles/' },
           { addr: '/private-class', nl: 'Privé- en groepslessen', en: 'Private & group classes' }
         ],
