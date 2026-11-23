@@ -51,21 +51,6 @@
       "cta": "Reserve a spot"
     },
     {
-      "id": "flamenco-technique",
-      "title": "Flamenco Technique",
-      "start_time": "2026-11-21T00:00:00+01:00",
-      "end_time": "2027-01-16T23:59:59+01:00",
-      "start_known": false,
-      "end_known": false,
-      "multi_day": true,
-      "description": "Monthly flamenco technique with La Liz, open to all levels.",
-      "date_label": "3 Saturdays 10:00–12:00 · with La Liz",
-      "image": "https://links.shoonyadance.com/images/flamenco-technique.jpg",
-      "url": "https://workshops.shoonyadance.com/flamenco-technique/",
-      "price": "€28",
-      "cta": "Reserve a spot"
-    },
-    {
       "id": "contemporary-dance-lab",
       "title": "Contemporary Dance Lab",
       "start_time": "2026-11-29T11:00:00+01:00",
@@ -122,6 +107,21 @@
       "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-december",
       "price": "from €6",
       "cta": "Buy a ticket"
+    },
+    {
+      "id": "flamenco-technique",
+      "title": "Flamenco Technique",
+      "start_time": "2026-12-19T00:00:00+01:00",
+      "end_time": "2027-01-16T23:59:59+01:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Monthly flamenco technique with La Liz, open to all levels.",
+      "date_label": "2 Saturdays 10:00–12:00 · with La Liz",
+      "image": "https://links.shoonyadance.com/images/flamenco-technique.jpg",
+      "url": "https://workshops.shoonyadance.com/flamenco-technique/",
+      "price": "€28",
+      "cta": "Reserve a spot"
     },
     {
       "id": "indian-dance-winter-intensive-2027",
