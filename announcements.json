@@ -48,22 +48,6 @@
       },
       "source": "Event Submission/config/semester-config.json (spring 2027 registration: general_open 2026-12-07T09:00+01:00, closes 2027-03-08). Text approved by Swapnil in chat, 15 Nov 2026 (switch-on given the same evening).",
       "approved": true
-    },
-    {
-      "id": "flamenco-technique-2026-11",
-      "priority": 4,
-      "from": "2026-11-11",
-      "until": "2026-11-21",
-      "text": {
-        "nl": "Flamenco Technique · workshop · 21 november · Schrijf je in →",
-        "en": "Flamenco Technique · workshop · 21 November · Register →"
-      },
-      "link": {
-        "nl": "https://workshops.shoonyadance.com/flamenco-technique/nl/",
-        "en": "https://workshops.shoonyadance.com/flamenco-technique/"
-      },
-      "source": "Design System/events/workshop/2026-11-21-flamenco-technique-monthly.json (date, page_url, page_url_nl)",
-      "approved": true
     }
   ],
   "abc": [],
