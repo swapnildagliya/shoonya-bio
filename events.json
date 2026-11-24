@@ -51,22 +51,6 @@
       "cta": "Reserve a spot"
     },
     {
-      "id": "contemporary-dance-lab",
-      "title": "Contemporary Dance Lab",
-      "start_time": "2026-11-29T11:00:00+01:00",
-      "end_time": "2026-11-29T13:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "A morning of contemporary dance with Tono Ferriol.",
-      "date_label": "Sunday 11:00–13:00 · with Tono Ferriol",
-      "location": "Shoonya · 41 Stapelplein, Gent",
-      "image": "https://links.shoonyadance.com/images/contemporary-dance-lab.jpg",
-      "url": "https://workshops.shoonyadance.com/contemporary-dance-lab/",
-      "price": "€30",
-      "cta": "Reserve a spot"
-    },
-    {
       "id": "social-dec",
       "title": "Kizomba Social Night",
       "start_time": "2026-12-04T19:30:00+01:00",
@@ -253,6 +237,21 @@
       "cta": "Buy a ticket"
     },
     {
+      "id": "bachata-solo-spring",
+      "title": "Bachata Solo Style",
+      "start_time": "2027-02-18T00:00:00+01:00",
+      "end_time": "2027-05-27T23:59:59+02:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "Bachata on your own: no partner needed, beginners welcome.",
+      "date_label": "Thursdays 19:00 · 10 sessions · with Ioanna Petta",
+      "image": "https://links.shoonyadance.com/images/bachata-solo-ioanna.jpg",
+      "url": "https://www.shoonyadance.com/bachata-solo-style-gent",
+      "price": "€124",
+      "cta": "Reserve a spot"
+    },
+    {
       "id": "ghent-tap-festival-2027",
       "title": "Ghent Tap Festival 2027",
       "start_time": "2027-03-06T00:00:00+01:00",
@@ -283,6 +282,36 @@
       "cta": "Info & inschrijven"
     },
     {
+      "id": "saaidi-variations",
+      "title": "Saaidi Variations",
+      "start_time": "2027-03-13T15:00:00+01:00",
+      "end_time": "2027-03-13T17:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": false,
+      "description": "The joyful, playful spirit of Saidi from Upper Egypt, with the cane.",
+      "date_label": "15:00–17:00 · with Nathalie El Ghoul",
+      "image": "https://links.shoonyadance.com/images/nathalie-saaidi.jpg",
+      "url": "https://portal.shoonyadance.com/register/workshop/saaidi-variations",
+      "price": "€35",
+      "cta": "Reserve a spot"
+    },
+    {
+      "id": "belly-dance-veil",
+      "title": "Belly Dance Veil & Travelling Movements",
+      "start_time": "2027-03-14T15:00:00+01:00",
+      "end_time": "2027-03-14T17:00:00+01:00",
+      "start_known": true,
+      "end_known": true,
+      "multi_day": false,
+      "description": "Strength, control and confidence in travelling movements and turns, with the veil.",
+      "date_label": "15:00–17:00 · with Nathalie El Ghoul",
+      "image": "https://links.shoonyadance.com/images/nathalie-veil.jpg",
+      "url": "https://portal.shoonyadance.com/register/workshop/belly-dance-veil-travelling-movements-techniques",
+      "price": "€35",
+      "cta": "Reserve a spot"
+    },
+    {
       "id": "sevillanas-rumba-social-march-2027",
       "title": "Sevillanas & Rumba · Social Night",
       "start_time": "2027-03-19T19:30:00+01:00",
@@ -290,12 +319,27 @@
       "start_known": true,
       "end_known": true,
       "multi_day": true,
-      "description": "Practise Sevillanas and learn Rumba flamenca with La Liz, then stay for the party.",
+      "description": "Practise Sevillanas and learn Rumba flamenca with La Liz, then stay for the social night.",
       "date_label": "Vr 19 mrt 2027 · vanaf 19:30",
       "location": "Shoonya · Stapelplein 41, Gent",
       "image": "https://tv.shoonyadance.com/assets/la-liz-photo.jpg",
       "url": "https://www.shoonyadance.com/calendar/sevillanas-rumba-social-night-march-2027",
       "cta": "Info & tickets"
+    },
+    {
+      "id": "bachata-choreo-spring",
+      "title": "Bachata Choreo Minireeks",
+      "start_time": "2027-04-20T00:00:00+02:00",
+      "end_time": "2027-05-25T23:59:59+02:00",
+      "start_known": false,
+      "end_known": false,
+      "multi_day": true,
+      "description": "A 6-week couple choreography series: build one complete piece together.",
+      "date_label": "Tuesdays 21:00 · 6 sessions · with Alex & Lenka",
+      "image": "https://links.shoonyadance.com/images/bachata-choreo-alex-lenka.jpg",
+      "url": "https://portal.shoonyadance.com/register/workshop/bachata-choreo",
+      "price": "€75",
+      "cta": "Reserve a spot"
     },
     {
       "id": "gidf-2027",
