@@ -216,27 +216,6 @@
       "cta": "Save the date"
     },
     {
-      "id": "sb-feb",
-      "title": "Salsa & Bachata Social Night",
-      "start_time": "2027-02-12T19:30:00+01:00",
-      "end_time": "2027-02-13T01:00:00+01:00",
-      "start_known": true,
-      "end_known": true,
-      "multi_day": false,
-      "description": "Workshop and social dancing with Alex Papaianopol. Full programme coming soon.",
-      "date_label": "Workshop + social night · hosted by Alex",
-      "image": "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
-      "images": [
-        "https://links.shoonyadance.com/images/latin-rueda-group.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-hold.jpg",
-        "https://links.shoonyadance.com/images/latin-open-line.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-turn.jpg",
-        "https://links.shoonyadance.com/images/latin-bachata-red-line.jpg"
-      ],
-      "url": "https://www.shoonyadance.com/calendar/salsa-bachata-social-night-february",
-      "cta": "Buy a ticket"
-    },
-    {
       "id": "bachata-solo-spring",
       "title": "Bachata Solo Style",
       "start_time": "2027-02-18T00:00:00+01:00",
