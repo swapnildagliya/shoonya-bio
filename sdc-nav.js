@@ -831,6 +831,7 @@
     '.sdc-hc-d+.sdc-hc-d{border-left:1px solid rgba(0,0,0,.2);padding-left:24px}',
     '.sdc-hc a{display:block;padding:24px 24px 24px 0;color:inherit!important;text-decoration:none;font:inherit}',
     '.sdc-hc a:hover .sdc-hc-t span:first-child{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}',
+    '.sdc-hc a[data-phone-finder]{display:none}',
     '.sdc-hc a:focus-visible{outline:2px solid #B564F7;outline-offset:-2px}',
     '.sdc-hc-t{display:flex;justify-content:space-between;gap:16px;font-family:Marcellus,var(--sdc-font);font-size:24px;line-height:32px;margin:0}',
     '.sdc-hc-t::after{content:none}',
@@ -841,7 +842,7 @@
     'html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important}',
     '@supports (height:100svh){html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important}}}',
     'html:not([lang^="nl"]) .sdc-hc [data-l="nl"]{display:none!important}html[lang^="nl"] .sdc-hc [data-l="en"]{display:none!important}',
-    '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}}',
+    '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}.sdc-hc a[data-desktop-finder]{display:none}.sdc-hc a[data-phone-finder]{display:block}#home-class-directory{scroll-margin-top:160px}}',
     // ── homepage: the free-trial box (built by classes.shoonyadance.com/trial-banner.js) restyled to match the menu: white, black type, black button ──
     'html.sdc-nav-on .st{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}',
     'html.sdc-nav-on .st .st-h{font-family:Marcellus,var(--sdc-font,inherit)!important;font-size:28px!important;line-height:36px!important;font-weight:400!important;color:#000!important;margin:0 0 12px!important}',
@@ -992,7 +993,8 @@
   // Own try/catch: if anything here fails the strip is removed and the menu itself carries on.
   var HOME_CHOICES = [
     { nl: 'Bekijk de wekelijkse lessen', en: 'See the weekly classes',
-      nlh: 'https://schedule.shoonyadance.com/nl/styles/', enh: 'https://schedule.shoonyadance.com/styles/' },
+      nlh: 'https://schedule.shoonyadance.com/nl/styles/', enh: 'https://schedule.shoonyadance.com/styles/',
+      phone: { nl: 'Vind een dansles', en: 'Find a class' } },
     { nl: 'Probeer eerst', en: 'Try first',
       nlh: '/try-a-class', enh: '/try-a-class' },
     { nl: 'Workshopoverzicht', en: 'Workshop schedule',
@@ -1036,11 +1038,17 @@
       var inner = h('div', { 'class': 'sdc-hc-in' });
       HOME_CHOICES.forEach(function (c) {
         var d = h('div', { 'class': 'sdc-hc-d' });
-        ['nl', 'en'].forEach(function (l) {
-          var a = h('a', { href: c[l + 'h'], 'data-l': l }, [
-            h('span', { 'class': 'sdc-hc-t' }, [h('span', { text: c[l] }), h('span', { 'class': 'sdc-hc-arr', 'aria-hidden': 'true', text: '\u2192' })])
-          ]);
-          d.appendChild(a);
+        var finder = c.phone && doc.getElementById('home-class-directory');
+        ['nl', 'en'].forEach(function (lang) {
+          function addLink(label, href, viewport) {
+            var attrs = { href: href, 'data-l': lang };
+            if (viewport) attrs['data-' + viewport + '-finder'] = true;
+            d.appendChild(h('a', attrs, [
+              h('span', { 'class': 'sdc-hc-t' }, [h('span', { text: label }), h('span', { 'class': 'sdc-hc-arr', 'aria-hidden': 'true', text: '\u2192' })])
+            ]));
+          }
+          addLink(c[lang], c[lang + 'h'], finder ? 'desktop' : null);
+          if (finder) addLink(c.phone[lang], '#' + finder.id, 'phone');
         });
         inner.appendChild(d);
       });
