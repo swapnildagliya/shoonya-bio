@@ -58,7 +58,8 @@
             '/cuban-salsa-in-gent', '/kizomba-danslessen-in-gent', '/lindy-hop-danslessen-in-gent',
             '/rueda-de-casino-danslessen-gent'] },
           { nl: 'Klassiek & techniek', en: 'Classical & technique', addrs: [
-            '/ballet-voor-volwassenen-in-gent', '/professional-morning-training-gent', '/flamenco-danslessen-in-gent',
+            '/ballet-voor-volwassenen-in-gent', '/professional-morning-training-gent',
+            '/contemporary-modern-gent', '/contemporary-dance-technique-gent', '/flamenco-danslessen-in-gent',
             '/indian-dance-in-belgium', '/kathak-danslessen-in-gent', '/oriental-flow-gent',
             '/solo-jazz-danslessen-in-gent', '/tapdans-lessen-in-gent'] },
           { nl: 'Cultuur & wellness', en: 'Culture & wellness', addrs: [
