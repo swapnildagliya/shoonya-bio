@@ -34,7 +34,11 @@
     if (!doc.querySelector('link[href*="PT+Serif"]')) doc.head.appendChild(el('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Marcellus&display=swap' }));
     // the old per-site header goes away; the sticky header below replaces it (a <header class="hero"> title block stays: owner 26 Nov, Sep timetable + styles overview lost their title)
     var css = [
-      'html.sdc-nav-on body>header:not(#header):not(.hero),html.sdc-nav-on header.site-header,html.sdc-nav-on .site-header{display:none!important}',
+      'html.sdc-nav-on body>header:not(#header):not(.hero):not(.sdc-keep),html.sdc-nav-on header.site-header,html.sdc-nav-on .site-header{display:none!important}',
+      // a page's own SECTION bar (in-page #links, e.g. Kizomba workshops, Leylet Raqs) stays and sticks just under this header (26 Nov)
+      'html.sdc-nav-on body>header.sdc-keep{top:116px!important;z-index:999!important}',
+      'html.sdc-nav-on.sdc-has-keep{scroll-padding-top:calc(116px + var(--sdc-keep-h,0px))!important}',
+      '@media(max-width:1000px){html.sdc-nav-on body>header.sdc-keep{position:relative!important;top:auto!important}html.sdc-nav-on.sdc-has-keep{scroll-padding-top:72px!important}}',   // phone/tablet: one sticky bar is enough, the page bar scrolls away
       '#header.sdc-sub{position:sticky;top:0;z-index:1000;background:#fff;color:#000;font-family:"PT Serif",Georgia,serif;font-size:16px;margin:0}',
       '#header.sdc-sub .header-inner{position:relative;display:flex;align-items:center;box-sizing:border-box;height:116px;margin:0 38px;padding:0;max-width:none}',
       '#header.sdc-sub .header-title{margin:0}',
@@ -74,6 +78,13 @@
     if (ctaA) ctaA.style.cssText = 'background-color:' + T.btnBg + ';color:' + T.btnFg + ';border-radius:' + T.btnRadius;
     hdr.style.backgroundColor = T.bg;
     doc.body.insertBefore(hdr, doc.body.firstChild);
+    // keep a page's own section bar: a top-level <header> (not the title block, not an old site menu) with 2+ in-page #links
+    [].forEach.call(doc.querySelectorAll('body > header'), function (h) {
+      if (h === hdr || h.classList.contains('hero') || h.classList.contains('site-header')) return;
+      if (h.querySelectorAll('a[href^="#"]').length < 2) return;
+      h.classList.add('sdc-keep'); doc.documentElement.classList.add('sdc-has-keep');
+      doc.documentElement.style.setProperty('--sdc-keep-h', (h.offsetHeight || 60) + 'px');
+    });
     // the footer links (small bar) live in a hidden footer
     var ft = el('footer', { 'aria-hidden': 'true', style: 'display:none' });
     SNAP.foot.forEach(function (l) { ft.appendChild(link(l)); });
