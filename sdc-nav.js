@@ -532,6 +532,7 @@
 
   // Weglot excludes some pages from translation (calendar, register, news, ...): there the NL/EN buttons would do nothing.
   function langAvailable() {
+    if (!(window.Weglot && Weglot.switchTo && Weglot.initialized !== false)) return false;   // buttons stay hidden until Weglot is ready (26 Nov 2026)
     try {
       var rules = (window.Weglot && Weglot.options && Weglot.options.excluded_paths) || [], p = location.pathname;
       for (var i = 0; i < rules.length; i++) {
@@ -726,7 +727,11 @@
     mo.observe(doc.documentElement, { attributes: true, attributeFilter: ['lang'] });
     mo.observe(nat.list, { childList: true, subtree: true, characterData: true });   // page translation of native labels
     state.observers.push(mo);
-    if (window.Weglot && Weglot.on) { try { Weglot.on('languageChanged', guard(function () { if (state.torn) return; refresh(ui); setTimeout(guard(function () { if (!state.torn) refresh(ui); }), 600); })); } catch (e) {} }
+    // Weglot can arrive after the menu (slow pages, e.g. the calendar): start() calls this again once it is ready (26 Nov 2026)
+    state.lateWeglot = guard(function () { if (state.torn) return; syncLang(); refresh(ui); hookWeglot(); });
+    hookWeglot();
+    function hookWeglot() { if (state.wgHooked || !(window.Weglot && Weglot.on)) return; state.wgHooked = true;
+    if (window.Weglot && Weglot.on) { try { Weglot.on('languageChanged', guard(function () { if (state.torn) return; refresh(ui); setTimeout(guard(function () { if (!state.torn) refresh(ui); }), 600); })); } catch (e) {} } }
 
     /* ---- left offset next to the native logo ---- */
     function layoutVars() {
@@ -1119,9 +1124,11 @@
   }
 
   function start() {
-    // Wait for Weglot (the real language control) up to 6 s; without it the
-    // new menu would have a dead language switch, so we do not start at all.
-    weglotReady(function (ok) { if (ok) whenNativeClosed(init); else { try { console.warn('[sdc-nav] Weglot not found, native menu stays'); } catch (e) {} } }, 6000);
+    // Owner 26 Nov 2026: "on certain pages like the calendar it switches to the old nav menu". The menu used to wait up to 6 s for
+    // Weglot and, if it was late, never started (old menu for good). Now the menu starts at once; the NL/EN buttons stay hidden
+    // (langAvailable() is false without Weglot) and appear when Weglot is ready, up to 30 s later.
+    whenNativeClosed(init);
+    weglotReady(function (ok) { if (ok && state.lateWeglot) { try { state.lateWeglot(); } catch (e) {} } }, 30000);
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', start); else start();
 })();
