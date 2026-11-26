@@ -10,7 +10,7 @@
     var L = function (en, du) { return nl ? du : en; };
     var cols = [
       [[L('About Us', 'Over ons'), '/about'], [L('Our Studios', "Onze studio's"), '/our-studios'], [L('Calendar', 'Agenda'), '/calendar'], [L('News', 'Nieuws'), '/news']],
-      [[L('Privacy Policy', 'Privacybeleid'), '/privacy-policy'], [L('FAQ', 'Veelgestelde vragen'), '/faq'], [L('House Rules', 'Huisregels'), '/house-rules'], [L('Newsletter', 'Nieuwsbrief'), '/newsletter'], [L('Contact', 'Contact'), '/contact'], [L('Logos & usage', 'Logo’s & gebruik'), 'https://tickets.shoonyadance.com/brand-resources?lang=' + (nl ? 'nl' : 'en')]],
+      [[L('Privacy Policy', 'Privacybeleid'), '/privacy-policy'], [L('FAQ', 'Veelgestelde vragen'), '/faq'], [L('House Rules', 'Huisregels'), '/house-rules'], [L('Gift voucher', 'Cadeaubon'), '/gift-voucher'], [L('Newsletter', 'Nieuwsbrief'), '/newsletter'], [L('Contact', 'Contact'), '/contact'], [L('Logos & usage', 'Logo’s & gebruik'), 'https://tickets.shoonyadance.com/brand-resources?lang=' + (nl ? 'nl' : 'en')]],
       [[L('Who is a Shoonya member?', 'Wie is lid van Shoonya?'), '/who-is-a-shoonya-member'], [L('ABC a bollywood company', 'ABC, een Bollywood-bedrijf'), 'https://www.abcbollywoodbelgium.com']]
     ];
     var ICON = {

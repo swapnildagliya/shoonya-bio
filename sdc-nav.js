@@ -126,7 +126,7 @@
 ] },
       { id: 'workshops', nl: 'Workshops & festivals', en: 'Workshops & festivals', kind: 'group',
         nativeFolder: '/events-and-festivals',
-        linksAfter: [ { addr: 'https://links.shoonyadance.com/go/workshop/', nl: 'Inschrijven voor workshops', en: 'Register for workshops' } ] },          // the native items, native labels
+        linksAfter: [] },          // the native items, native labels
       { id: 'agenda', nl: 'Agenda', en: 'Calendar', kind: 'group',
         links: [
           { addr: '/calendar', nl: 'Alles', en: 'All' },
@@ -183,8 +183,6 @@
     },
     small: [
       { addr: '/faq', nl: 'Veelgestelde vragen', en: 'FAQ' },
-      { addr: '/gift-voucher', nl: 'Cadeaubon', en: 'Gift voucher' },
-      { addr: '/newsletter', nl: 'Nieuwsbrief', en: 'Newsletter' },
       { addr: '/contact', nl: 'Contact', en: 'Contact' },
       { addr: 'https://portal.shoonyadance.com/student/login', nl: 'Mijn Shoonya', en: 'My Shoonya', fixed: true }
     ],
@@ -338,7 +336,8 @@
   /* ═══════════════ 2. place links ═══════════════ */
   // Returns the model: a list of top items, each with resolved links.
   function buildModel(nat) {
-    var placed = {}, missing = [], rows = [];                // rows = report lines
+    var placed = {}, missing = [], rows = [];
+    ['/gift-voucher', '/newsletter', 'https://links.shoonyadance.com/go/workshop/'].forEach(function(addr) { placed[keyOf(addr)] = true; });                // rows = report lines
     function resolve(addr, fixed) {
       if (addr === '@cta') return nat.cta ? { rec: nat.cta, source: 'menu' } : null;
       var k = keyOf(addr), rec = k && nat.all[k];
@@ -559,6 +558,24 @@
   /* ═══════════════ 4. behaviour ═══════════════ */
   function refresh(ui) {
     var nl = isNl();
+    // Approved homepage links use the same language-specific overview as the menu.
+    if (location.hostname === 'www.shoonyadance.com' && location.pathname === '/') {
+      doc.querySelectorAll('main a[href]').forEach(function(a) {
+        var u; try { u = new URL(a.href); } catch (e) { return; }
+        if (u.hostname === 'schedule.shoonyadance.com' && /^\/(nl\/)?workshops\/?$/.test(u.pathname)) {
+          var dest = 'https://schedule.shoonyadance.com' + (nl ? '/nl' : '') + '/workshops/';
+          if (a.href !== dest) a.href = dest;
+        }
+      });
+    }
+    // Move the gift shortcut to the existing native footer beside Newsletter.
+    var newsletter = doc.querySelector('footer a[href="/newsletter"]');
+    if (newsletter && !doc.querySelector('footer a[href="/gift-voucher"]')) {
+      var gift = doc.createElement('a'); gift.href = '/gift-voucher'; gift.setAttribute('data-sdc-footer-gift', '1');
+      newsletter.parentNode.insertBefore(gift, newsletter); newsletter.parentNode.insertBefore(doc.createElement('br'), newsletter);
+    }
+    var footerGift = doc.querySelector('[data-sdc-footer-gift]');
+    if (footerGift && footerGift.textContent !== (nl ? 'Cadeaubon' : 'Gift voucher')) footerGift.textContent = nl ? 'Cadeaubon' : 'Gift voucher';
     labelRefs.forEach(function (r) {
       var s = r.spec, txt;
       if (s.native && s.nlName) {              // style: Dutch from the config, English from the native label
@@ -978,8 +995,8 @@
       nlh: 'https://schedule.shoonyadance.com/nl/styles/', enh: 'https://schedule.shoonyadance.com/styles/' },
     { nl: 'Probeer eerst', en: 'Try first',
       nlh: '/try-a-class', enh: '/try-a-class' },
-    { nl: 'Workshops & events', en: 'Workshops & events',
-      nlh: '/calendar', enh: '/calendar' }
+    { nl: 'Workshopoverzicht', en: 'Workshop schedule',
+      nlh: 'https://schedule.shoonyadance.com/nl/workshops/', enh: 'https://schedule.shoonyadance.com/workshops/' }
   ];
   // Phones: hero = screen height minus the announcement bar and the strip. Sets --sdc-reserve on <html>; the CSS (<=600px only) reads it.
   // Updates when the bar appears, changes height or is closed, when the strip changes height (language) and on resize/rotation.
