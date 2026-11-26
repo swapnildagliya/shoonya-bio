@@ -561,9 +561,9 @@
       var s = r.spec, txt;
       if (s.native && s.nlName) {              // style: Dutch from the config, English from the native label
         if (nl) txt = s.nlName;
-        else { var nt = norm(s.native.el.textContent); if (nt && nt !== s.nlName) s.enText = nt; txt = s.enText || s.native.text; }
+        else { var nt = norm(s.native.el ? s.native.el.textContent : s.native.text); if (nt && nt !== s.nlName) s.enText = nt; txt = s.enText || s.native.text; }
       }
-      else if (s.native) txt = norm(s.native.el.textContent) || s.native.text;
+      else if (s.native) txt = norm(s.native.el ? s.native.el.textContent : s.native.text) || s.native.text;
       else txt = nl ? s.nl : s.en;
       if (r.el.textContent !== txt) r.el.textContent = txt;
       if (s.hrefNl && r.el.parentNode && r.el.parentNode.getAttribute) {   // Dutch visitors get their own address for this link
