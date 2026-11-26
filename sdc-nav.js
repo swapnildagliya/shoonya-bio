@@ -831,7 +831,7 @@
     '.sdc-hc-d+.sdc-hc-d{border-left:1px solid rgba(0,0,0,.2);padding-left:24px}',
     '.sdc-hc a{display:block;padding:24px 24px 24px 0;color:inherit!important;text-decoration:none;font:inherit}',
     '.sdc-hc a:hover .sdc-hc-t span:first-child{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}',
-    '.sdc-hc a[data-phone-finder]{display:none}',
+    '.sdc-hc.sdc-hc-first{display:none}',
     '.sdc-hc a:focus-visible{outline:2px solid #B564F7;outline-offset:-2px}',
     '.sdc-hc-t{display:flex;justify-content:space-between;gap:16px;font-family:Marcellus,var(--sdc-font);font-size:24px;line-height:32px;margin:0}',
     '.sdc-hc-t::after{content:none}',
@@ -842,7 +842,7 @@
     'html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100vh - var(--sdc-reserve,0px)))!important}',
     '@supports (height:100svh){html.sdc-nav-on section.sdc-hero-cap{min-height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important;height:max(360px,calc(100svh - var(--sdc-reserve,0px)))!important}}}',
     'html:not([lang^="nl"]) .sdc-hc [data-l="nl"]{display:none!important}html[lang^="nl"] .sdc-hc [data-l="en"]{display:none!important}',
-    '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}.sdc-hc a[data-desktop-finder]{display:none}.sdc-hc a[data-phone-finder]{display:block}#home-class-directory{scroll-margin-top:160px}}',
+    '@media (max-width:' + (CONFIG.phoneBelow - 1) + 'px){.sdc-hc-in{grid-template-columns:1fr;padding:0 24px}.sdc-hc-d+.sdc-hc-d{border-left:0;border-top:1px solid rgba(0,0,0,.2);padding-left:0}.sdc-hc a{padding:16px 0;min-height:64px}.sdc-hc-d.sdc-hc-desktop-finder{display:none}.sdc-hc-d.sdc-hc-desktop-finder+.sdc-hc-d{border-top:0}.sdc-hc.sdc-hc-first{display:block;position:absolute;inset-inline:0;align-self:flex-start;z-index:2;background:#f0e2f9;color:#201427;border-color:#e1caee}.sdc-hc-first a{padding:12px 24px;min-height:56px}.sdc-hc-first .sdc-hc-t{font-size:21px}#home-class-directory{scroll-margin-top:160px}}',
     // ── homepage: the free-trial box (built by classes.shoonyadance.com/trial-banner.js) restyled to match the menu: white, black type, black button ──
     'html.sdc-nav-on .st{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}',
     'html.sdc-nav-on .st .st-h{font-family:Marcellus,var(--sdc-font,inherit)!important;font-size:28px!important;line-height:36px!important;font-weight:400!important;color:#000!important;margin:0 0 12px!important}',
@@ -1025,7 +1025,7 @@
   }
 
   function homeChoices(ui, nodes) {
-    var el = null;
+    var el = null, first = null;
     try {
       var path = (location.pathname || '/').replace(/\/+$/, '') || '/';
       if (!CONFIG.homeChoices) return;
@@ -1036,28 +1036,37 @@
       el = h('section', { 'class': 'sdc-hc', 'data-wg-notranslate': true,
         style: '--sdc-font:' + cs.fontFamily + ';--sdc-color:' + (bc && !/rgba?\(255, ?255, ?255/.test(bc) ? bc : '#000') + ';--sdc-bg:#fff' });
       var inner = h('div', { 'class': 'sdc-hc-in' });
-      HOME_CHOICES.forEach(function (c) {
-        var d = h('div', { 'class': 'sdc-hc-d' });
-        var finder = c.phone && doc.getElementById('home-class-directory');
+      var finder = doc.getElementById('home-class-directory');
+      function choiceLink(label, href, lang, arrow) {
+        return h('a', { href: href, 'data-l': lang }, [
+          h('span', { 'class': 'sdc-hc-t' }, [
+            h('span', { text: label }),
+            h('span', { 'class': 'sdc-hc-arr', 'aria-hidden': 'true', text: arrow })
+          ])
+        ]);
+      }
+      HOME_CHOICES.forEach(function (choice) {
+        var mobileFinder = choice.phone && finder;
+        var group = h('div', { 'class': 'sdc-hc-d' + (mobileFinder ? ' sdc-hc-desktop-finder' : '') });
+        if (mobileFinder) first = h('div', { 'class': 'sdc-hc sdc-hc-first', 'data-wg-notranslate': true, style: '--sdc-font:' + cs.fontFamily });
         ['nl', 'en'].forEach(function (lang) {
-          function addLink(label, href, viewport) {
-            var attrs = { href: href, 'data-l': lang };
-            if (viewport) attrs['data-' + viewport + '-finder'] = true;
-            d.appendChild(h('a', attrs, [
-              h('span', { 'class': 'sdc-hc-t' }, [h('span', { text: label }), h('span', { 'class': 'sdc-hc-arr', 'aria-hidden': 'true', text: '\u2192' })])
-            ]));
-          }
-          addLink(c[lang], c[lang + 'h'], finder ? 'desktop' : null);
-          if (finder) addLink(c.phone[lang], '#' + finder.id, 'phone');
+          group.appendChild(choiceLink(choice[lang], choice[lang + 'h'], lang, '→'));
+          if (mobileFinder) first.appendChild(choiceLink(choice.phone[lang], '#' + finder.id, lang, '↓'));
         });
-        inner.appendChild(d);
+        inner.appendChild(group);
       });
       el.appendChild(inner);
       hero.parentNode.insertBefore(el, hero.nextSibling);
       nodes.push(el);
+      // The first section reserves space for the overlapping native header. A
+      // flex-start position puts this opaque row directly below that padding.
+      if (first) {
+        hero.insertBefore(first, hero.firstChild);
+        nodes.push(first);
+      }
       try { if (CONFIG.heroCap) capHero(hero, el); } catch (e) {}   // own try: a failure here leaves the full-height hero and the strip as before
     } catch (e) {
-      try { if (el && el.parentNode) el.parentNode.removeChild(el); } catch (x) {}
+      [el, first].forEach(function (node) { if (node && node.parentNode) node.parentNode.removeChild(node); });
     }
   }
 
