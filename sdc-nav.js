@@ -49,24 +49,81 @@
           { addr: 'https://styles.shoonyadance.com/', nl: 'Alle stijlen', en: 'All styles', go: 'https://schedule.shoonyadance.com/styles/', goNl: 'https://schedule.shoonyadance.com/nl/styles/' },
           { addr: '/private-class', nl: 'Privé- en groepslessen', en: 'Private & group classes' }
         ],
-        // The native Courses folder, three headings. A style that is in the
+        // Seven approved groups, matching config/class-discovery.json. A style that is in the
         // folder but not listed here goes to "Meer / More".
         styleFolder: '/courses-old',
         styleGroups: [
-          { nl: 'Partner & sociaal', en: 'Partner & social', addrs: [
-            '/argentijnse-tango-danslessen-gent', '/bachata-dance-classes-in-ghent', '/bachata-solo-style-gent',
-            '/cuban-salsa-in-gent', '/kizomba-danslessen-in-gent', '/lindy-hop-danslessen-in-gent',
-            '/rueda-de-casino-danslessen-gent'] },
-          { nl: 'Klassiek & techniek', en: 'Classical & technique', addrs: [
-            '/ballet-voor-volwassenen-in-gent', '/professional-morning-training-gent',
-            '/contemporary-modern-gent', '/contemporary-dance-technique-gent', '/flamenco-danslessen-in-gent',
-            '/indian-dance-in-belgium', '/kathak-danslessen-in-gent', '/oriental-flow-gent',
-            '/solo-jazz-danslessen-in-gent', '/tapdans-lessen-in-gent'] },
-          { nl: 'Cultuur & wellness', en: 'Culture & wellness', addrs: [
-            '/afrikaanse-congolese-dans-gent', '/bhangra-danslessen-in-gent', '/bollyfolk-danslessen-in-gent',
-            '/bollywood-danslessen-in-gent', '/burlesque-lessen-in-gent', '/cissy-ball-danslessen-in-gent',
-            '/pilates-voor-dansers-gent', '/raqs-sharqi-danslessen-in-gent', '/yoga-lessen-in-gent'] }
-        ] },
+  {
+    "nl": "Partner- en sociale dans",
+    "en": "Partner & social dancing",
+    "addrs": [
+      "/argentijnse-tango-danslessen-gent",
+      "/bachata-dance-classes-in-ghent",
+      "/cuban-salsa-in-gent",
+      "/dance-for-life-gent",
+      "/kizomba-danslessen-in-gent",
+      "/lindy-hop-danslessen-in-gent",
+      "/rueda-de-casino-danslessen-gent"
+    ]
+  },
+  {
+    "nl": "Ballet & hedendaagse dans",
+    "en": "Ballet & contemporary",
+    "addrs": [
+      "/ballet-voor-volwassenen-in-gent",
+      "/contemporary-dance-technique-gent",
+      "/contemporary-modern-gent",
+      "/professional-morning-training-gent"
+    ]
+  },
+  {
+    "nl": "Jazz & tap",
+    "en": "Jazz & tap",
+    "addrs": [
+      "/solo-jazz-danslessen-in-gent",
+      "/tapdans-lessen-in-gent"
+    ]
+  },
+  {
+    "nl": "Indiase dans",
+    "en": "Indian dance",
+    "addrs": [
+      "/bhangra-danslessen-in-gent",
+      "/bollyfolk-danslessen-in-gent",
+      "/bollywood-danslessen-in-gent",
+      "/indian-dance-in-belgium",
+      "/kathak-danslessen-in-gent"
+    ]
+  },
+  {
+    "nl": "Danstradities uit de hele wereld",
+    "en": "Dance traditions from around the world",
+    "addrs": [
+      "/afrikaanse-congolese-dans-gent",
+      "/flamenco-danslessen-in-gent",
+      "/oriental-flow-gent",
+      "/raqs-sharqi-danslessen-in-gent"
+    ]
+  },
+  {
+    "nl": "Performance & expressie",
+    "en": "Performance & expression",
+    "addrs": [
+      "/bachata-solo-style-gent",
+      "/burlesque-lessen-in-gent",
+      "/cissy-ball-danslessen-in-gent",
+      "/competition-team-gent"
+    ]
+  },
+  {
+    "nl": "Beweging & welzijn",
+    "en": "Movement & wellbeing",
+    "addrs": [
+      "/pilates-voor-dansers-gent",
+      "/yoga-lessen-in-gent"
+    ]
+  }
+] },
       { id: 'workshops', nl: 'Workshops & festivals', en: 'Workshops & festivals', kind: 'group',
         nativeFolder: '/events-and-festivals',
         linksAfter: [ { addr: 'https://links.shoonyadance.com/go/workshop/', nl: 'Inschrijven voor workshops', en: 'Register for workshops' } ] },          // the native items, native labels
@@ -88,7 +145,9 @@
     ],
     // Dutch style names, exactly as on https://schedule.shoonyadance.com/nl/styles/ (matched by www address).
     // English uses the native labels; a style not listed here keeps its native label in both languages.
+    publishedClassNames: {"/argentijnse-tango-danslessen-gent": "Argentine Tango", "/bachata-dance-classes-in-ghent": "Bachata", "/cuban-salsa-in-gent": "Cuban Salsa", "/dance-for-life-gent": "Dance for Life — social dancing for 55+", "/kizomba-danslessen-in-gent": "Kizomba", "/lindy-hop-danslessen-in-gent": "Lindy Hop", "/rueda-de-casino-danslessen-gent": "Rueda de Casino", "/ballet-voor-volwassenen-in-gent": "Ballet", "/contemporary-dance-technique-gent": "Contemporary Dance Technique", "/contemporary-modern-gent": "Contemporary Modern", "/professional-morning-training-gent": "Professional Morning Training", "/solo-jazz-danslessen-in-gent": "Solo Jazz", "/tapdans-lessen-in-gent": "Tap Dance", "/bhangra-danslessen-in-gent": "Bhangra", "/bollyfolk-danslessen-in-gent": "Bollyfolk", "/bollywood-danslessen-in-gent": "Bollywood", "/indian-dance-in-belgium": "Indian Dance Flow", "/kathak-danslessen-in-gent": "Indian Semi-Classical", "/afrikaanse-congolese-dans-gent": "African Congolese Dance", "/flamenco-danslessen-in-gent": "Flamenco", "/oriental-flow-gent": "Oriental Flow", "/raqs-sharqi-danslessen-in-gent": "Raqs Sharqi (Belly Dance)", "/bachata-solo-style-gent": "Bachata Solo Style", "/burlesque-lessen-in-gent": "Burlesque", "/cissy-ball-danslessen-in-gent": "Cissy Ball", "/competition-team-gent": "Competition Team", "/pilates-voor-dansers-gent": "Pilates for Dancers", "/yoga-lessen-in-gent": "Yoga"},
     nlNames: {
+      "/dance-for-life-gent": "Dance for Life — sociaal dansen voor 55+",
       "/argentijnse-tango-danslessen-gent": "Argentijnse Tango",
       "/bachata-dance-classes-in-ghent": "Bachata",
       "/bachata-solo-style-gent": "Bachata Solo Style",
@@ -318,6 +377,7 @@
           var gg = { nl: g.nl, en: g.en, links: [] };
           g.addrs.forEach(function (a) {
             var k = keyOf(a), rec = k && nat.all[k];
+            if (!rec && CONFIG.publishedClassNames[a]) rec = { key:k, href:a, text:CONFIG.publishedClassNames[a], target:null };
             if (!rec) { missing.push(a); return; }
             placed[rec.key] = true; rows.push({ group: it.en + ' / ' + g.en, label: rec.text + ' (native label)', href: rec.href, source: 'menu' });
             gg.links.push({ nl: null, en: null, nlName: CONFIG.nlNames[a] || null, href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: rec });
@@ -389,7 +449,8 @@
       }
       var head = lbl(g, 'sdc-gh'); head.setAttribute('id', hid);
       var ul = linkList(g.links); ul.setAttribute('aria-labelledby', hid);
-      body.appendChild(h('div', { 'class': 'sdc-col' }, [head, ul]));
+      var summary = h('summary', { 'class': 'sdc-group-summary' }, [head]);
+      body.appendChild(h('details', { 'class': 'sdc-col sdc-group-details' }, [summary, ul]));
     });
     return body;
   }
@@ -727,16 +788,22 @@
     '.sdc-right .sdc-drop{right:0;margin-left:0}',
     // inside a short window the body (not the panel, so the hover bridge is not clipped) scrolls; the 4px keeps focus rings from being cut
     '.sdc-drop .sdc-body{display:flex;gap:var(--s6);align-items:flex-start;max-height:calc(100vh - var(--sdc-drop-top,0px) - 56px);overflow-y:auto;overscroll-behavior:contain;padding:var(--s1);margin:calc(var(--s1) * -1)}',
-    '.sdc-drop.sdc-wide .sdc-body{display:grid;grid-template-columns:repeat(3,max-content);column-gap:var(--s7);row-gap:0}',
+    '.sdc-drop.sdc-wide .sdc-body{display:grid;grid-template-columns:minmax(0,1fr);width:min(520px,calc(100vw - 80px));gap:0}',
     '.sdc-drop .sdc-col{min-width:0}',
     '.sdc-drop.sdc-wide .sdc-col-lead{grid-column:1/-1;padding-bottom:var(--s4);margin-bottom:var(--s5);border-bottom:var(--sdc-line)}',
-    '.sdc-drop.sdc-wide .sdc-col-lead .sdc-list{display:flex;gap:var(--s6)}',
+    '.sdc-drop.sdc-wide .sdc-col-lead .sdc-list{display:flex;flex-wrap:wrap;gap:var(--s3)}',
     '.sdc-drop .sdc-list{line-height:var(--s5)}',      // 24px on 16px = 1.5; the links inherit it (their font shorthand resets line-height)
     '.sdc-drop .sdc-list a{display:block;padding:var(--s1) 0;white-space:nowrap}',
     '#sdc-nav .sdc-drop .sdc-list a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}',
     '.sdc-gh{display:block;font-family:var(--sdc-display);font-size:var(--t-lg);font-weight:400;line-height:var(--s5);letter-spacing:0;text-transform:none;margin-bottom:var(--s3)}',
-    // owner 15 Nov: group headings stronger, a dash in front of each style (desktop dropdowns with groups only)
-    '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-gh{font-size:var(--t-xl);line-height:var(--s5);padding-bottom:var(--s2);margin-bottom:var(--s3);border-bottom:2px solid var(--sdc-color)}',
+    '.sdc-group-details{border-bottom:var(--sdc-line)}',
+    '.sdc-group-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;padding:12px 0}',
+    '.sdc-group-summary::-webkit-details-marker{display:none}',
+    '.sdc-group-summary::after{content:"+"}',
+    '.sdc-group-details[open]>.sdc-group-summary::after{content:"−"}',
+    '.sdc-group-details .sdc-list{padding-bottom:12px}',
+    // Equal-weight collapsible groups.
+    '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-gh{font-size:var(--t-lg);line-height:var(--s5);margin:0;white-space:normal}',
     '.sdc-drop.sdc-wide .sdc-col:not(.sdc-col-lead) .sdc-list a::before{content:"\\2013";content:"\\2013" / "";display:inline-block;width:var(--s4);color:var(--sdc-quiet)}',
     // ── homepage: three choices in one slim strip directly under the hero (hero video and headline untouched) ──
     '.sdc-hc{background:var(--sdc-bg,#fff);color:var(--sdc-color,#000);font-family:var(--sdc-font);border-bottom:1px solid rgba(0,0,0,.2);position:relative;z-index:1}',
