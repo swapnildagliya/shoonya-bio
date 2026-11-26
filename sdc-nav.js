@@ -1033,7 +1033,7 @@
   style.textContent = '.sdc-launch-new{display:inline-block!important;font:600 11px/1.4 Arial,sans-serif!important;letter-spacing:.04em;vertical-align:middle;margin-left:8px;padding:3px 7px;background:#B564F7;color:#000!important;white-space:nowrap}';
   document.head.appendChild(style);
   function tag(el) {
-    if (!el || el.querySelector('.sdc-launch-new')) return;
+    if (!el || el.querySelector('.sdc-launch-new, .badge-new')) return;
     var b=document.createElement('span'); b.className='sdc-launch-new'; b.setAttribute('data-wg-notranslate','');
     b.textContent=/^nl/i.test(document.documentElement.lang)?'Nieuw':'New'; el.appendChild(b);
   }
