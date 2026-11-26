@@ -85,7 +85,7 @@
     ]
   },
   {
-    "nl": "Indiase dans",
+    "nl": "Indische dans",
     "en": "Indian dance",
     "addrs": [
       "/bhangra-danslessen-in-gent",

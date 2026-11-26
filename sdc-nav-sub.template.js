@@ -32,9 +32,9 @@
     var T = SNAP.theme;
     // fonts: the menu uses the site's PT Serif; subdomain pages normally load it already
     if (!doc.querySelector('link[href*="PT+Serif"]')) doc.head.appendChild(el('link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Marcellus&display=swap' }));
-    // the old per-site header goes away; the sticky header below replaces it
+    // the old per-site header goes away; the sticky header below replaces it (a <header class="hero"> title block stays: owner 26 Nov, Sep timetable + styles overview lost their title)
     var css = [
-      'html.sdc-nav-on body>header:not(#header),html.sdc-nav-on header.site-header,html.sdc-nav-on .site-header{display:none!important}',
+      'html.sdc-nav-on body>header:not(#header):not(.hero),html.sdc-nav-on header.site-header,html.sdc-nav-on .site-header{display:none!important}',
       '#header.sdc-sub{position:sticky;top:0;z-index:1000;background:#fff;color:#000;font-family:"PT Serif",Georgia,serif;font-size:16px;margin:0}',
       '#header.sdc-sub .header-inner{position:relative;display:flex;align-items:center;box-sizing:border-box;height:116px;margin:0 38px;padding:0;max-width:none}',
       '#header.sdc-sub .header-title{margin:0}',
