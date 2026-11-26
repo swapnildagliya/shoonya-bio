@@ -380,7 +380,7 @@
             if (!rec && CONFIG.publishedClassNames[a]) rec = { key:k, href:a, text:CONFIG.publishedClassNames[a], target:null };
             if (!rec) { missing.push(a); return; }
             placed[rec.key] = true; rows.push({ group: it.en + ' / ' + g.en, label: rec.text + ' (native label)', href: rec.href, source: 'menu' });
-            gg.links.push({ nl: null, en: null, nlName: CONFIG.nlNames[a] || null, href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: rec });
+            gg.links.push({ nl: CONFIG.nlNames[a] || CONFIG.publishedClassNames[a], en: CONFIG.publishedClassNames[a], href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: null });
           });
           if (gg.links.length) top1.groups.push(gg);
         });
