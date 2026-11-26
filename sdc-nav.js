@@ -367,7 +367,9 @@
         (nat.folders[it.nativeFolder] || []).forEach(function (rec) {
           if (placed[rec.key]) return;
           placed[rec.key] = true; rows.push({ group: it.en, label: rec.text + ' (native label)', href: rec.href, source: 'menu' });
-          top1.links.push({ nl: null, en: null, href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: rec });
+          if (it.id === 'workshops' && /workshops\.shoonyadance\.com\/?$/.test(rec.href)) {
+            top1.links.push({ nl: 'Workshopoverzicht', en: 'Workshop schedule', href: 'https://schedule.shoonyadance.com/workshops/', hrefNl: 'https://schedule.shoonyadance.com/nl/workshops/', target: null, key: rec.key, source: 'menu', native: null });
+          } else { top1.links.push({ nl: null, en: null, href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: rec }); }
         });
       }
       (it.linksAfter || []).forEach(function (sp) { var l = link(sp, it.en); if (l) top1.links.push(l); });
@@ -1107,7 +1109,7 @@
   function apply() {
     document.querySelectorAll('a[href]').forEach(function(a){
       var u;try{u=new URL(a.href);}catch(e){return;}
-      if(u.hostname==='www.shoonyadance.com' && paths.indexOf(u.pathname.replace(/\/$/,''))!==-1)tag(a);
+      if(a.getAttribute('href').charAt(0)!=='#' && u.hostname==='www.shoonyadance.com' && paths.indexOf(u.pathname.replace(/\/$/,''))!==-1)tag(a);
     });
     if(paths.indexOf(location.pathname.replace(/\/$/,''))!==-1)tag(document.querySelector('main h1'));
     document.querySelectorAll('#sdcblk article[data-course]').forEach(function(a){if(ids.indexOf(a.getAttribute('data-course'))!==-1)tag(a.querySelector('.ca-lv'));});
