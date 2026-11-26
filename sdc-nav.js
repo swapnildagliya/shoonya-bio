@@ -771,6 +771,7 @@
     '.sdc-panel[hidden],.sdc-drop[hidden],.sdc-view[hidden]{display:none!important}',
     // native menu: hidden but still occupying its space, so nothing moves
     'html.sdc-nav-on #header .header-nav,html.sdc-nav-on #header .header-actions,html.sdc-nav-on #header .header-burger{visibility:hidden!important}',
+    '.item-pagination{overflow:hidden}',   // calendar event pages: Squarespace's next-event arrow poked 16 px past a phone screen (sweep 26 Nov)
     'html.sdc-nav-open,html.sdc-nav-open body{overflow:hidden!important}',
     'html.sdc-nav-open [id^="boei"]{display:none!important}',
     'html.sdc-nav-on #sdc-nav{display:flex;position:absolute;z-index:3;top:0;bottom:0;right:0;left:var(--sdc-left,220px);flex-direction:column;align-items:flex-end;justify-content:center;gap:var(--s1);',
