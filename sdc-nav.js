@@ -1028,7 +1028,7 @@
   'use strict';
   if (window.top !== window || new Date() >= new Date('2027-06-13T00:00:00+02:00')) return;
   var paths = ['/contemporary-modern-gent','/contemporary-dance-technique-gent','/competition-team-gent','/dance-for-life-gent'];
-  var ids = ['0a26c6cc-1b8b-48d8-a525-9f0755230fdb','9dc76d78-bcd9-428a-b55a-642215c9dafa','7fdb1461-ff1d-4219-b1e2-ff3abe9da479','31543e86-ab17-4b33-8ec6-d6c9fa98ed07','0f38f98c-577c-4267-a705-627345bbe611'];
+  var ids = ['0a26c6cc-1b8b-48d8-a525-9f0755230fdb','9dc76d78-bcd9-428a-b55a-642215c9dafa','7fdb1461-ff1d-4219-b1e2-ff3abe9da479','31543e86-ab17-4b33-8ec6-d6c9fa98ed07'];
   var style = document.createElement('style');
   style.textContent = '.sdc-launch-new{display:inline-block!important;font:600 11px/1.4 Arial,sans-serif!important;letter-spacing:.04em;vertical-align:middle;margin-left:8px;padding:3px 7px;background:#B564F7;color:#000!important;white-space:nowrap}';
   document.head.appendChild(style);
