@@ -338,11 +338,13 @@
   function buildModel(nat) {
     var placed = {}, missing = [], rows = [];
     ['/gift-voucher', '/newsletter', 'https://links.shoonyadance.com/go/workshop/'].forEach(function(addr) { placed[keyOf(addr)] = true; });                // rows = report lines
+    // links made up here (config / publishedClassNames) are www paths: on a subdomain a bare '/x' would open schedule.…/x = 404 (27 Nov review P1)
+    function wwwHref(a) { return (typeof a === 'string' && a.charAt(0) === '/' && location.hostname !== 'www.shoonyadance.com') ? 'https://www.shoonyadance.com' + a : a; }
     function resolve(addr, fixed) {
       if (addr === '@cta') return nat.cta ? { rec: nat.cta, source: 'menu' } : null;
       var k = keyOf(addr), rec = k && nat.all[k];
       if (rec) return { rec: rec, source: rec.source };
-      if (fixed) return { rec: { key: k, href: addr, text: '', target: null, source: 'config' }, source: 'config' };
+      if (fixed) return { rec: { key: k, href: wwwHref(addr), text: '', target: null, source: 'config' }, source: 'config' };
       missing.push(addr); return null;
     }
     function mark(res, label, group) {
@@ -378,7 +380,7 @@
           var gg = { nl: g.nl, en: g.en, links: [] };
           g.addrs.forEach(function (a) {
             var k = keyOf(a), rec = k && nat.all[k];
-            if (!rec && CONFIG.publishedClassNames[a]) rec = { key:k, href:a, text:CONFIG.publishedClassNames[a], target:null };
+            if (!rec && CONFIG.publishedClassNames[a]) rec = { key:k, href:wwwHref(a), text:CONFIG.publishedClassNames[a], target:null };
             if (!rec) { missing.push(a); return; }
             placed[rec.key] = true; rows.push({ group: it.en + ' / ' + g.en, label: rec.text + ' (native label)', href: rec.href, source: 'menu' });
             gg.links.push({ nl: CONFIG.nlNames[a] || CONFIG.publishedClassNames[a], en: CONFIG.publishedClassNames[a], href: rec.href, target: rec.target, key: rec.key, source: 'menu', native: null });
